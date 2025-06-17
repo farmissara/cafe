@@ -19,6 +19,9 @@ position: relative;
 transition: background 0.3s ease, color 0.3s ease;
 }
 
+
+
+
 body::before {
 content: '';
 position: fixed;
@@ -32,11 +35,17 @@ z-index: 0;
 pointer-events: none;
 }
 
+
+
+
 /* Container & Card */
 .container-fluid, .card {
 position: relative;
 z-index: 1;
 }
+
+
+
 
 .card {
 border: none;
@@ -46,6 +55,9 @@ background: rgba(255, 255, 255, 0.9);
 backdrop-filter: blur(5px);
 transition: background 0.3s ease, color 0.3s ease;
 }
+
+
+
 
 /* Header */
 .card-header {
@@ -59,6 +71,7 @@ border-top-right-radius: 1rem !important;
 transition: background 0.3s ease, color 0.3s ease;
 }
 
+
 /* Custom header for Order Type/Table Selection */
 .order-type-header {
    background: linear-gradient(90deg, #a7ffeb, #64ffda) !important; /* สีเขียวมิ้นต์ */
@@ -70,12 +83,18 @@ transition: background 0.3s ease, color 0.3s ease;
    border-top-right-radius: 1rem !important;
 }
 
+
+
+
 /* Headings */
 h2 {
 font-weight: 700;
 color: #8d6e63;
 text-shadow: 1px 1px 0 #ffffffcc;
 }
+
+
+
 
 /* Buttons */
 .btn {
@@ -84,12 +103,18 @@ font-weight: 500;
 transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
+
+
+
 .btn-outline-primary.active,
 .btn-outline-primary:hover {
 background-color: #ffccbc;
 color: #4e342e;
 border-color: #ffab91;
 }
+
+
+
 
 /* Category Buttons */
 .category-btn, .sub-category-btn {
@@ -107,6 +132,9 @@ margin: 2px;
    color: #4e342e !important;
 }
 
+
+
+
 /* Menu Items */
 .menu-item {
 background: #fff;
@@ -119,10 +147,16 @@ cursor: pointer;
 transition: all 0.2s ease;
 }
 
+
+
+
 .menu-item:hover {
 background: #fff3e0;
 transform: scale(1.02);
 }
+
+
+
 
 /* Table */
 .table thead {
@@ -131,9 +165,13 @@ color: white;
 transition: background 0.3s ease, color 0.3s ease;
 }
 
+
+
+
 .table td, .table th {
 vertical-align: middle;
 }
+
 
 /* Custom styling for quantity input group */
 .qty-input-group {
@@ -163,25 +201,38 @@ vertical-align: middle;
    background-color: rgba(60, 80, 110, 0.4);
 }
 
+
+
+
 /* Alerts */
 .alert {
 border-radius: 0.75rem;
 }
+
+
+
 
 #statusMsg.alert-success {
 background: #dcedc8;
 color: #33691e;
 }
 
+
+
+
 #statusMsg.alert-danger {
 background: #ffcdd2;
 color: #b71c1c;
 }
 
+
 #statusMsg.alert-info {
 background: #b2ebf2;
 color: #006064;
 }
+
+
+
 
 /* Theme toggle button */
 #themeToggle {
@@ -190,6 +241,9 @@ bottom: 20px;
 right: 20px;
 z-index: 999;
 }
+
+
+
 
 /* Language Toggle */
 .language-toggle-buttons {
@@ -204,6 +258,9 @@ z-index: 999;
    font-size: 1.2rem; /* เพิ่มขนาดฟอนต์ให้อิโมจิธงใหญ่ขึ้น */
    padding: 5px 8px; /* ปรับขนาดปุ่ม */
 }
+
+
+
 
 /* ======= Dark Mode ======= */
 body.dark-mode {
@@ -220,6 +277,7 @@ body.dark-mode {
    min-height: 100vh;
 }
 
+
 body.dark-mode .card {
    background: rgba(18, 30, 52, 0.9); /* พื้นหลังการ์ดเข้มขึ้นเล็กน้อย */
    backdrop-filter: blur(8px);
@@ -227,17 +285,20 @@ body.dark-mode .card {
    box-shadow: 0 0 15px rgba(100, 150, 200, 0.3); /* เงาออกฟ้าๆ */
 }
 
+
 body.dark-mode .card-header {
    background: rgba(28, 42, 70, 0.9) !important; /* Header การ์ดเข้มขึ้นอีก */
    color: #E0E7EB;
    text-shadow: 0 0 5px rgba(150, 200, 255, 0.5); /* เงาข้อความฟ้าอ่อน */
 }
 
+
 body.dark-mode .order-type-header {
    background: linear-gradient(90deg, #3A4762, #4D5E80) !important; /* สีน้ำเงินอมเทาสำหรับ Header ประเภทออเดอร์ */
    color: #E0E7EB !important;
    text-shadow: 0 0 5px rgba(150, 200, 255, 0.5);
 }
+
 
 body.dark-mode .btn-outline-primary.active,
 body.dark-mode .btn-outline-primary:hover {
@@ -246,11 +307,15 @@ body.dark-mode .btn-outline-primary:hover {
    border-color: #6A8EAE;
 }
 
+
 body.dark-mode .sub-category-btn.active {
    background-color: #3B597B !important; /* สีน้ำเงินเข้มขึ้นสำหรับ sub-active */
    border-color: #5C7A9D !important;
    color: #E0E7EB !important;
 }
+
+
+
 
 body.dark-mode .menu-item {
 background: rgba(25, 40, 65, 0.8); /* พื้นหลังเมนูไอเท็ม */
@@ -259,6 +324,9 @@ box-shadow: 0 0 5px rgba(100, 150, 200, 0.2);
 color: #E0E7EB;
 }
 
+
+
+
 body.dark-mode .menu-item:hover {
    background: rgba(60, 80, 110, 0.4); /* สีอ่อนลงเมื่อ hover */
    color: #E0E7EB;
@@ -266,10 +334,16 @@ body.dark-mode .menu-item:hover {
    box-shadow: 0 0 10px rgba(100, 150, 200, 0.4);
 }
 
+
+
+
 body.dark-mode .table thead {
    background: #3A4762; /* Header ตาราง */
    color: #E0E7EB;
 }
+
+
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -289,6 +363,8 @@ h2 {
    right: 10px;
 }
 }
+
+
 </style>
 </head>
 <body>
@@ -296,16 +372,23 @@ h2 {
   <i class="bi bi-moon-stars-fill"></i>
 </button>
 
+
 <div class="language-toggle-buttons">
    <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('th')">🇹🇭</button>
    <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('en')">🇬🇧</button>
 </div>
+
+
+
 
 <div class="container-fluid">
   <div class="row mb-4"><div class="col-12">
     <h2 class="text-center" id="appTitle">บ้านพักครู /คาเฟ่ 🧁☕️</h2>
     <div class="text-center text-muted" id="current-time"></div>
   </div></div>
+
+
+
 
   <div class="row">
     <div class="col-md-5">
@@ -340,6 +423,9 @@ h2 {
       </div>
     </div>
 
+
+
+
     <div class="col-md-7">
       <div class="card mb-3">
         <div class="card-header bg-success text-white"><h4 class="mb-0" id="orderListHeader">รายการสั่งซื้อ</h4></div>
@@ -359,6 +445,7 @@ h2 {
           </table></div>
         </div>
       </div>
+
 
       <div class="card">
         <div class="card-header order-type-header d-flex align-items-center justify-content-center">
@@ -402,6 +489,9 @@ h2 {
   </div>
 </div>
 
+
+
+
 <div class="modal fade" id="receiptModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content">
   <div class="modal-header"><h5 class="modal-title" id="receiptModalTitle">ใบเสร็จรับเงิน</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
   <div class="modal-body" id="receiptContent">
@@ -414,9 +504,625 @@ h2 {
     <button onclick="printReceipt()" class="btn btn-outline-secondary" id="printReceiptBtn"><i class="bi bi-printer"></i> พิมพ์ใบเสร็จ</button>
     <button class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn">ปิด</button>
   </div>
+
+
 </div></div></div>
 
+
+
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="client.js"></script>
+<script>
+  let currentLang = 'th'; // กำหนดภาษาเริ่มต้นเป็นภาษาไทย
+  let currentActiveCategory = 'all'; // หมวดหมู่หลักที่ active (all, drink, food, dessert, mainDish)
+  let currentActiveSubCategory = 'all'; // หมวดหมู่ย่อยที่ active (หรือ 'all' ถ้าไม่มีการเลือกหมวดหมู่ย่อย)
+
+
+
+
+  const translations = {
+    "th": {
+      "appTitle": "บ้านพักครู /คาเฟ่ 🧁☕️",
+      "menuHeader": "เมนู",
+      "orderListHeader": "รายการสั่งซื้อ",
+      "allCategory": "ทั้งหมด ✨", // เพิ่มอีโมจิ
+      "drinkCategory": "เครื่องดื่ม ☕️", // เพิ่มอีโมจิ
+      "foodCategory": "อาหาร 🥪", // เพิ่มอีโมจิ
+      "dessertCategory": "ของหวาน 🍰", // เพิ่มอีโมจิ
+      "mainDishCategory": "อาหารหลัก 🍽️", // เพิ่มอีโมจิ
+      "coffeeSubCategory": "กาแฟ ☕",
+      "teaSubCategory": "ชา 🍵",
+      "juiceSubCategory": "น้ำผลไม้ 🥤",
+      "otherDrinkSubCategory": "อื่นๆ 🍹",
+      "alcoholSubCategory": "เหล้า-เบียร์ 🍻", // เพิ่มหมวดหมู่ย่อยใหม่
+      "pizzaSubCategory": "พิซซ่า 🍕",
+      "spaghettiSubCategory": "สปาเก็ตตี้ 🍝",
+      "steakSubCategory": "สเต็ก 🥩",
+      "thaiFoodSubCategory": "อาหารไทย 🍚",
+      "cakesBakeriesSubCategory": "เค้ก & เบเกอรี่ 🧁",
+      "otherDessertSubCategory": "อื่นๆ 🍬",
+      "menuNameCol": "เมนู",
+      "priceCol": "ราคา",
+      "qtyCol": "จำนวน",
+      "totalCol": "รวม",
+      "manageCol": "จัดการ",
+      "grandTotal": "รวมทั้งหมด",
+      "orderTypeLabel": "ประเภทออเดอร์",
+      "eatHere": "นั่งทานที่ร้าน",
+      "takeHome": "ซื้อกลับบ้าน",
+      "tableSelectLabel": "เลือกโต๊ะ",
+      "clearOrderBtn": "ล้างรายการ",
+      "sendOrderBtn": "ส่งออเดอร์",
+      "modalReceiptTitle": "ใบเสร็จรับเงิน",
+      "cafeNameReceipt": "บ้านพักครู คาเฟ่ 🏠",
+      "receiptType": "ประเภท",
+      "receiptTable": "โต๊ะ",
+      "printReceiptBtn": "พิมพ์ใบเสร็จ",
+      "closeBtn": "ปิด",
+      "addToOrderSuccess": "เพิ่ม {itemName} เรียบร้อย",
+      "removeFromOrderSuccess": "ลบ {itemName} เรียบร้อย",
+      "noItemsSelected": "โปรดเลือกสินค้าอย่างน้อย 1 รายการ",
+      "sendingOrder": "กำลังส่งข้อมูล...",
+      "orderSuccess": "ส่งออเดอร์สำเร็จ 🎉",
+      "orderFailed": "เกิดข้อผิดพลาด: {errorMessage}",
+      "clearOrderConfirm": "ล้างรายการทั้งหมด?",
+      "orderCleared": "ล้างรายการเรียบร้อย",
+      "noMenuInCategory": "ไม่มีเมนูในหมวดหมู่นี้",
+      "บาท": "บาท",
+      "table1": "โต๊ะ 1",
+      "table2": "โต๊ะ 2",
+      "table3": "โต๊ะ 3",
+      "table4": "โต๊ะ 4"
+    },
+    "en": {
+      "appTitle": "Teacher's Home / Cafe 🧁☕️",
+      "menuHeader": "Menu",
+      "orderListHeader": "Order List",
+      "allCategory": "All ✨",
+      "drinkCategory": "Drinks ☕️",
+      "foodCategory": "Food 🥪",
+      "dessertCategory": "Desserts 🍰",
+      "mainDishCategory": "Main Dishes 🍽️",
+      "coffeeSubCategory": "Coffee ☕",
+      "teaSubCategory": "Tea 🍵",
+      "juiceSubCategory": "Juices 🥤",
+      "otherDrinkSubCategory": "Others 🍹",
+      "alcoholSubCategory": "Alcohol & Beer 🍻", // เพิ่มหมวดหมู่ย่อยใหม่
+      "pizzaSubCategory": "Pizza 🍕",
+      "spaghettiSubCategory": "Spaghetti 🍝",
+      "steakSubCategory": "Steak 🥩",
+      "thaiFoodSubCategory": "Thai Food 🍚",
+      "cakesBakeriesSubCategory": "Cakes & Bakeries 🧁",
+      "otherDessertSubCategory": "Others 🍬",
+      "menuNameCol": "Menu",
+      "priceCol": "Price",
+      "qtyCol": "Quantity",
+      "totalCol": "Total",
+      "manageCol": "Manage",
+      "grandTotal": "Grand Total",
+      "orderTypeLabel": "Order Type",
+      "eatHere": "Eat Here",
+      "takeHome": "Take Home",
+      "tableSelectLabel": "Select Table",
+      "clearOrderBtn": "Clear Order",
+      "sendOrderBtn": "Send Order",
+      "modalReceiptTitle": "Receipt",
+      "cafeNameReceipt": "Teacher's Home Cafe 🏠",
+      "receiptType": "Type",
+      "receiptTable": "Table",
+      "printReceiptBtn": "Print Receipt",
+      "closeBtn": "Close",
+      "addToOrderSuccess": "Added {itemName} to order",
+      "removeFromOrderSuccess": "Removed {itemName} from order",
+      "noItemsSelected": "Please select at least 1 item",
+      "sendingOrder": "Sending order...",
+      "orderSuccess": "Order sent successfully 🎉",
+      "orderFailed": "Error: {errorMessage}",
+      "clearOrderConfirm": "Clear all items?",
+      "orderCleared": "Order cleared",
+      "noMenuInCategory": "No menu in this category",
+      "บาท": "Baht",
+      "table1": "Table 1",
+      "table2": "Table 2",
+      "table3": "Table 3",
+      "table4": "Table 4"
+    }
+  };
+
+
+  // Function to switch language
+  function switchLanguage(lang) {
+    currentLang = lang;
+    updateUIForLanguage();
+    renderMenu(); // Re-render menu to apply language change to menu items
+    renderOrders(); // Re-render orders to apply language change to order list
+    updateCurrentTime(); // Update time display for new language
+  }
+
+
+  // Function to update UI elements based on current language
+  function updateUIForLanguage() {
+    document.getElementById('appTitle').textContent = getTranslation('appTitle');
+    document.getElementById('menuHeader').textContent = getTranslation('menuHeader');
+    document.getElementById('orderListHeader').textContent = getTranslation('orderListHeader');
+
+
+    // Update main category buttons
+    document.querySelector('.category-btn[data-category="all"]').textContent = getTranslation('allCategory');
+    document.querySelector('.category-btn[data-category="drink"]').textContent = getTranslation('drinkCategory');
+    document.querySelector('.category-btn[data-category="food"]').textContent = getTranslation('foodCategory');
+    document.querySelector('.category-btn[data-category="dessert"]').textContent = getTranslation('dessertCategory');
+    document.querySelector('.category-btn[data-category="mainDish"]').textContent = getTranslation('mainDishCategory');
+
+
+    // Update sub-category buttons
+    document.querySelector('#subCategoryDrink .sub-category-btn[data-category="coffee"]').textContent = getTranslation('coffeeSubCategory');
+    document.querySelector('#subCategoryDrink .sub-category-btn[data-category="tea"]').textContent = getTranslation('teaSubCategory');
+    document.querySelector('#subCategoryDrink .sub-category-btn[data-category="juice"]').textContent = getTranslation('juiceSubCategory');
+    document.querySelector('#subCategoryDrink .sub-category-btn[data-category="otherDrink"]').textContent = getTranslation('otherDrinkSubCategory');
+    document.querySelector('#subCategoryDrink .sub-category-btn[data-category="alcohol"]').textContent = getTranslation('alcoholSubCategory'); // อัปเดตข้อความสำหรับปุ่มใหม่
+
+
+    document.querySelector('#subCategoryDessert .sub-category-btn[data-category="cakesBakeries"]').textContent = getTranslation('cakesBakeriesSubCategory');
+    document.querySelector('#subCategoryDessert .sub-category-btn[data-category="otherDessert"]').textContent = getTranslation('otherDessertSubCategory');
+
+
+    document.querySelector('#subCategoryMainDish .sub-category-btn[data-category="pizza"]').textContent = getTranslation('pizzaSubCategory');
+    document.querySelector('#subCategoryMainDish .sub-category-btn[data-category="spaghetti"]').textContent = getTranslation('spaghettiSubCategory');
+    document.querySelector('#subCategoryMainDish .sub-category-btn[data-category="steak"]').textContent = getTranslation('steakSubCategory');
+    document.querySelector('#subCategoryMainDish .sub-category-btn[data-category="thaiFood"]').textContent = getTranslation('thaiFoodSubCategory');
+
+
+    document.getElementById('colMenuName').textContent = getTranslation('menuNameCol');
+    document.getElementById('colPrice').textContent = getTranslation('priceCol');
+    document.getElementById('colQty').textContent = getTranslation('qtyCol');
+    document.getElementById('colTotal').textContent = getTranslation('totalCol');
+    document.getElementById('colManage').textContent = getTranslation('manageCol');
+    document.getElementById('totalAmountLabel').textContent = getTranslation('grandTotal');
+
+
+    document.getElementById('orderTypeHeader').textContent = getTranslation('orderTypeLabel');
+    document.getElementById('orderTypeLabel').textContent = getTranslation('orderTypeLabel');
+    document.getElementById('eatHereLabel').innerHTML = `${getTranslation('eatHere')} <span class="fs-4">🍽️</span>`;
+    document.getElementById('takeHomeLabel').innerHTML = `${getTranslation('takeHome')} <span class="fs-4">🛍️</span>`;
+    document.getElementById('tableSelectLabel').innerHTML = `${getTranslation('tableSelectLabel')} <span class="fs-4 ms-2">🪑</span>`;
+
+
+    // Update table number options
+    document.querySelector('#tableNumber option[value="โต๊ะ 1"]').textContent = getTranslation('table1');
+    document.querySelector('#tableNumber option[value="โต๊ะ 2"]').textContent = getTranslation('table2');
+    document.querySelector('#tableNumber option[value="โต๊ะ 3"]').textContent = getTranslation('table3');
+    document.querySelector('#tableNumber option[value="โต๊ะ 4"]').textContent = getTranslation('table4');
+
+
+    document.getElementById('clearOrderBtn').innerHTML = `<i class="bi bi-trash"></i> ${getTranslation('clearOrderBtn')}`;
+    document.getElementById('sendOrderBtn').innerHTML = `<i class="bi bi-send-check"></i> ${getTranslation('sendOrderBtn')}`;
+
+
+    document.getElementById('receiptModalTitle').textContent = getTranslation('modalReceiptTitle');
+    document.getElementById('cafeNameReceipt').textContent = getTranslation('cafeNameReceipt');
+    document.getElementById('printReceiptBtn').innerHTML = `<i class="bi bi-printer"></i> ${getTranslation('printReceiptBtn')}`;
+    document.getElementById('closeModalBtn').textContent = getTranslation('closeBtn');
+  }
+
+
+  // ฟังก์ชันสำหรับดึงข้อความตามภาษา
+  function getTranslation(key, placeholders = {}) {
+    let text = translations[currentLang][key] || key; // ถ้าไม่มี key ให้แสดง key นั้นๆ
+    for (const p in placeholders) {
+      text = text.replace(`{${p}}`, placeholders[p]);
+    }
+    return text;
+  }
+
+
+
+
+  const menuItems = [
+    // เครื่องดื่ม (Drinks)
+    {id:1,name:"กาแฟลาเต้",price:40,category:"coffee",icon:"☕️"},
+    {id:42,name:"คาปูชิโน่คลาสสิก (Classic Cappuccino)",price:50,category:"coffee",icon:"☕"},
+    {id:44,name:"เอสเปรสโซ่เอ็กซ์ตร้า (Espresso Extra)",price:40,category:"coffee",icon:"☕"},
+    {id:46,name:"กาแฟนมสด (Fresh Milk Coffee)",price:45,category:"coffee",icon:"🥛"},
+    {id:41,name:"ม็อคค่าแม็กซ์ (Mocha Max)",price:60,category:"coffee",icon:"☕"},
+    {id:40,name:"ลาเต้ลาเวนเดอร์ (Lavender Latte)",price:55,category:"coffee",icon:"💜"},
+
+
+    {id:2,name:"ชาเขียว",price:35,category:"tea",icon:"🍵"},
+    {id:43,name:"ชาเขียวมัทฉะ (Matcha Green Tea)",price:45,category:"tea",icon:"🍵"},
+    {id:45,name:"ชาไทยเย็น (Thai Iced Tea)",price:40,category:"tea",icon:"🧋"},
+    {id:7,name:"ชาไทย",price:35,category:"tea",icon:"🧋"},
+    {id:47,name:"ฮันนี่เลมอนที (Honey Lemon Tea)",price:35,category:"tea",icon:"🍋"},
+    {id:48,name:"ชาอู่หลงร้อน (Hot Oolong Tea)",price:30,category:"tea",icon:"🍵"},
+   
+    {id:4,name:"น้ำส้มคั้น",price:30,category:"juice",icon:"🥤"},
+    {id:39,name:"โกโก้ครีมมี่ (Cocoa Creamy)",price:45,category:"otherDrink",icon:"🍫"}, // ย้ายโกโก้มาอยู่อื่นๆ
+
+
+    // **เพิ่มเมนู เหล้า-เบียร์**
+    {id:78,name:"เบียร์ช้าง",price:90,category:"alcohol",icon:"🍺"},
+    {id:79,name:"เบียร์ลีโอ",price:90,category:"alcohol",icon:"🍺"},
+    {id:80,name:"เบียร์สิงห์",price:100,category:"alcohol",icon:"🍺"},
+    {id:81,name:"เบียร์ไฮเนเก้น",price:120,category:"alcohol",icon:"🍺"},
+    {id:82,name:"วิสกี้ (แก้ว)",price:150,category:"alcohol",icon:"🥃"},
+    {id:83,name:"เหล้าขาว (ช็อต)",price:60,category:"alcohol",icon:"🍶"},
+    {id:84,name:"ค็อกเทล มะพร้าว (Coconut Cocktail)",price:180,category:"alcohol",icon:"🍹"},
+
+
+
+
+    // อาหาร (Food)
+    {id:5,name:"แซนวิช",price:45,category:"singleDish",icon:"🥪"},
+    {id:8,name:"ครัวซองต์",price:40,category:"singleDish",icon:"🥐"},
+
+
+    // ของหวาน (Desserts)
+    {id:3,name:"เค้กช็อกโกแลต",price:55,category:"cakesBakeries",icon:"🧁"},
+    {id:6,name:"บราวนี่",price:50,category:"cakesBakeries",icon:"🍫"},
+    {id:24,name:"บ้านขนมหวาน Sweet Home Bakery",price:65,category:"cakesBakeries",icon:"🍰"},
+    {id:25,name:"ขนมอบรัก Love Bake",price:70,category:"cakesBakeries",icon:"💖"},
+    {id:26,name:"ครัวอบอุ่น Warm Oven",price:60,category:"cakesBakeries",icon:"🍪"},
+    {id:27,name:"หอมกลิ่นขนม Aroma Bakery",price:75,category:"cakesBakeries",icon:"🍞"},
+    {id:28,name:"กลิ่นอบอวล Cozy Crust",price:68,category:"cakesBakeries",icon:"🥨"},
+    {id:29,name:"ขนมบ้านสวน Garden Sweets",price:55,category:"cakesBakeries",icon:"🌳"},
+    {id:30,name:"ขนมหวานใจ Sweetheart Treats",price:72,category:"cakesBakeries",icon:"🍬"},
+    {id:31,name:"สวรรค์ขนม Heaven Bakery",price:80,category:"cakesBakeries",icon:"😇"},
+    {id:32,name:"เตาอบสุขใจ Happy Oven",price:62,category:"cakesBakeries",icon:"😊"},
+    {id:33,name:"ขนมมงคล Lucky Bakes",price:78,category:"cakesBakeries",icon:"🧧"},
+    {id:34,name:"ขนมอบสด Fresh Bake",price:58,category:"cakesBakeries",icon:"🥖"},
+    {id:35,name:"อบอบอุ่น Warm & Fresh",price:60,category:"cakesBakeries",icon:"🥐"},
+    {id:36,name:"หอมกรุ่นขนม Fragrant Sweets",price:65,category:"cakesBakeries",icon:"🍩"},
+    {id:37,name:"รสหวานบ้านเรา Sweet Taste Home",price:55,category:"cakesBakeries",icon:"🏠"},
+    {id:38,name:"ขนมบ้านใกล้ Nearby Bakery",price:50,category:"cakesBakeries",icon:"🏡"},
+
+
+    // พิซซ่า (Pizza) - ย้ายไปอยู่ Main Dishes
+    {id:9,name:"พิซซ่ามาการิต้า (Margherita)",price:180,category:"pizza",icon:"🍕"},
+    {id:10,name:"พิซซ่าเปปเปอโรนี (Pepperoni)",price:220,category:"pizza",icon:"🍕"},
+    {id:11,name:"พิซซ่าฮาวายเอี้ยน (Hawaiian)",price:200,category:"pizza",icon:"🍕"},
+    {id:12,name:"พิซซ่าซุปเปอร์ดีลักซ์ (Super Deluxe)",price:250,category:"pizza",icon:"🍕"},
+    {id:13,name:"พิซซ่าพริกหยวกและเห็ด (Bell Pepper & Mushroom)",price:190,category:"pizza",icon:"🍕"},
+    {id:14,name:"พิซซ่าไส้กรอกอิตาเลียน (Italian Sausage)",price:230,category:"pizza",icon:"🍕"},
+    {id:15,name:"พิซซ่าแซลมอนรมควัน (Smoked Salmon)",price:280,category:"pizza",icon:"🍕"},
+    {id:16,name:"พิซซ่าชีสรวมมิตร (Four Cheese)",price:210,category:"pizza",icon:"🍕"},
+    {id:17,name:"พิซซ่าบาร์บีคิวไก่ (BBQ Chicken)",price:200,category:"pizza",icon:"🍕"},
+    {id:18,name:"พิซซ่าทะเลรวม (Seafood)",price:270,category:"pizza",icon:"🍕"},
+    {id:19,name:"พิซซ่าผักโขมและริคอตต้า (Spinach & Ricotta)",price:195,category:"pizza",icon:"🍕"},
+    {id:20,name:"พิซซ่าเบคอนกับไข่ (Bacon & Egg)",price:215,category:"pizza",icon:"🍕"},
+    {id:21,name:"พิซซ่าปาปริก้าและไก่ (Paprika & Chicken)",price:205,category:"pizza",icon:"🍕"},
+    {id:22,name:"พิซซ่ารสจัด (Spicy Hot)",price:190,category:"pizza",icon:"🍕"},
+    {id:23,name:"พิซซ่ามะกอกดำกับแฮม (Black Olive & Ham)",price:200,category:"pizza",icon:"🍕"},
+
+
+    // สปาเก็ตตี้ (Spaghetti) - ย้ายไปอยู่ Main Dishes
+    {id:59,name:"สปาเก็ตตี้คาโบนาร่า (Carbonara)",price:150,category:"spaghetti",icon:"🍝"},
+    {id:60,name:"สปาเก็ตตี้โบโลเนส (Bolognese)",price:140,category:"spaghetti",icon:"🍝"},
+    {id:61,name:"สปาเก็ตตี้ผัดขี้เมาทะเล (Spicy Seafood)",price:160,category:"spaghetti",icon:"🍝"},
+    {id:62,name:"สปาเก็ตตี้เบคอนพริกแห้ง (Dried Chili Bacon)",price:130,category:"spaghetti",icon:"🍝"},
+    {id:63,name:"สปาเก็ตตี้ซอสมะเขือเทศ (Tomato Sauce)",price:120,category:"spaghetti",icon:"🍝"},
+   
+    // สเต็ก (Steak) - ย้ายไปอยู่ Main Dishes
+    {id:49,name:"สเต็กพริกไทยดำ (Black Pepper Steak)",price:180,category:"steak",icon:"🥩"},
+    {id:50,name:"สเต็กซอสเห็ดหอม (Mushroom Sauce Steak)",price:190,category:"steak",icon:"🥩"},
+    {id:51,name:"สเต็กหมูจิ้มแจ่ว (Spicy Thai Dipping Pork Steak)",price:170,category:"steak",icon:"🍖"},
+    {id:52,name:"สเต็กเนื้อย่างน้ำจิ้มแจ่ว (Thai Spicy Beef Steak)",price:220,category:"steak",icon:"🥩"},
+    {id:53,name:"สเต็กไก่ซอสกระเทียมพริกไทย (Garlic Pepper Chicken Steak)",price:160,category:"steak",icon:"🍗"},
+    {id:54,name:"สเต็กหมูซอสเทอริยากิ (Teriyaki Pork Steak)",price:175,category:"steak",icon:"🍖"},
+    {id:55,name:"สเต็กแซ่บ (Zapp Steak – แนวอีสานจัดจ้าน)",price:185,category:"steak",icon:"🌶️"},
+    {id:56,name:"สเต็กปลาแซลมอนย่างซีอิ๊ว (Grilled Salmon with Soy Glaze)",price:250,category:"steak",icon:"🐟"},
+    {id:57,name:"สเต็กหมูพริกเกลือ (Spicy Pork Steak Thai Style)",price:170,category:"steak",icon:"🌶️"},
+    {id:58,name:"สเต็กไก่ลาบ (Larb Chicken Steak)",price:165,category:"steak",icon:"🍗"},
+
+
+    // อาหารไทย (Thai Food) - ย้ายไปอยู่ Main Dishes
+    {id:64,name:"ผัดกะเพราไก่ไข่ดาว (Stir-fried Basil with Chicken & Fried Egg)",price:80,category:"thaiFood",icon:"🍚"},
+    {id:65,name:"ข้าวผัดกุ้ง (Shrimp Fried Rice)",price:90,category:"thaiFood",icon:"🍤"},
+    {id:66,name:"ต้มยำกุ้งน้ำข้น (Creamy Tom Yum Goong)",price:120,category:"thaiFood",icon:"🍲"},
+    {id:67,name:"แกงเขียวหวานไก่ (Green Curry with Chicken)",price:100,category:"thaiFood",icon:"🍛"},
+    {id:68,name:"พะแนงหมู (Panaeng Curry with Pork)",price:110,category:"thaiFood",icon:"🍜"},
+    {id:69,name:"ฉู่ฉี่ปลาทู (Chu Chee Mackerel)",price:130,category:"thaiFood",icon:"🐟"},
+    {id:70,name:"แกงส้มกุ้งผักรวม (Sour Curry with Shrimp & Mixed Veggies)",price:120,category:"thaiFood",icon:"🌶️"},
+    {id:71,name:"ส้มตำไทย (Papaya Salad Thai Style)",price:70,category:"thaiFood",icon:"🥗"},
+    {id:72,name:"ลาบหมู (Spicy Minced Pork Salad)",price:90,category:"thaiFood",icon:"🌶️"},
+    {id:73,name:"น้ำตกหมู (Spicy Grilled Pork Salad)",price:95,category:"thaiFood",icon:"🍖"},
+    {id:74,name:"ไก่ย่าง (Grilled Chicken)",price:120,category:"thaiFood",icon:"🍗"},
+    {id:75,name:"ข้าวซอยไก่ (Khao Soi with Chicken)",price:100,category:"thaiFood",icon:"🍜"},
+    {id:76,name:"แกงฮังเล (Hang Le Curry)",price:110,category:"thaiFood",icon:"🍲"},
+    {id:77,name:"ไส้อั่ว (Northern Thai Sausage)",price:85,category:"thaiFood",icon:"🌭"}
+  ];
+  const menuListEl = document.getElementById('menuList');
+  const orderTableBody = document.querySelector('#orderTable tbody');
+  const totalAmountEl = document.getElementById('totalAmount');
+  const statusMsg = document.getElementById('statusMsg');
+  const sendOrderBtn = document.getElementById('sendOrderBtn');
+  const clearOrderBtn = document.getElementById('clearOrderBtn');
+  const categoryBtns = document.querySelectorAll('.category-btn');
+  const subCategoryDrink = document.getElementById('subCategoryDrink');
+  const subCategoryDessert = document.getElementById('subCategoryDessert');
+  const subCategoryMainDish = document.getElementById('subCategoryMainDish');
+  const allSubCategoryDivs = document.querySelectorAll('#subCategoryDrink, #subCategoryDessert, #subCategoryMainDish');
+  const currentTimeEl = document.getElementById('current-time');
+  const eatHereRadio = document.getElementById('eatHere');
+  const takeHomeRadio = document.getElementById('takeHome');
+  const tableSelectContainer = document.getElementById('tableSelectContainer');
+  const tableNumberSelect = document.getElementById('tableNumber');
+
+
+  let orders = [];
+
+
+
+
+  function updateCurrentTime(){
+    const now=new Date();
+    // เปลี่ยน format ของเวลาตามภาษาที่เลือก
+    currentTimeEl.textContent=now.toLocaleString(currentLang === 'th' ? 'th-TH' : 'en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit',second:'2-digit'});
+  }
+  setInterval(updateCurrentTime,1000); updateCurrentTime();
+
+
+
+
+  document.getElementById('themeToggle').addEventListener('click',()=>document.body.classList.toggle('dark-mode'));
+  (function(){const h=new Date().getHours();if(h>=18||h<6)document.body.classList.add('dark-mode');})();
+
+
+
+
+  function renderMenu(){
+    let filtered = [];
+    if (currentActiveSubCategory === 'all') {
+        // If "All" or a main category without specific sub-category is selected
+        if (currentActiveCategory === 'all') {
+            filtered = menuItems;
+        } else if (currentActiveCategory === 'drink') {
+            filtered = menuItems.filter(item => ['coffee', 'tea', 'juice', 'otherDrink', 'alcohol'].includes(item.category)); // เพิ่ม 'alcohol'
+        } else if (currentActiveCategory === 'food') {
+            filtered = menuItems.filter(item => item.category === 'singleDish');
+        } else if (currentActiveCategory === 'dessert') {
+            filtered = menuItems.filter(item => ['cakesBakeries', 'otherDessert'].includes(item.category));
+        } else if (currentActiveCategory === 'mainDish') {
+            filtered = menuItems.filter(item => ['pizza', 'spaghetti', 'steak', 'thaiFood'].includes(item.category));
+        }
+    } else {
+        // If a specific sub-category is selected
+        filtered = menuItems.filter(item => item.category === currentActiveSubCategory);
+    }
+   
+    menuListEl.innerHTML = filtered.length ? filtered.map(item=>`
+      <div class="menu-item" onclick="addOrder(${item.id})">
+        <div class="d-flex align-items-center">
+          <div class="fs-3 me-2">${item.icon}</div>
+          <div><strong>${item.name}</strong><br><small class="text-muted">${item.price} ${getTranslation('บาท')}</small></div>
+        </div>
+      </div>`).join('') : `<div class="text-muted text-center py-3">${getTranslation('noMenuInCategory')}</div>`;
+  }
+
+
+
+
+  window.addOrder = function(id){
+    const item = menuItems.find(i=>i.id===id), ex=orders.find(o=>o.id===id);
+    if(ex) {
+       ex.qty++;
+    } else {
+       // ต้องใส่ category ให้กับรายการที่เพิ่มใน orders ด้วย
+       const fullItem = menuItems.find(i => i.id === id);
+       orders.push({...fullItem, qty:1});
+    }
+    renderOrders(); // <--- สำคัญ: เรียก renderOrders เพื่ออัปเดต UI ทันที
+    showStatus(getTranslation('addToOrderSuccess', {itemName: item.name}),'success');
+  }
+
+
+  // ฟังก์ชัน renderOrders ที่ปรับปรุงใหม่สำหรับการแสดงผลจำนวน
+  function renderOrders() {
+       orderTableBody.innerHTML = '';
+       let totalAmount = 0;
+       orders.forEach(order => {
+           const itemTotal = order.price * order.qty;
+           totalAmount += itemTotal;
+           const row = orderTableBody.insertRow();
+           row.innerHTML = `
+               <td>${order.name}</td>
+               <td>${order.price}</td>
+               <td>
+                   <div class="input-group input-group-sm qty-input-group">
+                       <button class="btn btn-outline-secondary" type="button" onclick="changeQty(${order.id}, -1)">
+                           <i class="bi bi-dash-lg"></i>
+                       </button>
+                       <input type="text" class="form-control text-center" value="${order.qty}" readonly>
+                       <button class="btn btn-outline-secondary" type="button" onclick="changeQty(${order.id}, 1)">
+                           <i class="bi bi-plus-lg"></i>
+                       </button>
+                   </div>
+               </td>
+               <td>${itemTotal}</td>
+               <td><button class="btn btn-danger btn-sm" onclick="removeOrder(${order.id})"><i class="bi bi-x-lg"></i></button></td>
+           `;
+       });
+       totalAmountEl.textContent = totalAmount; // อัปเดตยอดรวมทั้งหมด
+  }
+
+
+
+
+  function removeOrder(id){
+    const idx=orders.findIndex(o=>o.id===id);
+    if(idx>-1){
+      const n=orders[idx].name;
+      orders.splice(idx,1);
+      renderOrders();
+      showStatus(getTranslation('removeFromOrderSuccess', {itemName: n}),'success');
+    }
+  }
+
+
+
+
+  function changeQty(id,delta){ const o=orders.find(x=>x.id===id); if(!o)return; o.qty+=delta; if(o.qty<1)o.qty=1; renderOrders(); }
+
+
+
+
+  function showStatus(msg,type){ statusMsg.textContent=msg; statusMsg.className=`alert alert-${type}`; statusMsg.style.display='block'; setTimeout(()=>statusMsg.style.display='none',3000); }
+
+
+
+
+  function sendOrder(){
+    if(!orders.length){ showStatus(getTranslation('noItemsSelected'),"danger"); return; }
+   
+    const orderType = document.querySelector('input[name="orderType"]:checked').value;
+    const tableNumber = tableNumberSelect.value; // ค่า value เป็นภาษาไทย
+
+
+    showStatus(getTranslation('sendingOrder'),"info");
+    google.script.run
+      .withSuccessHandler(()=>{
+        showStatus(getTranslation('orderSuccess'),"success");
+        generateReceipt(orderType, tableNumber);
+        orders=[]; renderOrders();
+      })
+      .withFailureHandler(err=>{
+        showStatus(getTranslation('orderFailed', {errorMessage: err.message}),"danger");
+      })
+      .processOrder({
+        timestamp:new Date().toISOString(),
+        orders,
+        orderType: orderType,
+        tableNumber: tableNumber
+      });
+  }
+
+
+
+
+  function clearOrder(){ if(orders.length && confirm(getTranslation('clearOrderConfirm'))){ orders=[]; renderOrders(); showStatus(getTranslation('orderCleared'),"success"); } }
+
+
+
+
+  function generateReceipt(orderType, tableNumber){
+    if(!orders.length) return;
+    // แปลง orderType และ tableNumber สำหรับแสดงผลในใบเสร็จตามภาษาที่เลือก
+    const displayOrderType = (orderType === 'นั่งทานที่ร้าน') ? getTranslation('eatHere') : getTranslation('takeHome');
+    const displayTableNumber = (tableNumber === 'โต๊ะ 1') ? getTranslation('table1') :
+                               (tableNumber === 'โต๊ะ 2') ? getTranslation('table2') :
+                               (tableNumber === 'โต๊ะ 3') ? getTranslation('table3') :
+                               (tableNumber === 'โต๊ะ 4') ? getTranslation('table4') : tableNumber;
+
+
+    let receiptDetailsHtml = `<p><strong>${getTranslation('receiptType')}:</strong> ${displayOrderType} ${orderType === 'นั่งทานที่ร้าน' ? '🍽️' : '🛍️'}</p>`;
+    if (orderType === 'นั่งทานที่ร้าน') {
+      receiptDetailsHtml += `<p><strong>${getTranslation('receiptTable')}:</strong> ${displayTableNumber} 🪑</p>`;
+    }
+    document.getElementById('receiptDetails').innerHTML = receiptDetailsHtml;
+
+
+    let html=`<table class="table"><thead><tr><th>${getTranslation('menuNameCol')}</th><th>${getTranslation('qtyCol')}</th><th>${getTranslation('priceCol')}</th></tr></thead><tbody>`;
+    let total=0;
+    orders.forEach(o=>{ const s=o.price*o.qty; total+=s; html+=`<tr><td>${o.name}</td><td>${o.qty}</td><td>${s} ${getTranslation('บาท')}</td></tr>`; });
+    html+=`</tbody><tfoot><tr><th colspan="2">${getTranslation('grandTotal')}</th><th>${total} ${getTranslation('บาท')}</th></tr></tfoot></table>`;
+    document.getElementById("receiptTable").innerHTML=html;
+    document.getElementById("qrImage").src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${getTranslation('cafeNameReceipt')}: ${total} ${getTranslation('บาท')}`;
+    new bootstrap.Modal(document.getElementById('receiptModal')).show();
+  }
+
+
+
+
+  function printReceipt(){ const w=window.open(); w.document.write(document.getElementById('receiptContent').innerHTML); w.print(); w.close(); }
+
+
+
+
+  // EVENTS
+  sendOrderBtn.addEventListener('click',sendOrder);
+  clearOrderBtn.addEventListener('click',clearOrder);
+
+
+  // Main Category Button Click Handler
+  categoryBtns.forEach(btn => btn.addEventListener('click', () => {
+    categoryBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+   
+    // Hide all sub-category divs
+    allSubCategoryDivs.forEach(div => div.classList.add('d-none'));
+
+
+    currentActiveCategory = btn.dataset.category;
+    currentActiveSubCategory = 'all'; // Reset sub-category when a new main category is selected
+
+
+    // Show relevant sub-category div and activate its first sub-button
+    if (currentActiveCategory === 'drink') {
+      subCategoryDrink.classList.remove('d-none');
+      const firstSubBtn = subCategoryDrink.querySelector('.sub-category-btn');
+      if (firstSubBtn) {
+        firstSubBtn.click(); // Simulate click to activate and render its menu
+      } else {
+        renderMenu(); // Render main category if no sub-buttons
+      }
+    } else if (currentActiveCategory === 'food') {
+      // 'food' doesn't have explicit sub-categories in HTML structure,
+      // so directly set currentActiveSubCategory to 'singleDish' (the category name in menuItems)
+      currentActiveSubCategory = 'singleDish';
+      renderMenu();
+    } else if (currentActiveCategory === 'dessert') {
+      subCategoryDessert.classList.remove('d-none');
+      const firstSubBtn = subCategoryDessert.querySelector('.sub-category-btn');
+      if (firstSubBtn) {
+        firstSubBtn.click();
+      } else {
+        renderMenu(); // Render main category if no sub-buttons
+      }
+    } else if (currentActiveCategory === 'mainDish') {
+      subCategoryMainDish.classList.remove('d-none');
+      const firstSubBtn = subCategoryMainDish.querySelector('.sub-category-btn');
+      if (firstSubBtn) {
+        firstSubBtn.click();
+      } else {
+        renderMenu(); // Render main category if no sub-buttons
+      }
+    } else if (currentActiveCategory === 'all') {
+       // If "All" is clicked, clear active from sub-buttons and render all menu items
+       document.querySelectorAll('.sub-category-btn').forEach(b => b.classList.remove('active'));
+       renderMenu();
+    }
+  }));
+
+
+  // Sub-Category Button Click Handler
+  allSubCategoryDivs.forEach(div => {
+      div.querySelectorAll('.sub-category-btn').forEach(subBtn => {
+          subBtn.addEventListener('click', () => {
+              // Remove active from all sub-category buttons in all divs
+              document.querySelectorAll('.sub-category-btn').forEach(b => b.classList.remove('active'));
+              subBtn.classList.add('active');
+              currentActiveSubCategory = subBtn.dataset.category;
+              renderMenu();
+          });
+      });
+  });
+
+
+
+
+  // Toggle table selection based on order type
+  eatHereRadio.addEventListener('change', () => {
+    tableSelectContainer.style.display = eatHereRadio.checked ? 'block' : 'none';
+  });
+  takeHomeRadio.addEventListener('change', () => {
+    tableSelectContainer.style.display = takeHomeRadio.checked ? 'none' : 'block';
+  });
+
+
+  // เรียกใช้เมื่อโหลดหน้าเว็บครั้งแรกเพื่อแสดงผลภาษาเริ่มต้น
+  updateUIForLanguage();
+  // คลิกปุ่ม "ทั้งหมด" โดยอัตโนมัติเมื่อโหลดหน้าเว็บ
+  document.querySelector('.category-btn[data-category="all"]').click();
+  renderOrders(); // ต้องเรียกอีกครั้งเพื่อให้รายการคำสั่งซื้อแสดงผลถูกต้อง
+</script>
 </body>
 </html>
