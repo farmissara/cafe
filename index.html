@@ -383,7 +383,7 @@ h2 {
 
 <div class="container-fluid">
   <div class="row mb-4"><div class="col-12">
-    <h2 class="text-center" id="appTitle">บ้านพักครู /คาเฟ่ 🧁☕️</h2>
+    <h2 class="text-center" id="appTitle">บ้านพักครู /คาเฟ่ �☕️</h2>
     <div class="text-center text-muted" id="current-time"></div>
   </div></div>
 
@@ -980,9 +980,11 @@ h2 {
     showStatus(getTranslation('sendingOrder'),"info");
     google.script.run
       .withSuccessHandler(()=>{
+        // ล้างรายการสั่งซื้อและอัปเดต UI ทันทีเมื่อส่งสำเร็จ
+        orders=[];
+        renderOrders();
         showStatus(getTranslation('orderSuccess'),"success");
         generateReceipt(orderType, tableNumber);
-        orders=[]; renderOrders();
       })
       .withFailureHandler(err=>{
         showStatus(getTranslation('orderFailed', {errorMessage: err.message}),"danger");
@@ -1004,7 +1006,9 @@ h2 {
 
 
   function generateReceipt(orderType, tableNumber){
-    if(!orders.length) return;
+    if(!orders.length) return; // ไม่ควรเกิดขึ้นถ้ามีการเคลียร์ orders ก่อนเรียกฟังก์ชันนี้
+
+
     // แปลง orderType และ tableNumber สำหรับแสดงผลในใบเสร็จตามภาษาที่เลือก
     const displayOrderType = (orderType === 'นั่งทานที่ร้าน') ? getTranslation('eatHere') : getTranslation('takeHome');
     const displayTableNumber = (tableNumber === 'โต๊ะ 1') ? getTranslation('table1') :
@@ -1022,7 +1026,9 @@ h2 {
 
     let html=`<table class="table"><thead><tr><th>${getTranslation('menuNameCol')}</th><th>${getTranslation('qtyCol')}</th><th>${getTranslation('priceCol')}</th></tr></thead><tbody>`;
     let total=0;
-    orders.forEach(o=>{ const s=o.price*o.qty; total+=s; html+=`<tr><td>${o.name}</td><td>${o.qty}</td><td>${s} ${getTranslation('บาท')}</td></tr>`; });
+    // ใช้ orders เดิมที่ยังไม่ถูกเคลียร์เพื่อสร้างใบเสร็จ
+    const ordersForReceipt = JSON.parse(JSON.stringify(orders)); // สร้าง deep copy เพื่อไม่ให้กระทบ orders หลัก
+    ordersForReceipt.forEach(o=>{ const s=o.price*o.qty; total+=s; html+=`<tr><td>${o.name}</td><td>${o.qty}</td><td>${s} ${getTranslation('บาท')}</td></tr>`; });
     html+=`</tbody><tfoot><tr><th colspan="2">${getTranslation('grandTotal')}</th><th>${total} ${getTranslation('บาท')}</th></tr></tfoot></table>`;
     document.getElementById("receiptTable").innerHTML=html;
     document.getElementById("qrImage").src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${getTranslation('cafeNameReceipt')}: ${total} ${getTranslation('บาท')}`;
@@ -1126,3 +1132,4 @@ h2 {
 </script>
 </body>
 </html>
+�
