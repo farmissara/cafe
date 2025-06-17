@@ -8,363 +8,122 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;500;700&display=swap');
-/* ======= Font & Body ====== */
-body {
-font-family: 'Sarabun', sans-serif;
-background: linear-gradient(to bottom, #fff8f0, #ffeedd);
-color: #4e342e;
-padding: 20px;
-position: relative;
-transition: background 0.3s ease, color 0.3s ease;
-}
-
-
-
-
-body::before {
-content: '';
-position: fixed;
-top: 0; left: 0;
-width: 100%; height: 100%;
-background-image: url('...'); /* ใส่ลิงก์ภาพพื้นหลังแบบลายซ้ำ */
-background-size: contain;
-background-repeat: repeat;
-opacity: 0.07;
-z-index: 0;
-pointer-events: none;
-}
-
-
-
-
-/* Container & Card */
-.container-fluid, .card {
-position: relative;
-z-index: 1;
-}
-
-
-
-
-.card {
-border: none;
-box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-border-radius: 1rem;
-background: rgba(255, 255, 255, 0.9);
-backdrop-filter: blur(5px);
-transition: background 0.3s ease, color 0.3s ease;
-}
-
-
-
-
-/* Header */
-.card-header {
-background: linear-gradient(90deg, #d7ccc8, #f5f5f5);
-color: #3e2723;
-font-weight: 600;
-font-size: 1.2rem;
-letter-spacing: 0.5px;
-border-top-left-radius: 1rem !important;
-border-top-right-radius: 1rem !important;
-transition: background 0.3s ease, color 0.3s ease;
-}
-
-
-/* Custom header for Order Type/Table Selection */
-.order-type-header {
-   background: linear-gradient(90deg, #a7ffeb, #64ffda) !important; /* สีเขียวมิ้นต์ */
-   color: #004d40 !important;
-   font-weight: 700;
-   font-size: 1.3rem;
-   text-align: center;
-   border-top-left-radius: 1rem !important;
-   border-top-right-radius: 1rem !important;
-}
-
-
-
-
-/* Headings */
-h2 {
-font-weight: 700;
-color: #8d6e63;
-text-shadow: 1px 1px 0 #ffffffcc;
-}
-
-
-
-
-/* Buttons */
-.btn {
-border-radius: 999px;
-font-weight: 500;
-transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
-}
-
-
-
-
-.btn-outline-primary.active,
-.btn-outline-primary:hover {
-background-color: #ffccbc;
-color: #4e342e;
-border-color: #ffab91;
-}
-
-
-
-
-/* Category Buttons */
-.category-btn, .sub-category-btn {
-font-size: 0.85rem;
-padding: 5px 12px;
-margin: 2px;
-}
-.sub-category-btn {
-   margin-left: 20px; /* Indent sub-category buttons */
-   border-color: #d7ccc8; /* Lighter border for sub-buttons */
-}
-.sub-category-btn.active {
-   background-color: #ffe0b2 !important; /* Lighter orange for active sub-button */
-   border-color: #ffcc80 !important;
-   color: #4e342e !important;
-}
-
-
-
-
-/* Menu Items */
-.menu-item {
-background: #fff;
-border: 1px solid #f0e0d6;
-margin-bottom: 5px;
-border-radius: 0.75rem;
-padding: 10px 15px;
-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-cursor: pointer;
-transition: all 0.2s ease;
-}
-
-
-
-
-.menu-item:hover {
-background: #fff3e0;
-transform: scale(1.02);
-}
-
-
-
-
-/* Table */
-.table thead {
-background: #bcaaa4;
-color: white;
-transition: background 0.3s ease, color 0.3s ease;
-}
-
-
-
-
-.table td, .table th {
-vertical-align: middle;
-}
-
-
-/* Custom styling for quantity input group */
-.qty-input-group {
-   max-width: 120px; /* Limit width of quantity controls */
-   margin: auto; /* Center the control in its cell */
-}
-.qty-input-group .form-control {
-   text-align: center;
-   border-left: none;
-   border-right: none;
-   background-color: #fff; /* Ensure white background in light mode */
-}
-.dark-mode .qty-input-group .form-control {
-   background-color: rgba(25, 40, 65, 0.8); /* Match dark mode menu item background */
-   color: #E0E7EB;
-   border-color: #3A4762;
-}
-.qty-input-group .btn-outline-secondary {
-   border-color: #ccc; /* Default border color for quantity buttons */
-}
-.dark-mode .qty-input-group .btn-outline-secondary {
-   border-color: #3A4762; /* Dark mode border for quantity buttons */
-   color: #E0E7EB;
-   background-color: rgba(25, 40, 65, 0.8);
-}
-.dark-mode .qty-input-group .btn-outline-secondary:hover {
-   background-color: rgba(60, 80, 110, 0.4);
-}
-
-
-
-
-/* Alerts */
-.alert {
-border-radius: 0.75rem;
-}
-
-
-
-
-#statusMsg.alert-success {
-background: #dcedc8;
-color: #33691e;
-}
-
-
-
-
-#statusMsg.alert-danger {
-background: #ffcdd2;
-color: #b71c1c;
-}
-
-
-#statusMsg.alert-info {
-background: #b2ebf2;
-color: #006064;
-}
-
-
-
-
-/* Theme toggle button */
-#themeToggle {
-position: fixed;
-bottom: 20px;
-right: 20px;
-z-index: 999;
-}
-
-
-
-
-/* Language Toggle */
-.language-toggle-buttons {
-   position: fixed; /* ใช้ fixed เพื่อให้ปุ่มอยู่กับที่เมื่อเลื่อนหน้าจอ */
-   top: 20px;
-   right: 20px;
-   z-index: 999;
-}
-.language-toggle-buttons .btn {
-   min-width: 45px; /* กำหนดความกว้างขั้นต่ำให้ปุ่มดูสม่ำเสมอ */
-   font-weight: 600;
-   font-size: 1.2rem; /* เพิ่มขนาดฟอนต์ให้อิโมจิธงใหญ่ขึ้น */
-   padding: 5px 8px; /* ปรับขนาดปุ่ม */
-}
-
-
-
-
-/* ======= Dark Mode ======= */
-body.dark-mode {
-   background-color: #0A192F; /* สีน้ำเงินเข้ม (Deep Blue) */
-   background-image:
-       url('https://upload.wikimedia.org/wikipedia/e/e1/Full_Moon_Luc_Viatour.jpg'), /* พระจันทร์เต็มดวง */
-       url('https://www.transparenttextures.com/patterns/stardust.png'); /* ดาวเล็ก ๆ แบบพื้นหลัง */
-   background-repeat: no-repeat, repeat;
-   background-position: center top, center center;
-   background-size: 250px 250px, auto;
-   color: #E0E7EB; /* สีข้อความอ่อน (Light Grayish Blue) */
-   position: relative;
-   overflow-x: hidden;
-   min-height: 100vh;
-}
-
-
-body.dark-mode .card {
-   background: rgba(18, 30, 52, 0.9); /* พื้นหลังการ์ดเข้มขึ้นเล็กน้อย */
-   backdrop-filter: blur(8px);
-   color: #E0E7EB;
-   box-shadow: 0 0 15px rgba(100, 150, 200, 0.3); /* เงาออกฟ้าๆ */
-}
-
-
-body.dark-mode .card-header {
-   background: rgba(28, 42, 70, 0.9) !important; /* Header การ์ดเข้มขึ้นอีก */
-   color: #E0E7EB;
-   text-shadow: 0 0 5px rgba(150, 200, 255, 0.5); /* เงาข้อความฟ้าอ่อน */
-}
-
-
-body.dark-mode .order-type-header {
-   background: linear-gradient(90deg, #3A4762, #4D5E80) !important; /* สีน้ำเงินอมเทาสำหรับ Header ประเภทออเดอร์ */
-   color: #E0E7EB !important;
-   text-shadow: 0 0 5px rgba(150, 200, 255, 0.5);
-}
-
-
-body.dark-mode .btn-outline-primary.active,
-body.dark-mode .btn-outline-primary:hover {
-   background: #6A8EAE; /* สีน้ำเงินอมเทาเมื่อ active/hover */
-   color: #0A192F; /* สีข้อความเข้ม */
-   border-color: #6A8EAE;
-}
-
-
-body.dark-mode .sub-category-btn.active {
-   background-color: #3B597B !important; /* สีน้ำเงินเข้มขึ้นสำหรับ sub-active */
-   border-color: #5C7A9D !important;
-   color: #E0E7EB !important;
-}
-
-
-
-
-body.dark-mode .menu-item {
-background: rgba(25, 40, 65, 0.8); /* พื้นหลังเมนูไอเท็ม */
-border-color: #3A4762;
-box-shadow: 0 0 5px rgba(100, 150, 200, 0.2);
-color: #E0E7EB;
-}
-
-
-
-
-body.dark-mode .menu-item:hover {
-   background: rgba(60, 80, 110, 0.4); /* สีอ่อนลงเมื่อ hover */
-   color: #E0E7EB;
-   transform: scale(1.03);
-   box-shadow: 0 0 10px rgba(100, 150, 200, 0.4);
-}
-
-
-
-
-body.dark-mode .table thead {
-   background: #3A4762; /* Header ตาราง */
-   color: #E0E7EB;
-}
-
-
-
-
-/* Responsive */
-@media (max-width: 768px) {
-.btn {
-  font-size: 0.9rem;
-  padding: 8px 12px;
-}
-h2 {
-  font-size: 1.5rem;
-}
-#themeToggle {
-  right: 10px;
-  bottom: 10px;
-}
-.language-toggle-buttons {
-   top: 10px;
-   right: 10px;
-}
-}
-
-
+  /* ======= เปลี่ยนธีมเป็นแนวแค้มป์ปิ้ง ====== */
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: linear-gradient(to bottom, #e6f5e6, #d9edda);
+    color: #3e2723;
+    padding: 20px;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
+    background-size: 400px;
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .card {
+    border: none;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+    border: 1px solid #d1c7b7;
+  }
+
+  .card-header {
+    background: linear-gradient(90deg, #8bc34a, #689f38) !important;
+    color: white !important;
+    font-weight: 600;
+    border-top-left-radius: 12px !important;
+    border-top-right-radius: 12px !important;
+  }
+
+  .order-type-header {
+    background: linear-gradient(90deg, #5d4037, #8d6e63) !important;
+    color: white !important;
+  }
+
+  .menu-item {
+    background: #fff;
+    border: 1px solid #d7ccc8;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    padding: 12px 15px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+  }
+
+  .menu-item:hover {
+    background: #f1f8e9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  /* ปุ่มแนวแค้มป์ปิ้ง */
+  .btn-outline-primary {
+    color: #5d4037;
+    border-color: #5d4037;
+  }
+
+  .btn-outline-primary:hover,
+  .btn-outline-primary.active {
+    background-color: #5d4037;
+    color: white;
+    border-color: #5d4037;
+  }
+
+  /* Dark Mode แนวแค้มป์ปิ้ง */
+  body.dark-mode {
+    background-color: #1a2a1a;
+    background-image: 
+      url('https://www.transparenttextures.com/patterns/dark-wood.png'),
+      url('https://www.transparenttextures.com/patterns/stardust.png');
+    color: #e0e7eb;
+  }
+
+  body.dark-mode .card {
+    background: rgba(40, 50, 40, 0.9);
+    border-color: #5d4037;
+  }
+
+  body.dark-mode .menu-item {
+    background: rgba(50, 60, 50, 0.8);
+    border-color: #5d4037;
+  }
+
+  body.dark-mode .menu-item:hover {
+    background: rgba(70, 80, 70, 0.6);
+  }
+
+  /* เพิ่มเอฟเฟกต์ไฟแค้มป์ */
+  .campfire-effect {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, rgba(255,165,0,0.6) 0%, rgba(255,69,0,0.3) 50%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(5px);
+    z-index: 0;
+    animation: flicker 3s infinite alternate;
+  }
+
+  @keyframes flicker {
+    0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+    25% { opacity: 0.9; transform: translateX(-50%) scale(1.05); }
+    50% { opacity: 0.7; transform: translateX(-50%) scale(0.95); }
+    75% { opacity: 0.85; transform: translateX(-50%) scale(1.03); }
+  }
 </style>
 </head>
 <body>
@@ -377,7 +136,7 @@ h2 {
    <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('th')">🇹🇭</button>
    <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('en')">🇬🇧</button>
 </div>
-
+<div class="campfire-effect"></div>
 
 
 
@@ -513,6 +272,21 @@ h2 {
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+const translations = {
+    "th": {
+      "appTitle": "แค้มป์คาเฟ่ 🏕️☕",
+      "cafeNameReceipt": "แค้มป์คาเฟ่ 🏕️",
+      // ...
+    },
+    "en": {
+      "appTitle": "Camp Cafe 🏕️☕",
+      "cafeNameReceipt": "Camp Cafe 🏕️",
+      // ...
+    }
+  };
+
+
+  
   let currentLang = 'th'; // กำหนดภาษาเริ่มต้นเป็นภาษาไทย
   let currentActiveCategory = 'all'; // หมวดหมู่หลักที่ active (all, drink, food, dessert, mainDish)
   let currentActiveSubCategory = 'all'; // หมวดหมู่ย่อยที่ active (หรือ 'all' ถ้าไม่มีการเลือกหมวดหมู่ย่อย)
@@ -830,6 +604,20 @@ h2 {
     {id:75,name:"ข้าวซอยไก่ (Khao Soi with Chicken)",price:100,category:"thaiFood",icon:"🍜"},
     {id:76,name:"แกงฮังเล (Hang Le Curry)",price:110,category:"thaiFood",icon:"🍲"},
     {id:77,name:"ไส้อั่ว (Northern Thai Sausage)",price:85,category:"thaiFood",icon:"🌭"}
+    // เมนูเครื่องดื่มแนวแค้มป์ปิ้ง
+    {id:100,name:"กาแฟแค้มป์ไฟร์",price:45,category:"coffee",icon:"🔥"},
+    {id:101,name:"ชามินต์ป่า",price:40,category:"tea",icon:"🌿"},
+    {id:102,name:"สมูทตี้เบอร์รี่ป่า",price:55,category:"juice",icon:"🍓"},
+
+    // เมนูอาหารแนวแค้มป์ปิ้ง
+    {id:103,name:"แซนวิชแคมป์ปิ้ง",price:60,category:"singleDish",icon:"🥪"},
+    {id:104,name:"สเต็กแคมป์ไฟร์",price:180,category:"steak",icon:"🥩"},
+    {id:105,name:"พิซซ่าหนึ่งไม้",price:220,category:"pizza",icon:"🍕"},
+
+
+
+
+    
   ];
   const menuListEl = document.getElementById('menuList');
   const orderTableBody = document.querySelector('#orderTable tbody');
