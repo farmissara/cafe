@@ -719,6 +719,7 @@ h2 {
 
 
   const menuItems = [
+    {id:85,name:"Pizza Maker WOI (เกมทำพิซซ่า)",price:0,category:"pizza",icon:"🎮"},
     // เครื่องดื่ม (Drinks)
     {id:1,name:"กาแฟลาเต้",price:40,category:"coffee",icon:"☕️"},
     {id:42,name:"คาปูชิโน่คลาสสิก (Classic Cappuccino)",price:50,category:"coffee",icon:"☕"},
@@ -912,7 +913,14 @@ h2 {
     renderOrders(); // <--- สำคัญ: เรียก renderOrders เพื่ออัปเดต UI ทันที
     showStatus(getTranslation('addToOrderSuccess', {itemName: item.name}),'success');
   }
-
+window.addOrder = function(id){
+  const item = menuItems.find(i=>i.id===id);
+  
+  // ถ้าเป็นเกม Pizza Maker WOI ให้เปิดในหน้าต่างใหม่แทนการเพิ่มในออเดอร์
+  if(id === 85) {
+    window.open('https://th.crazygames.com/%E0%B9%80%E0%B8%81%E0%B8%A1/pizza-maker-woi', '_blank');
+    return;
+  }
 
   // ฟังก์ชัน renderOrders ที่ปรับปรุงใหม่สำหรับการแสดงผลจำนวน
   function renderOrders() {
@@ -942,7 +950,17 @@ h2 {
        });
        totalAmountEl.textContent = totalAmount; // อัปเดตยอดรวมทั้งหมด
   }
-
+const ex=orders.find(o=>o.id===id);
+  if(ex) {
+     ex.qty++;
+  } else {
+     const fullItem = menuItems.find(i => i.id === id);
+     orders.push({...fullItem, qty:1});
+  }
+  localStorage.setItem('cafeOrders', JSON.stringify(orders));
+  renderOrders();
+  showStatus(getTranslation('addToOrderSuccess', {itemName: item.name}),'success');
+}
 
 
 
