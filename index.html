@@ -4,7 +4,7 @@
 <base target="_top">
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>บ้านพักครู/ คาเฟ่ 🧁☕️</title>
+<title>บ้านพักครู/ คาเฟ่ 🧁☕️ (สำหรับ GitHub Pages)</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <style>
@@ -383,7 +383,7 @@ h2 {
 
 <div class="container-fluid">
   <div class="row mb-4"><div class="col-12">
-    <h2 class="text-center" id="appTitle">บ้านพักครู /คาเฟ่ �☕️</h2>
+    <h2 class="text-center" id="appTitle">บ้านพักครู /คาเฟ่ 🧁☕️</h2>
     <div class="text-center text-muted" id="current-time"></div>
   </div></div>
 
@@ -532,7 +532,7 @@ h2 {
       "mainDishCategory": "อาหารหลัก 🍽️", // เพิ่มอีโมจิ
       "coffeeSubCategory": "กาแฟ ☕",
       "teaSubCategory": "ชา 🍵",
-      "juiceSubCategory": "น้ำผลไม้ 🥤",
+      "juiceSubCategory": "น้ำผลไม้ �",
       "otherDrinkSubCategory": "อื่นๆ 🍹",
       "alcoholSubCategory": "เหล้า-เบียร์ 🍻", // เพิ่มหมวดหมู่ย่อยใหม่
       "pizzaSubCategory": "พิซซ่า 🍕",
@@ -848,9 +848,7 @@ h2 {
   const tableNumberSelect = document.getElementById('tableNumber');
 
 
-  let orders = [];
-
-
+  let orders = JSON.parse(localStorage.getItem('cafeOrders')) || []; // โหลด orders จาก localStorage
 
 
   function updateCurrentTime(){
@@ -910,6 +908,7 @@ h2 {
        const fullItem = menuItems.find(i => i.id === id);
        orders.push({...fullItem, qty:1});
     }
+    localStorage.setItem('cafeOrders', JSON.stringify(orders)); // บันทึก orders ลง localStorage
     renderOrders(); // <--- สำคัญ: เรียก renderOrders เพื่ออัปเดต UI ทันที
     showStatus(getTranslation('addToOrderSuccess', {itemName: item.name}),'success');
   }
@@ -952,6 +951,7 @@ h2 {
     if(idx>-1){
       const n=orders[idx].name;
       orders.splice(idx,1);
+      localStorage.setItem('cafeOrders', JSON.stringify(orders)); // บันทึก orders ลง localStorage
       renderOrders();
       showStatus(getTranslation('removeFromOrderSuccess', {itemName: n}),'success');
     }
@@ -960,7 +960,14 @@ h2 {
 
 
 
-  function changeQty(id,delta){ const o=orders.find(x=>x.id===id); if(!o)return; o.qty+=delta; if(o.qty<1)o.qty=1; renderOrders(); }
+  function changeQty(id,delta){
+    const o=orders.find(x=>x.id===id);
+    if(!o)return;
+    o.qty+=delta;
+    if(o.qty<1)o.qty=1;
+    localStorage.setItem('cafeOrders', JSON.stringify(orders)); // บันทึก orders ลง localStorage
+    renderOrders();
+  }
 
 
 
@@ -971,42 +978,51 @@ h2 {
 
 
   function sendOrder(){
-    if(!orders.length){ showStatus(getTranslation('noItemsSelected'),"danger"); return; }
+    if(!orders.length){
+        showStatus(getTranslation('noItemsSelected'),"danger");
+        return;
+    }
    
     const orderType = document.querySelector('input[name="orderType"]:checked').value;
     const tableNumber = tableNumberSelect.value; // ค่า value เป็นภาษาไทย
 
-
     showStatus(getTranslation('sendingOrder'),"info");
-    google.script.run
-      .withSuccessHandler(()=>{
-        // ล้างรายการสั่งซื้อและอัปเดต UI ทันทีเมื่อส่งสำเร็จ
-        orders=[];
-        renderOrders();
+
+    // === START: ส่วนที่ถูกปรับเปลี่ยนเพื่อทำงานบน GitHub Pages โดยไม่มี Google Apps Script ===
+    // เนื่องจากไม่มี Backend (Google Apps Script) ที่นี่ เราจะจำลองการส่งออเดอร์ให้สำเร็จ
+    // และเคลียร์รายการสั่งซื้อ รวมถึงแสดงใบเสร็จรับเงิน
+    setTimeout(() => { // จำลองการทำงานแบบ asynchronous เหมือนการส่งข้อมูลจริง
+        const ordersForReceipt = JSON.parse(JSON.stringify(orders)); // ทำสำเนาข้อมูล orders เพื่อใช้ในใบเสร็จ
+        
+        orders = []; // ล้างรายการสั่งซื้อหลัก
+        localStorage.removeItem('cafeOrders'); // ลบข้อมูล orders จาก localStorage
+        renderOrders(); // อัปเดต UI ให้รายการสั่งซื้อว่างเปล่า
+
         showStatus(getTranslation('orderSuccess'),"success");
-        generateReceipt(orderType, tableNumber);
-      })
-      .withFailureHandler(err=>{
-        showStatus(getTranslation('orderFailed', {errorMessage: err.message}),"danger");
-      })
-      .processOrder({
-        timestamp:new Date().toISOString(),
-        orders,
-        orderType: orderType,
-        tableNumber: tableNumber
-      });
+        // ส่ง ordersForReceipt ที่เป็นสำเนาไปที่ generateReceipt แทน orders หลักที่ถูกล้างไปแล้ว
+        generateReceipt(orderType, tableNumber, ordersForReceipt); 
+    }, 1000); // หน่วงเวลา 1 วินาทีเพื่อจำลองการส่งข้อมูล
+    // === END: ส่วนที่ถูกปรับเปลี่ยน ===
   }
 
 
 
 
-  function clearOrder(){ if(orders.length && confirm(getTranslation('clearOrderConfirm'))){ orders=[]; renderOrders(); showStatus(getTranslation('orderCleared'),"success"); } }
+  function clearOrder(){
+    if(orders.length && confirm(getTranslation('clearOrderConfirm'))){
+        orders=[];
+        localStorage.removeItem('cafeOrders'); // ลบข้อมูล orders จาก localStorage
+        renderOrders();
+        showStatus(getTranslation('orderCleared'),"success");
+    }
+  }
 
 
 
 
-  function generateReceipt(orderType, tableNumber){
-    if(!orders.length) return; // ไม่ควรเกิดขึ้นถ้ามีการเคลียร์ orders ก่อนเรียกฟังก์ชันนี้
+  // ปรับแก้ generateReceipt ให้รับ ordersToAdd (ซึ่งจะเป็นสำเนาของ orders ก่อนถูกเคลียร์)
+  function generateReceipt(orderType, tableNumber, ordersToGenerateReceipt){
+    if(!ordersToGenerateReceipt || ordersToGenerateReceipt.length === 0) return; // ตรวจสอบว่ามีข้อมูลสำหรับใบเสร็จหรือไม่
 
 
     // แปลง orderType และ tableNumber สำหรับแสดงผลในใบเสร็จตามภาษาที่เลือก
@@ -1026,9 +1042,8 @@ h2 {
 
     let html=`<table class="table"><thead><tr><th>${getTranslation('menuNameCol')}</th><th>${getTranslation('qtyCol')}</th><th>${getTranslation('priceCol')}</th></tr></thead><tbody>`;
     let total=0;
-    // ใช้ orders เดิมที่ยังไม่ถูกเคลียร์เพื่อสร้างใบเสร็จ
-    const ordersForReceipt = JSON.parse(JSON.stringify(orders)); // สร้าง deep copy เพื่อไม่ให้กระทบ orders หลัก
-    ordersForReceipt.forEach(o=>{ const s=o.price*o.qty; total+=s; html+=`<tr><td>${o.name}</td><td>${o.qty}</td><td>${s} ${getTranslation('บาท')}</td></tr>`; });
+    // ใช้ ordersToGenerateReceipt ที่ส่งเข้ามา
+    ordersToGenerateReceipt.forEach(o=>{ const s=o.price*o.qty; total+=s; html+=`<tr><td>${o.name}</td><td>${o.qty}</td><td>${s} ${getTranslation('บาท')}</td></tr>`; });
     html+=`</tbody><tfoot><tr><th colspan="2">${getTranslation('grandTotal')}</th><th>${total} ${getTranslation('บาท')}</th></tr></tfoot></table>`;
     document.getElementById("receiptTable").innerHTML=html;
     document.getElementById("qrImage").src=`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${getTranslation('cafeNameReceipt')}: ${total} ${getTranslation('บาท')}`;
