@@ -1,470 +1,375 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
     <base target="_top">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>แค้มป์คาเฟ่ 🏕️☕</title>
+    <title>แค้มป์คาเฟ่กลางธรรมชาติ 🏕️☕</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&family=Charm:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://i.imgur.com/your-campfire-favicon.png" type="image/png">
     <style>
-        /* ======= เปลี่ยนธีมเป็นแนวแค้มป์ปิ้ง ====== */
+        /* ======= ธีมธรรมชาติ ป่าเขา ====== */
+        :root {
+            --green-dark: #2c5e1a;
+            --green-medium: #4a8c2c;
+            --green-light: #8bb174;
+            --brown-dark: #5d4037;
+            --brown-light: #d7ccc8;
+            --sky-blue: #e3f2fd;
+            --mist-color: rgba(255, 255, 255, 0.3);
+        }
+        
         body {
             font-family: 'Sarabun', sans-serif;
-            /* เพิ่มพื้นหลังเป็นภาพภูเขาและป่าไม้ */
-            background-image: url('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxtb3VudGFpbiUyMGZvcmVzdCUyMG1pc3R8ZW58MHx8fHwxNzE4NzAxOTg2fDA&ixlib=rb-4.0.3&q=80&w=1080'), linear-gradient(to bottom, #a2b9a7, #8bb08f);
-            background-size: cover;
-            background-position: center bottom; /* ปรับให้ภาพอยู่ด้านล่าง */
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            color: #3e2723;
-            padding: 20px;
+            background: linear-gradient(to bottom, var(--sky-blue), #d9edda);
+            color: var(--brown-dark);
             position: relative;
             min-height: 100vh;
+            overflow-x: hidden;
         }
-
-        body::before {
-            content: '';
+        
+        /* เอฟเฟกต์สายหมอก */
+        .mist {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/wood-pattern.png');
-            background-size: 400px;
-            opacity: 0.1;
-            z-index: 0;
+            background: linear-gradient(0deg, transparent, var(--mist-color), transparent);
+            background-size: 200% 200%;
+            animation: mistFlow 30s infinite linear;
             pointer-events: none;
+            z-index: 1;
         }
-
-        h2,
-        h4,
-        .modal-title {
+        
+        @keyframes mistFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* พื้นหลังแนวธรรมชาติ */
+        .nature-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url('https://i.imgur.com/J5mQZ7m.png'), /* ภูเขาไกล */
+                url('https://i.imgur.com/VvJkQ3T.png'), /* ภูเขาใกล้ */
+                url('https://i.imgur.com/Xw7yDhG.png'); /* ป่าไม้ */
+            background-position: 
+                center 10%, /* ภูเขาไกล */
+                center 30%, /* ภูเขาใกล้ */
+                bottom center; /* ป่าไม้ */
+            background-size: 
+                100% auto,
+                120% auto,
+                150% auto;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+        
+        /* เนื้อหาหลัก */
+        .main-content {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(210, 180, 140, 0.3);
+            backdrop-filter: blur(5px);
+            margin: 20px;
+            padding: 25px;
+            min-height: calc(100vh - 40px);
+        }
+        
+        /* ส่วนหัว */
+        .header {
+            background: linear-gradient(90deg, var(--green-dark), var(--green-medium));
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.imgur.com/Q3ZqQ1a.png');
+            background-size: 40px;
+            opacity: 0.1;
+        }
+        
+        h1, h2, h3, .modal-title {
             font-family: 'Charm', cursive;
             font-weight: 700;
-            color: #5d4037;
+            color: var(--green-dark);
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
-
-        .card {
+        
+        /* การ์ดเมนู */
+        .menu-card {
             border: none;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.88);
-            backdrop-filter: blur(8px);
-            border: 1px solid #d1c7b7;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.9);
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
         }
-
-        .card-header {
-            background: linear-gradient(90deg, #8bc34a, #689f38) !important;
-            color: white !important;
+        
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .menu-card .card-header {
+            background: linear-gradient(90deg, var(--green-medium), var(--green-light));
+            color: white;
             font-weight: 600;
-            border-top-left-radius: 15px !important;
-            border-top-right-radius: 15px !important;
-            padding: 1rem 1.5rem;
-        }
-
-        .order-type-header {
-            background: linear-gradient(90deg, #5d4037, #8d6e63) !important;
-            color: white !important;
-            border-top-left-radius: 15px !important;
-            border-top-right-radius: 15px !important;
-            padding: 1rem 1.5rem;
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .menu-item {
-            background: #fff;
-            border: 1px solid #d7ccc8;
-            margin-bottom: 10px;
-            border-radius: 12px;
+            border-bottom: none;
             padding: 15px 20px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07);
+        }
+        
+        /* รายการเมนู */
+        .menu-item {
+            background: white;
+            border: 1px solid rgba(139, 195, 74, 0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
             transition: all 0.3s ease;
             cursor: pointer;
             display: flex;
             align-items: center;
+            position: relative;
+            overflow: hidden;
         }
-
+        
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--green-medium), var(--green-dark));
+        }
+        
         .menu-item:hover {
-            background: #f1f8e9;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
+            background: rgba(139, 195, 74, 0.05);
+            border-color: var(--green-medium);
+            transform: translateX(5px);
         }
-
+        
+        .menu-item .menu-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--green-dark);
+        }
+        
         .menu-item .menu-name {
             flex-grow: 1;
             font-size: 1.1rem;
             font-weight: 500;
         }
-
+        
         .menu-item .menu-price {
             font-weight: 600;
-            color: #689f38;
-            margin-left: 15px;
+            color: var(--green-dark);
+            background: rgba(139, 195, 74, 0.1);
+            padding: 5px 10px;
+            border-radius: 20px;
         }
-
-        /* ปุ่มแนวแค้มป์ปิ้ง */
-        .btn-outline-primary {
-            color: #5d4037;
-            border-color: #5d4037;
+        
+        /* ปุ่ม */
+        .btn-nature {
+            background: linear-gradient(90deg, var(--green-medium), var(--green-dark));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 8px 20px;
             font-weight: 500;
-            border-radius: 8px;
-            padding: 8px 15px;
+            transition: all 0.3s ease;
         }
-
-        .btn-outline-primary:hover,
-        .btn-outline-primary.active {
-            background-color: #5d4037;
+        
+        .btn-nature:hover {
+            background: linear-gradient(90deg, var(--green-dark), var(--green-medium));
             color: white;
-            border-color: #5d4037;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
         }
-
-        .btn-outline-secondary {
-            color: #795548;
-            border-color: #795548;
-            border-radius: 8px;
-            padding: 6px 12px;
+        
+        /* โต๊ะสั่งอาหาร */
+        .order-table {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
         }
-
-        .btn-outline-secondary:hover,
-        .btn-outline-secondary.active {
-            background-color: #795548;
+        
+        .order-table thead th {
+            background: linear-gradient(90deg, var(--brown-dark), #8d6e63);
             color: white;
-            border-color: #795548;
+            border: none;
         }
-
-
-        /* Dark Mode แนวแค้มป์ปิ้ง */
-        body.dark-mode {
-            background-color: #1a2a1a;
-            background-image:
-                url('https://images.unsplash.com/photo-1510784715327-be28236173a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8bW91bnRhaW4lMjBmb3Jlc3QlMjBtaXN0fGVufDB8fHx8MTcxODcwMjMxNHww&ixlib=rb-4.0.3&q=80&w=1080'),
-                url('https://www.transparenttextures.com/patterns/dark-wood.png'),
-                url('https://www.transparenttextures.com/patterns/stardust.png');
-            background-size: cover, 400px, auto;
-            background-position: center bottom, top left, top left;
-            background-repeat: no-repeat, repeat, repeat;
-            color: #e0e7eb;
-        }
-
-        body.dark-mode h2,
-        body.dark-mode h4,
-        body.dark-mode .modal-title {
-            color: #e0e7eb;
-        }
-
-        body.dark-mode .card {
-            background: rgba(40, 50, 40, 0.95);
-            border-color: #5d4037;
-        }
-
-        body.dark-mode .card-header {
-            background: linear-gradient(90deg, #385e2b, #2b4a20) !important;
-        }
-
-        body.dark-mode .order-type-header {
-            background: linear-gradient(90deg, #4a2d26, #6b4c42) !important;
-        }
-
-        body.dark-mode .menu-item {
-            background: rgba(50, 60, 50, 0.85);
-            border-color: #5d4037;
-            color: #e0e7eb;
-        }
-
-        body.dark-mode .menu-item:hover {
-            background: rgba(70, 80, 70, 0.7);
-        }
-
-        body.dark-mode .menu-item .menu-price {
-            color: #a2cd78;
-        }
-
-        body.dark-mode .table-bordered thead th,
-        body.dark-mode .table-bordered tbody,
-        body.dark-mode .table-bordered tfoot {
-            color: #e0e7eb;
-        }
-
-        body.dark-mode .table-dark {
-            background-color: #3e2723 !important;
-        }
-
-        body.dark-mode .btn-outline-primary {
-            color: #a2cd78;
-            border-color: #a2cd78;
-        }
-
-        body.dark-mode .btn-outline-primary:hover,
-        body.dark-mode .btn-outline-primary.active {
-            background-color: #a2cd78;
-            color: #1a2a1a;
-            border-color: #a2cd78;
-        }
-
-        body.dark-mode .btn-outline-secondary {
-            color: #d7ccc8;
-            border-color: #d7ccc8;
-        }
-
-        body.dark-mode .btn-outline-secondary:hover,
-        body.dark-mode .btn-outline-secondary.active {
-            background-color: #d7ccc8;
-            color: #3e2723;
-            border-color: #d7ccc8;
-        }
-
-        /* เพิ่มเอฟเฟกต์ไฟแค้มป์ */
-        .campfire-effect {
+        
+        /* เอฟเฟกต์ใบไม้ร่วง */
+        .falling-leaves {
             position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(255, 165, 0, 0.7) 0%, rgba(255, 69, 0, 0.4) 50%, transparent 70%);
-            border-radius: 50%;
-            filter: blur(8px);
-            box-shadow: 0 0 20px 8px rgba(255, 140, 0, 0.4), 0 0 40px 15px rgba(255, 69, 0, 0.2);
-            z-index: 0;
-            animation: flicker 3s infinite alternate;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
-
-        @keyframes flicker {
-            0%,
+        
+        .leaf {
+            position: absolute;
+            background-image: url('https://i.imgur.com/YqQX9zP.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 30px;
+            height: 30px;
+            opacity: 0.7;
+            animation: falling linear infinite;
+        }
+        
+        @keyframes falling {
+            0% {
+                transform: translate(0, -10%) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.7;
+            }
+            90% {
+                opacity: 0.7;
+            }
             100% {
-                opacity: 0.8;
-                transform: translateX(-50%) scale(1);
-            }
-            25% {
-                opacity: 0.95;
-                transform: translateX(-50%) scale(1.06);
-            }
-            50% {
-                opacity: 0.75;
-                transform: translateX(-50%) scale(0.96);
-            }
-            75% {
-                opacity: 0.9;
-                transform: translateX(-50%) scale(1.04);
+                transform: translate(100px, 100vh) rotate(360deg);
+                opacity: 0;
             }
         }
-
-        /* Language toggle positioning */
-        .language-toggle-buttons {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            z-index: 10;
-        }
-
-        #themeToggle {
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            z-index: 10;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #categoryFilter button {
-            margin-right: 8px;
-            margin-bottom: 8px;
-        }
-
-        #subCategoryDrink,
-        #subCategoryDessert,
-        #subCategoryMainDish {
-            padding-left: 15px;
-            border-left: 2px solid rgba(104, 159, 56, 0.5);
-            margin-top: 10px !important;
-            padding-top: 5px;
-            padding-bottom: 5px;
-        }
-
-        body.dark-mode #subCategoryDrink,
-        body.dark-mode #subCategoryDessert,
-        body.dark-mode #subCategoryMainDish {
-            border-left-color: rgba(162, 205, 120, 0.5);
-        }
-
-        /* Responsive adjustments */
+        
+        /* Responsive Design */
         @media (max-width: 767.98px) {
-            .language-toggle-buttons,
-            #themeToggle {
-                position: static;
-                margin-bottom: 15px;
+            .main-content {
+                margin: 10px;
+                padding: 15px;
             }
-            .container-fluid {
-                padding: 10px;
+            
+            .header {
+                padding: 15px;
             }
-            .card {
-                margin-bottom: 15px;
-            }
-            #appTitle {
-                margin-top: 60px;
+            
+            .menu-item {
+                padding: 12px;
             }
         }
     </style>
 </head>
 
 <body>
-    <button id="themeToggle" class="btn btn-light">
-        <i class="bi bi-moon-stars-fill"></i>
-    </button>
-
-    <div class="language-toggle-buttons">
-        <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('th')">🇹🇭</button>
-        <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('en')">🇬🇧</button>
-    </div>
-    <div class="campfire-effect"></div>
-
+    <!-- พื้นหลังธรรมชาติ -->
+    <div class="nature-bg"></div>
+    <div class="mist"></div>
+    
+    <!-- เอฟเฟกต์ใบไม้ร่วง -->
+    <div class="falling-leaves" id="fallingLeaves"></div>
+    
+    <!-- เนื้อหาหลัก -->
     <div class="container-fluid">
-        <div class="row mb-4">
-            <div class="col-12">
-                <h2 class="text-center" id="appTitle">แค้มป์คาเฟ่ 🏕️☕</h2>
-                <div class="text-center text-muted" id="current-time"></div>
+        <div class="main-content">
+            <!-- ส่วนหัว -->
+            <div class="header text-center">
+                <h1><i class="bi bi-tree"></i> แค้มป์คาเฟ่กลางธรรมชาติ <i class="bi bi-cup-hot"></i></h1>
+                <p class="mb-0">สัมผัสความสงบสุขท่ามกลางธรรมชาติ</p>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-5">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <h4 class="mb-0" id="menuHeader">เมนู</h4>
-                    </div>
-                    <div class="card-body">
-                        <div id="categoryFilter" class="mb-3 d-flex flex-wrap">
-                            <button class="btn btn-sm btn-outline-primary category-btn active" data-category="all"></button>
-                            <button class="btn btn-sm btn-outline-primary category-btn" data-category="drink"></button>
-                            <button class="btn btn-sm btn-outline-primary category-btn" data-category="food"></button>
-                            <button class="btn btn-sm btn-outline-primary category-btn" data-category="dessert"></button>
-                            <button class="btn btn-sm btn-outline-primary category-btn" data-category="mainDish"></button>
-                            <button class="btn btn-sm btn-outline-primary category-btn" data-category="game"></button>
-
-                            <div id="subCategoryDrink" class="d-none mt-2 w-100">
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="coffee"></button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="tea"></button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="juice"></button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDrink"></button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="alcohol"></button>
-                            </div>
-                            <div id="subCategoryDessert" class="d-none mt-2 w-100">
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="cakesBakeries"></button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDessert"></button>
-                            </div>
-                            <div id="subCategoryMainDish" class="d-none mt-2 w-100">
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="pizza"></button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="spaghetti"></button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="steak"></button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="thaiFood"></button>
-                            </div>
+            
+            <div class="row">
+                <!-- เมนู -->
+                <div class="col-lg-5">
+                    <div class="menu-card">
+                        <div class="card-header">
+                            <h3 class="mb-0"><i class="bi bi-menu-up"></i> เมนูเครื่องดื่มและอาหาร</h3>
                         </div>
-                        <div id="menuList" class="list-group"></div>
-                        <p id="noMenuMsg" class="text-muted text-center mt-3" style="display:none;"></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-7">
-                <div class="card mb-3">
-                    <div class="card-header">
-                        <h4 class="mb-0" id="orderListHeader">รายการสั่งซื้อ</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-bordered table-striped" id="orderTable">
-                                <thead class="table-dark">
-                                    <tr>
-                                        <th id="colMenuName">เมนู</th>
-                                        <th id="colPrice">ราคา</th>
-                                        <th id="colQty">จำนวน</th>
-                                        <th id="colTotal">รวม</th>
-                                        <th id="colManage">จัดการ</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th colspan="3" class="text-end" id="totalAmountLabel">รวมทั้งหมด</th>
-                                        <th id="totalAmount">0</th>
-                                        <th></th>
-                                    </tr>
-                                </tfoot>
-                            </table>
+                        <div class="card-body">
+                            <!-- ตัวอย่างเมนู -->
+                            <div class="menu-item">
+                                <div class="menu-icon">🌿</div>
+                                <div class="menu-name">ชาเขียวสมุนไพรป่า</div>
+                                <div class="menu-price">45 บาท</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-icon">☕</div>
+                                <div class="menu-name">กาแฟแค้มป์ไฟร์</div>
+                                <div class="menu-price">50 บาท</div>
+                            </div>
+                            <div class="menu-item">
+                                <div class="menu-icon">🍰</div>
+                                <div class="menu-name">เค้กผลไม้ป่า</div>
+                                <div class="menu-price">65 บาท</div>
+                            </div>
+                            <!-- สามารถเพิ่มเมนูอื่นๆ ตามต้องการ -->
                         </div>
                     </div>
                 </div>
-
-                <div class="card">
-                    <div class="card-header order-type-header d-flex align-items-center justify-content-center">
-                        <h4 class="mb-0" id="orderTypeHeader">เลือกประเภทออเดอร์</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label class="form-label" id="orderTypeLabel"><strong>ประเภทออเดอร์</strong></label>
-                            <div class="form-check d-flex align-items-center mb-2">
-                                <input class="form-check-input me-2" type="radio" name="orderType" id="eatHere" value="eatHere" checked>
-                                <label class="form-check-label fs-5" for="eatHere" id="eatHereLabel">
-                                    นั่งทานที่ร้าน <span class="fs-4">🍽️</span>
-                                </label>
+                
+                <!-- รายการสั่งซื้อ -->
+                <div class="col-lg-7">
+                    <div class="menu-card">
+                        <div class="card-header">
+                            <h3 class="mb-0"><i class="bi bi-journal-text"></i> รายการสั่งซื้อ</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive order-table">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>เมนู</th>
+                                            <th>ราคา</th>
+                                            <th>จำนวน</th>
+                                            <th>รวม</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- ตัวอย่างรายการสั่งซื้อ -->
+                                        <tr>
+                                            <td>ชาเขียวสมุนไพรป่า</td>
+                                            <td>45 บาท</td>
+                                            <td>1</td>
+                                            <td>45 บาท</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <th colspan="3" class="text-end">รวมทั้งหมด</th>
+                                            <th>45 บาท</th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>
-                            <div class="form-check d-flex align-items-center">
-                                <input class="form-check-input me-2" type="radio" name="orderType" id="takeHome" value="takeHome">
-                                <label class="form-check-label fs-5" for="takeHome" id="takeHomeLabel">
-                                    ซื้อกลับบ้าน <span class="fs-4">🛍️</span>
-                                </label>
-                            </div>
-                            <div id="tableSelectContainer" class="mt-3">
-                                <label for="tableNumber" class="form-label d-flex align-items-center fs-5" id="tableSelectLabel">
-                                    เลือกโต๊ะ <span class="fs-4 ms-2">🪑</span>
-                                </label>
-                                <select class="form-select form-select-lg" id="tableNumber">
-                                    <option value="table1">โต๊ะ 1</option>
-                                    <option value="table2">โต๊ะ 2</option>
-                                    <option value="table3">โต๊ะ 3</option>
-                                    <option value="table4">โต๊ะ 4</option>
-                                </select>
+                            
+                            <div class="d-grid gap-2 mt-3">
+                                <button class="btn btn-nature">
+                                    <i class="bi bi-send-check"></i> สั่งอาหาร
+                                </button>
                             </div>
                         </div>
-                        <div class="mt-3 d-flex justify-content-between">
-                            <button class="btn btn-danger" id="clearOrderBtn"><i class="bi bi-trash"></i> <span id="clearOrderBtnText">ล้างรายการ</span></button>
-                            <button class="btn btn-primary" id="sendOrderBtn"><i class="bi bi-send-check"></i> <span id="sendOrderBtnText">ส่งออเดอร์</span></button>
-                        </div>
-                        <div id="statusMsg" class="mt-3 alert" style="display:none;"></div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="receiptModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="receiptModalTitle">ใบเสร็จรับเงิน</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body" id="receiptContent">
-                    <h6 class="text-center" id="cafeNameReceipt">แค้มป์คาเฟ่ 🏕️</h6>
-                    <div id="receiptDetails" class="mb-3"></div>
-                    <div id="receiptTable"></div>
-                    <p class="text-center mt-4" id="thankYouMessage"></p>
-                    <div class="text-center mt-3"><img id="qrImage" src="" width="150" /></div>
-                </div>
-                <div class="modal-footer">
-                    <button onclick="printReceipt()" class="btn btn-outline-secondary" id="printReceiptBtn"><i class="bi bi-printer"></i> <span id="printReceiptBtnText">พิมพ์ใบเสร็จ</span></button>
-                    <button class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn"><span id="closeBtnText">ปิด</span></button>
                 </div>
             </div>
         </div>
@@ -472,550 +377,54 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const translations = {
-            "th": {
-                "appTitle": "แค้มป์คาเฟ่ 🏕️☕",
-                "cafeNameReceipt": "แค้มป์คาเฟ่ 🏕️",
-                "menuHeader": "เมนู",
-                "orderListHeader": "รายการสั่งซื้อ",
-                "allCategory": "ทั้งหมด ✨",
-                "drinkCategory": "เครื่องดื่ม ☕️",
-                "foodCategory": "อาหาร 🥪",
-                "dessertCategory": "ของหวาน 🍰",
-                "mainDishCategory": "อาหารหลัก 🍽️",
-                "gameCategory": "เกม 🎮", // New category for games
-                "coffeeSubCategory": "กาแฟ ☕",
-                "teaSubCategory": "ชา 🍵",
-                "juiceSubCategory": "น้ำผลไม้ 🥤",
-                "otherDrinkSubCategory": "อื่นๆ 🍹",
-                "alcoholSubCategory": "เหล้า-เบียร์ 🍻",
-                "pizzaSubCategory": "พิซซ่า 🍕",
-                "spaghettiSubCategory": "สปาเก็ตตี้ 🍝",
-                "steakSubCategory": "สเต็ก 🥩",
-                "thaiFoodSubCategory": "อาหารไทย 🍚",
-                "cakesBakeriesSubCategory": "เค้ก & เบเกอรี่ 🧁",
-                "otherDessertSubCategory": "อื่นๆ 🍬",
-                "menuNameCol": "เมนู",
-                "priceCol": "ราคา",
-                "qtyCol": "จำนวน",
-                "totalCol": "รวม",
-                "manageCol": "จัดการ",
-                "grandTotal": "รวมทั้งหมด",
-                "orderTypeLabel": "ประเภทออเดอร์",
-                "eatHere": "นั่งทานที่ร้าน",
-                "takeHome": "ซื้อกลับบ้าน",
-                "tableSelectLabel": "เลือกโต๊ะ",
-                "clearOrderBtn": "ล้างรายการ",
-                "sendOrderBtn": "ส่งออเดอร์",
-                "modalReceiptTitle": "ใบเสร็จรับเงิน",
-                "receiptType": "ประเภท",
-                "receiptTable": "โต๊ะ",
-                "printReceiptBtn": "พิมพ์ใบเสร็จ",
-                "closeBtn": "ปิด",
-                "addToOrderSuccess": "เพิ่ม {itemName} เรียบร้อย",
-                "removeFromOrderSuccess": "ลบ {itemName} เรียบร้อย",
-                "noItemsSelected": "โปรดเลือกสินค้าอย่างน้อย 1 รายการ",
-                "sendingOrder": "กำลังส่งข้อมูล...",
-                "orderSuccess": "ส่งออเดอร์สำเร็จ 🎉",
-                "orderFailed": "เกิดข้อผิดพลาด: {errorMessage}",
-                "clearOrderConfirm": "ล้างรายการทั้งหมด?",
-                "orderCleared": "ล้างรายการเรียบร้อย",
-                "noMenuInCategory": "ไม่มีเมนูในหมวดหมู่นี้",
-                "บาท": "บาท",
-                "table1": "โต๊ะ 1",
-                "table2": "โต๊ะ 2",
-                "table3": "โต๊ะ 3",
-                "table4": "โต๊ะ 4",
-                "orderReceipt": "ใบเสร็จรับเงิน",
-                "thankYou": "ขอบคุณที่ใช้บริการ!",
-                "item": "รายการ",
-                "qty": "จำนวน",
-                "total": "รวม",
-                "grandTotalReceipt": "รวมสุทธิ",
-                "receiptOrderType": "ประเภทออเดอร์",
-                "receiptTableNumber": "หมายเลขโต๊ะ",
-                "game": "เล่นเกม" // Translation for "Play Game" button
-            },
-            "en": {
-                "appTitle": "Camp Cafe 🏕️☕",
-                "cafeNameReceipt": "Camp Cafe 🏕️",
-                "menuHeader": "Menu",
-                "orderListHeader": "Order List",
-                "allCategory": "All ✨",
-                "drinkCategory": "Drinks ☕️",
-                "foodCategory": "Food 🥪",
-                "dessertCategory": "Desserts 🍰",
-                "mainDishCategory": "Main Dishes 🍽️",
-                "gameCategory": "Games 🎮", // New category for games
-                "coffeeSubCategory": "Coffee ☕",
-                "teaSubCategory": "Tea 🍵",
-                "juiceSubCategory": "Juices 🥤",
-                "otherDrinkSubCategory": "Others 🍹",
-                "alcoholSubCategory": "Alcohol & Beer 🍻",
-                "pizzaSubCategory": "Pizza 🍕",
-                "spaghettiSubCategory": "Spaghetti 🍝",
-                "steakSubCategory": "Steak 🥩",
-                "thaiFoodSubCategory": "Thai Food 🍚",
-                "cakesBakeriesSubCategory": "Cakes & Bakeries 🧁",
-                "otherDessertSubCategory": "Others 🍬",
-                "menuNameCol": "Menu",
-                "priceCol": "Price",
-                "qtyCol": "Quantity",
-                "totalCol": "Total",
-                "manageCol": "Manage",
-                "grandTotal": "Grand Total",
-                "orderTypeLabel": "Order Type",
-                "eatHere": "Eat Here",
-                "takeHome": "Take Home",
-                "tableSelectLabel": "Select Table",
-                "clearOrderBtn": "Clear Order",
-                "sendOrderBtn": "Send Order",
-                "modalReceiptTitle": "Receipt",
-                "receiptType": "Type",
-                "receiptTable": "Table",
-                "printReceiptBtn": "Print Receipt",
-                "closeBtn": "Close",
-                "addToOrderSuccess": "Added {itemName} to order",
-                "removeFromOrderSuccess": "Removed {itemName} from order",
-                "noItemsSelected": "Please select at least 1 item",
-                "sendingOrder": "Sending order...",
-                "orderSuccess": "Order sent successfully 🎉",
-                "orderFailed": "Error: {errorMessage}",
-                "clearOrderConfirm": "Clear all items?",
-                "orderCleared": "Order cleared",
-                "noMenuInCategory": "No menu in this category",
-                "บาท": "Baht",
-                "table1": "Table 1",
-                "table2": "Table 2",
-                "table3": "Table 3",
-                "table4": "Table 4",
-                "orderReceipt": "Order Receipt",
-                "thankYou": "Thank you for your order!",
-                "item": "Item",
-                "qty": "Qty",
-                "total": "Total",
-                "grandTotalReceipt": "Grand Total",
-                "receiptOrderType": "Order Type",
-                "receiptTableNumber": "Table Number",
-                "game": "Play Game" // Translation for "Play Game" button
+        // สร้างเอฟเฟกต์ใบไม้ร่วง
+        function createLeaves() {
+            const container = document.getElementById('fallingLeaves');
+            const leafCount = 15;
+            
+            for (let i = 0; i < leafCount; i++) {
+                const leaf = document.createElement('div');
+                leaf.className = 'leaf';
+                
+                // สุ่มตำแหน่งเริ่มต้น
+                const startLeft = Math.random() * 100;
+                
+                // สุ่มขนาด
+                const size = Math.random() * 15 + 15;
+                
+                // สุ่มความเร็ว
+                const duration = Math.random() * 15 + 10;
+                const delay = Math.random() * 10;
+                
+                // กำหนดสไตล์
+                leaf.style.left = `${startLeft}%`;
+                leaf.style.width = `${size}px`;
+                leaf.style.height = `${size}px`;
+                leaf.style.animationDuration = `${duration}s`;
+                leaf.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(leaf);
             }
-        };
-
-        let currentLang = localStorage.getItem('cafeLanguage') || 'th';
-        let currentActiveCategory = localStorage.getItem('cafeActiveCategory') || 'all';
-        let currentActiveSubCategory = localStorage.getItem('cafeActiveSubCategory') || 'all';
-
-        const menuItems = [
-            // Game item
-            {
-                id: 999,
-                name: "Pizza Maker WOI (เกมทำพิซซ่า)",
-                price: 0,
-                category: "game",
-                icon: "🎮",
-                isGame: true,
-                gameUrl: "https://th.crazygames.com/%E0%B9%80%E0%B8%81%E0%B8%A1/pizza-maker-woi"
-            },
-
-            // เครื่องดื่ม (Drinks)
-            {
-                id: 1,
-                name: "กาแฟลาเต้",
-                price: 40,
-                category: "coffee",
-                icon: "☕️"
-            },
-            {
-                id: 42,
-                name: "คาปูชิโน่คลาสสิก (Classic Cappuccino)",
-                price: 50,
-                category: "coffee",
-                icon: "☕"
-            },
-            {
-                id: 44,
-                name: "เอสเปรสโซ่เอ็กซ์ตร้า (Espresso Extra)",
-                price: 40,
-                category: "coffee",
-                icon: "☕"
-            },
-            {
-                id: 46,
-                name: "กาแฟนมสด (Fresh Milk Coffee)",
-                price: 45,
-                category: "coffee",
-                icon: "🥛"
-            },
-            {
-                id: 41,
-                name: "ม็อคค่าแม็กซ์ (Mocha Max)",
-                price: 60,
-                category: "coffee",
-                icon: "☕"
-            },
-            {
-                id: 40,
-                name: "ลาเต้ลาเวนเดอร์ (Lavender Latte)",
-                price: 55,
-                category: "coffee",
-                icon: "💜"
-            },
-            {
-                id: 100,
-                name: "กาแฟแค้มป์ไฟร์",
-                price: 45,
-                category: "coffee",
-                icon: "🔥"
-            },
-
-            {
-                id: 2,
-                name: "ชาเขียว",
-                price: 35,
-                category: "tea",
-                icon: "🍵"
-            },
-            {
-                id: 43,
-                name: "ชาเขียวมัทฉะ (Matcha Green Tea)",
-                price: 45,
-                category: "tea",
-                icon: "🍵"
-            },
-            {
-                id: 45,
-                name: "ชาไทยเย็น (Thai Iced Tea)",
-                price: 40,
-                category: "tea",
-                icon: "🧋"
-            },
-            {
-                id: 7,
-                name: "ชาไทย",
-                price: 35,
-                category: "tea",
-                icon: "🧋"
-            },
-            {
-                id: 47,
-                name: "ฮันนี่เลมอนที (Honey Lemon Tea)",
-                price: 35,
-                category: "tea",
-                icon: "🍋"
-            },
-            {
-                id: 48,
-                name: "ชาอู่หลงร้อน (Hot Oolong Tea)",
-                price: 30,
-                category: "tea",
-                icon: "🍵"
-            },
-            {
-                id: 101,
-                name: "ชามินต์ป่า",
-                price: 40,
-                category: "tea",
-                icon: "🌿"
-            },
-
-            {
-                id: 4,
-                name: "น้ำส้มคั้น",
-                price: 30,
-                category: "juice",
-                icon: "🥤"
-            },
-            {
-                id: 102,
-                name: "สมูทตี้เบอร์รี่ป่า",
-                price: 55,
-                category: "juice",
-                icon: "🍓"
-            },
-
-            {
-                id: 39,
-                name: "โกโก้ครีมมี่ (Cocoa Creamy)",
-                price: 45,
-                category: "otherDrink",
-                icon: "🍫"
-            },
-
-            // **เพิ่มเมนู เหล้า-เบียร์**
-            {
-                id: 78,
-                name: "เบียร์ช้าง",
-                price: 90,
-                category: "alcohol",
-                icon: "🍺"
-            },
-            {
-                id: 79,
-                name: "เบียร์ลีโอ",
-                price: 90,
-                category: "alcohol",
-                icon: "🍺"
-            },
-            {
-                id: 80,
-                name: "เบียร์สิงห์",
-                price: 100,
-                category: "alcohol",
-                icon: "🍺"
-            },
-            {
-                id: 81,
-                name: "เบียร์ไฮเนเก้น",
-                price: 120,
-                category: "alcohol",
-                icon: "🍺"
-            },
-            {
-                id: 82,
-                name: "วิสกี้ (แก้ว)",
-                price: 150,
-                category: "alcohol",
-                icon: "🥃"
-            },
-            {
-                id: 83,
-                name: "เหล้าขาว (ช็อต)",
-                price: 60,
-                category: "alcohol",
-                icon: "🍶"
-            },
-            {
-                id: 84,
-                name: "ค็อกเทล มะพร้าว (Coconut Cocktail)",
-                price: 180,
-                category: "alcohol",
-                icon: "🍹"
-            },
-
-            // อาหาร (Food) - ใช้ category: "food"
-            {
-                id: 5,
-                name: "แซนวิช",
-                price: 45,
-                category: "food",
-                icon: "🥪"
-            },
-            {
-                id: 8,
-                name: "ครัวซองต์",
-                price: 40,
-                category: "food",
-                icon: "🥐"
-            },
-            {
-                id: 103,
-                name: "แซนวิชแคมป์ปิ้ง",
-                price: 60,
-                category: "food",
-                icon: "🥪"
-            },
-
-            // ของหวาน (Desserts)
-            {
-                id: 3,
-                name: "เค้กช็อกโกแลต",
-                price: 55,
-                category: "cakesBakeries",
-                icon: "🧁"
-            },
-            {
-                id: 6,
-                name: "บราวนี่",
-                price: 50,
-                category: "cakesBakeries",
-                icon: "🍫"
-            },
-            {
-                id: 24,
-                name: "บ้านขนมหวาน Sweet Home Bakery",
-                price: 65,
-                category: "cakesBakeries",
-                icon: "🍰"
-            },
-            {
-                id: 25,
-                name: "ขนมอบรัก Love Bake",
-                price: 70,
-                category: "cakesBakeries",
-                icon: "💖"
-            },
-            {
-                id: 26,
-                name: "ครัวอบอุ่น Warm Oven",
-                price: 60,
-                category: "cakesBakeries",
-                icon: "🍪"
-            },
-            {
-                id: 27,
-                name: "หอมกลิ่นขนม Aroma Bakery",
-                price: 75,
-                category: "cakesBakeries",
-                icon: "🍞"
-            },
-            {
-                id: 28,
-                name: "กลิ่นอบอวล Cozy Crust",
-                price: 68,
-                category: "cakesBakeries",
-                icon: "🥨"
-            },
-            {
-                id: 29,
-                name: "ขนมบ้านสวน Garden Sweets",
-                price: 55,
-                category: "cakesBakeries",
-                icon: "🌳"
-            },
-            {
-                id: 30,
-                name: "ขนมหวานใจ Sweetheart Treats",
-                price: 72,
-                category: "cakesBakeries",
-                icon: "🍬"
-            },
-            {
-                id: 31,
-                name: "สวรรค์ขนม Heaven Bakery",
-                price: 80,
-                category: "cakesBakeries",
-                icon: "😇"
-            },
-            {
-                id: 32,
-                name: "เตาอบสุขใจ Happy Oven",
-                price: 62,
-                category: "cakesBakeries",
-                icon: "😊"
-            },
-            {
-                id: 33,
-                name: "ขนมมงคล Lucky Bakes",
-                price: 78,
-                category: "cakesBakeries",
-                icon: "🧧"
-            },
-            {
-                id: 34,
-                name: "ขนมอบสด Fresh Bake",
-                price: 58,
-                category: "cakesBakeries",
-                icon: "🥖"
-            },
-            {
-                id: 35,
-                name: "อบอบอุ่น Warm & Fresh",
-                price: 60,
-                category: "cakesBakeries",
-                icon: "🥐"
-            },
-            {
-                id: 36,
-                name: "หอมกรุ่นขนม Fragrant Sweets",
-                price: 65,
-                category: "cakesBakeries",
-                icon: "🍩"
-            },
-            {
-                id: 37,
-                name: "รสหวานบ้านเรา Sweet Taste Home",
-                price: 55,
-                category: "cakesBakeries",
-                icon: "🏠"
-            },
-            {
-                id: 38,
-                name: "ขนมบ้านใกล้ Nearby Bakery",
-                price: 50,
-                category: "cakesBakeries",
-                icon: "🏡"
-            },
-
-            // พิซซ่า (Pizza)
-            {
-                id: 9,
-                name: "พิซซ่ามาการิต้า (Margherita)",
-                price: 180,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 10,
-                name: "พิซซ่าเปปเปอโรนี (Pepperoni)",
-                price: 220,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 11,
-                name: "พิซซ่าฮาวายเอี้ยน (Hawaiian)",
-                price: 200,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 12,
-                name: "พิซซ่าซุปเปอร์ดีลักซ์ (Super Deluxe)",
-                price: 250,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 13,
-                name: "พิซซ่าพริกหยวกและเห็ด (Bell Pepper & Mushroom)",
-                price: 190,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 14,
-                name: "พิซซ่าไส้กรอกอิตาเลียน (Italian Sausage)",
-                price: 230,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 15,
-                name: "พิซซ่าแซลมอนรมควัน (Smoked Salmon)",
-                price: 280,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 16,
-                name: "พิซซ่าชีสรวมมิตร (Four Cheese)",
-                price: 210,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 17,
-                name: "พิซซ่าบาร์บีคิวไก่ (BBQ Chicken)",
-                price: 200,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 18,
-                name: "พิซซ่าทะเลรวม (Seafood)",
-                price: 270,
-                category: "pizza",
-                icon: "🍕"
-            },
-            {
-                id: 19,
-                name: "พิซซ่าผักโขมและริคอตต้า (Spinach & Ricotta)",
-                price: 195,
-                category: "pizza",
-                icon: "🍕"
-            },
-        ];
+        }
+        
+        // เรียกใช้เมื่อหน้าเว็บโหลดเสร็จ
+        window.addEventListener('load', () => {
+            createLeaves();
+            
+            // อัพเดทเวลาปัจจุบัน
+            function updateTime() {
+                const now = new Date();
+                const timeString = now.toLocaleTimeString('th-TH', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                document.getElementById('current-time').textContent = timeString;
+            }
+            
+            setInterval(updateTime, 1000);
+            updateTime();
+        });
     </script>
 </body>
-
 </html>
