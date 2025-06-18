@@ -9,16 +9,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&family=Charm:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="https://i.imgur.com/your-campfire-favicon.png" type="image/png"> 
+    <link rel="icon" href="https://i.imgur.com/your-campfire-favicon.png" type="image/png">
     <style>
         /* ======= เปลี่ยนธีมเป็นแนวแค้มป์ปิ้ง ====== */
         body {
             font-family: 'Sarabun', sans-serif;
-            background: linear-gradient(to bottom, #e6f5e6, #d9edda);
+            /* เพิ่มพื้นหลังเป็นภาพภูเขาและป่าไม้ */
+            background-image: url('https://images.unsplash.com/photo-1549880338-65ddcdfd017b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwyfHxtb3VudGFpbiUyMGZvcmVzdCUyMG1pc3R8ZW58MHx8fHwxNzE4NzAxOTg2fDA&ixlib=rb-4.0.3&q=80&w=1080'), linear-gradient(to bottom, #a2b9a7, #8bb08f);
+            background-size: cover;
+            background-position: center bottom; /* ปรับให้ภาพอยู่ด้านล่าง */
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: #3e2723;
             padding: 20px;
             position: relative;
-            min-height: 100vh; /* ทำให้ body สูงเต็มหน้าจอ */
+            min-height: 100vh;
         }
 
         body::before {
@@ -35,18 +40,20 @@
             pointer-events: none;
         }
 
-        h2, h4, .modal-title {
-            font-family: 'Charm', cursive; /* ใช้ฟอนต์ Charm สำหรับ heading */
+        h2,
+        h4,
+        .modal-title {
+            font-family: 'Charm', cursive;
             font-weight: 700;
-            color: #5d4037; /* สีน้ำตาลเข้ม */
+            color: #5d4037;
         }
 
         .card {
             border: none;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* ปรับ shadow ให้ดูนุ่มนวลขึ้น */
-            border-radius: 15px; /* เพิ่มความโค้งมนเล็กน้อย */
-            background: rgba(255, 255, 255, 0.88); /* เพิ่ม opacity เล็กน้อย */
-            backdrop-filter: blur(8px); /* เพิ่ม blur เล็กน้อย */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.88);
+            backdrop-filter: blur(8px);
             border: 1px solid #d1c7b7;
         }
 
@@ -54,13 +61,13 @@
             background: linear-gradient(90deg, #8bc34a, #689f38) !important;
             color: white !important;
             font-weight: 600;
-            border-top-left-radius: 15px !important; /* ต้องตรงกับ card border-radius */
+            border-top-left-radius: 15px !important;
             border-top-right-radius: 15px !important;
-            padding: 1rem 1.5rem; /* เพิ่ม padding */
+            padding: 1rem 1.5rem;
         }
 
         .order-type-header {
-            background: linear-gradient(90deg, #5d4037, #8d6e63) !important; /* คงเดิม เพราะเข้ากับธีมอยู่แล้ว */
+            background: linear-gradient(90deg, #5d4037, #8d6e63) !important;
             color: white !important;
             border-top-left-radius: 15px !important;
             border-top-right-radius: 15px !important;
@@ -68,38 +75,38 @@
         }
 
         .card-body {
-            padding: 1.5rem; /* เพิ่ม padding ใน card-body */
+            padding: 1.5rem;
         }
 
         .menu-item {
             background: #fff;
             border: 1px solid #d7ccc8;
-            margin-bottom: 10px; /* เพิ่มระยะห่างด้านล่าง */
+            margin-bottom: 10px;
             border-radius: 12px;
-            padding: 15px 20px; /* เพิ่ม padding */
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07); /* ปรับ shadow */
-            transition: all 0.3s ease; /* ปรับเวลา transition */
+            padding: 15px 20px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.07);
+            transition: all 0.3s ease;
             cursor: pointer;
-            display: flex; /* ใช้ flexbox จัดเรียง icon กับ text */
+            display: flex;
             align-items: center;
         }
 
         .menu-item:hover {
             background: #f1f8e9;
-            transform: translateY(-3px); /* เพิ่มการเคลื่อนไหวเล็กน้อย */
+            transform: translateY(-3px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
         }
 
         .menu-item .menu-name {
-            flex-grow: 1; /* ให้ชื่อเมนูขยายเต็มพื้นที่ */
+            flex-grow: 1;
             font-size: 1.1rem;
             font-weight: 500;
         }
 
         .menu-item .menu-price {
             font-weight: 600;
-            color: #689f38; /* สีเขียวธรรมชาติ */
-            margin-left: 15px; /* เพิ่มระยะห่างจากชื่อเมนู */
+            color: #689f38;
+            margin-left: 15px;
         }
 
         /* ปุ่มแนวแค้มป์ปิ้ง */
@@ -107,7 +114,7 @@
             color: #5d4037;
             border-color: #5d4037;
             font-weight: 500;
-            border-radius: 8px; /* เพิ่มความโค้งมนให้ปุ่ม */
+            border-radius: 8px;
             padding: 8px 15px;
         }
 
@@ -119,7 +126,7 @@
         }
 
         .btn-outline-secondary {
-            color: #795548; /* สีน้ำตาลอ่อนลง */
+            color: #795548;
             border-color: #795548;
             border-radius: 8px;
             padding: 6px 12px;
@@ -137,26 +144,32 @@
         body.dark-mode {
             background-color: #1a2a1a;
             background-image:
+                url('https://images.unsplash.com/photo-1510784715327-be28236173a7?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMDF8MHwxfHNlYXJjaHwxNXx8bW91bnRhaW4lMjBmb3Jlc3QlMjBtaXN0fGVufDB8fHx8MTcxODcwMjMxNHww&ixlib=rb-4.0.3&q=80&w=1080'),
                 url('https://www.transparenttextures.com/patterns/dark-wood.png'),
                 url('https://www.transparenttextures.com/patterns/stardust.png');
+            background-size: cover, 400px, auto;
+            background-position: center bottom, top left, top left;
+            background-repeat: no-repeat, repeat, repeat;
             color: #e0e7eb;
         }
 
-        body.dark-mode h2, body.dark-mode h4, body.dark-mode .modal-title {
-            color: #e0e7eb; /* สีข้อความ heading ใน dark mode */
+        body.dark-mode h2,
+        body.dark-mode h4,
+        body.dark-mode .modal-title {
+            color: #e0e7eb;
         }
 
         body.dark-mode .card {
-            background: rgba(40, 50, 40, 0.95); /* เพิ่ม opacity */
+            background: rgba(40, 50, 40, 0.95);
             border-color: #5d4037;
         }
 
         body.dark-mode .card-header {
-            background: linear-gradient(90deg, #385e2b, #2b4a20) !important; /* ปรับสี header ใน dark mode */
+            background: linear-gradient(90deg, #385e2b, #2b4a20) !important;
         }
 
         body.dark-mode .order-type-header {
-            background: linear-gradient(90deg, #4a2d26, #6b4c42) !important; /* ปรับสี header ใน dark mode */
+            background: linear-gradient(90deg, #4a2d26, #6b4c42) !important;
         }
 
         body.dark-mode .menu-item {
@@ -170,7 +183,7 @@
         }
 
         body.dark-mode .menu-item .menu-price {
-             color: #a2cd78; /* สีเขียวอ่อนลงใน dark mode */
+            color: #a2cd78;
         }
 
         body.dark-mode .table-bordered thead th,
@@ -180,13 +193,14 @@
         }
 
         body.dark-mode .table-dark {
-            background-color: #3e2723 !important; /* Darker header for table in dark mode */
+            background-color: #3e2723 !important;
         }
 
         body.dark-mode .btn-outline-primary {
             color: #a2cd78;
             border-color: #a2cd78;
         }
+
         body.dark-mode .btn-outline-primary:hover,
         body.dark-mode .btn-outline-primary.active {
             background-color: #a2cd78;
@@ -198,6 +212,7 @@
             color: #d7ccc8;
             border-color: #d7ccc8;
         }
+
         body.dark-mode .btn-outline-secondary:hover,
         body.dark-mode .btn-outline-secondary.active {
             background-color: #d7ccc8;
@@ -211,24 +226,25 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 120px; /* เพิ่มขนาดเล็กน้อย */
+            width: 120px;
             height: 120px;
             background: radial-gradient(circle, rgba(255, 165, 0, 0.7) 0%, rgba(255, 69, 0, 0.4) 50%, transparent 70%);
             border-radius: 50%;
-            filter: blur(8px); /* เพิ่ม blur */
-            box-shadow: 0 0 20px 8px rgba(255, 140, 0, 0.4), 0 0 40px 15px rgba(255, 69, 0, 0.2); /* เพิ่มแสงเรืองรอง */
+            filter: blur(8px);
+            box-shadow: 0 0 20px 8px rgba(255, 140, 0, 0.4), 0 0 40px 15px rgba(255, 69, 0, 0.2);
             z-index: 0;
             animation: flicker 3s infinite alternate;
         }
 
         @keyframes flicker {
-            0%, 100% {
+            0%,
+            100% {
                 opacity: 0.8;
                 transform: translateX(-50%) scale(1);
             }
             25% {
-                opacity: 0.95; /* เพิ่มความสว่างเล็กน้อย */
-                transform: translateX(-50%) scale(1.06); /* เพิ่มการขยาย */
+                opacity: 0.95;
+                transform: translateX(-50%) scale(1.06);
             }
             50% {
                 opacity: 0.75;
@@ -243,17 +259,17 @@
         /* Language toggle positioning */
         .language-toggle-buttons {
             position: absolute;
-            top: 15px; /* ปรับตำแหน่ง */
+            top: 15px;
             right: 15px;
             z-index: 10;
         }
 
         #themeToggle {
             position: absolute;
-            top: 15px; /* ปรับตำแหน่ง */
+            top: 15px;
             left: 15px;
             z-index: 10;
-            border-radius: 50%; /* ทำให้ปุ่มกลม */
+            border-radius: 50%;
             width: 40px;
             height: 40px;
             display: flex;
@@ -262,27 +278,30 @@
         }
 
         #categoryFilter button {
-            margin-right: 8px; /* เพิ่มระยะห่าง */
+            margin-right: 8px;
             margin-bottom: 8px;
         }
 
-        #subCategoryDrink, #subCategoryDessert, #subCategoryMainDish {
-            padding-left: 15px; /* เยื้องเข้ามาเล็กน้อย */
-            border-left: 2px solid rgba(104, 159, 56, 0.5); /* เส้นแบ่งเล็กๆ */
+        #subCategoryDrink,
+        #subCategoryDessert,
+        #subCategoryMainDish {
+            padding-left: 15px;
+            border-left: 2px solid rgba(104, 159, 56, 0.5);
             margin-top: 10px !important;
             padding-top: 5px;
             padding-bottom: 5px;
         }
 
-        body.dark-mode #subCategoryDrink, 
-        body.dark-mode #subCategoryDessert, 
+        body.dark-mode #subCategoryDrink,
+        body.dark-mode #subCategoryDessert,
         body.dark-mode #subCategoryMainDish {
             border-left-color: rgba(162, 205, 120, 0.5);
         }
 
         /* Responsive adjustments */
         @media (max-width: 767.98px) {
-            .language-toggle-buttons, #themeToggle {
+            .language-toggle-buttons,
+            #themeToggle {
                 position: static;
                 margin-bottom: 15px;
             }
@@ -293,7 +312,7 @@
                 margin-bottom: 15px;
             }
             #appTitle {
-                margin-top: 60px; /* เพิ่มระยะห่างด้านบนเมื่อปุ่มไม่ได้อยู่ absolute */
+                margin-top: 60px;
             }
         }
     </style>
@@ -321,7 +340,9 @@
         <div class="row">
             <div class="col-md-5">
                 <div class="card mb-3">
-                    <div class="card-header"><h4 class="mb-0" id="menuHeader">เมนู</h4></div>
+                    <div class="card-header">
+                        <h4 class="mb-0" id="menuHeader">เมนู</h4>
+                    </div>
                     <div class="card-body">
                         <div id="categoryFilter" class="mb-3 d-flex flex-wrap">
                             <button class="btn btn-sm btn-outline-primary category-btn active" data-category="all"></button>
@@ -357,7 +378,9 @@
 
             <div class="col-md-7">
                 <div class="card mb-3">
-                    <div class="card-header"><h4 class="mb-0" id="orderListHeader">รายการสั่งซื้อ</h4></div>
+                    <div class="card-header">
+                        <h4 class="mb-0" id="orderListHeader">รายการสั่งซื้อ</h4>
+                    </div>
                     <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-bordered table-striped" id="orderTable">
@@ -440,8 +463,7 @@
                     <div class="text-center mt-3"><img id="qrImage" src="" width="150" /></div>
                 </div>
                 <div class="modal-footer">
-                    <button onclick="printReceipt()" class="btn btn-outline-secondary" id="printReceiptBtn"><i
-                            class="bi bi-printer"></i> <span id="printReceiptBtnText">พิมพ์ใบเสร็จ</span></button>
+                    <button onclick="printReceipt()" class="btn btn-outline-secondary" id="printReceiptBtn"><i class="bi bi-printer"></i> <span id="printReceiptBtnText">พิมพ์ใบเสร็จ</span></button>
                     <button class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn"><span id="closeBtnText">ปิด</span></button>
                 </div>
             </div>
@@ -579,611 +601,421 @@
             }
         };
 
-        let currentLang = localStorage.getItem('cafeLanguage') || 'th'; // Load language from localStorage
+        let currentLang = localStorage.getItem('cafeLanguage') || 'th';
         let currentActiveCategory = localStorage.getItem('cafeActiveCategory') || 'all';
         let currentActiveSubCategory = localStorage.getItem('cafeActiveSubCategory') || 'all';
 
         const menuItems = [
             // Game item
-            { id: 999, name: "Pizza Maker WOI (เกมทำพิซซ่า)", price: 0, category: "game", icon: "🎮", isGame: true, gameUrl: "https://th.crazygames.com/%E0%B9%80%E0%B8%81%E0%B8%A1/pizza-maker-woi" },
+            {
+                id: 999,
+                name: "Pizza Maker WOI (เกมทำพิซซ่า)",
+                price: 0,
+                category: "game",
+                icon: "🎮",
+                isGame: true,
+                gameUrl: "https://th.crazygames.com/%E0%B9%80%E0%B8%81%E0%B8%A1/pizza-maker-woi"
+            },
 
             // เครื่องดื่ม (Drinks)
-            { id: 1, name: "กาแฟลาเต้", price: 40, category: "coffee", icon: "☕️" },
-            { id: 42, name: "คาปูชิโน่คลาสสิก (Classic Cappuccino)", price: 50, category: "coffee", icon: "☕" },
-            { id: 44, name: "เอสเปรสโซ่เอ็กซ์ตร้า (Espresso Extra)", price: 40, category: "coffee", icon: "☕" },
-            { id: 46, name: "กาแฟนมสด (Fresh Milk Coffee)", price: 45, category: "coffee", icon: "🥛" },
-            { id: 41, name: "ม็อคค่าแม็กซ์ (Mocha Max)", price: 60, category: "coffee", icon: "☕" },
-            { id: 40, name: "ลาเต้ลาเวนเดอร์ (Lavender Latte)", price: 55, category: "coffee", icon: "💜" },
-            { id: 100, name: "กาแฟแค้มป์ไฟร์", price: 45, category: "coffee", icon: "🔥" },
+            {
+                id: 1,
+                name: "กาแฟลาเต้",
+                price: 40,
+                category: "coffee",
+                icon: "☕️"
+            },
+            {
+                id: 42,
+                name: "คาปูชิโน่คลาสสิก (Classic Cappuccino)",
+                price: 50,
+                category: "coffee",
+                icon: "☕"
+            },
+            {
+                id: 44,
+                name: "เอสเปรสโซ่เอ็กซ์ตร้า (Espresso Extra)",
+                price: 40,
+                category: "coffee",
+                icon: "☕"
+            },
+            {
+                id: 46,
+                name: "กาแฟนมสด (Fresh Milk Coffee)",
+                price: 45,
+                category: "coffee",
+                icon: "🥛"
+            },
+            {
+                id: 41,
+                name: "ม็อคค่าแม็กซ์ (Mocha Max)",
+                price: 60,
+                category: "coffee",
+                icon: "☕"
+            },
+            {
+                id: 40,
+                name: "ลาเต้ลาเวนเดอร์ (Lavender Latte)",
+                price: 55,
+                category: "coffee",
+                icon: "💜"
+            },
+            {
+                id: 100,
+                name: "กาแฟแค้มป์ไฟร์",
+                price: 45,
+                category: "coffee",
+                icon: "🔥"
+            },
 
-            { id: 2, name: "ชาเขียว", price: 35, category: "tea", icon: "🍵" },
-            { id: 43, name: "ชาเขียวมัทฉะ (Matcha Green Tea)", price: 45, category: "tea", icon: "🍵" },
-            { id: 45, name: "ชาไทยเย็น (Thai Iced Tea)", price: 40, category: "tea", icon: "🧋" },
-            { id: 7, name: "ชาไทย", price: 35, category: "tea", icon: "🧋" },
-            { id: 47, name: "ฮันนี่เลมอนที (Honey Lemon Tea)", price: 35, category: "tea", icon: "🍋" },
-            { id: 48, name: "ชาอู่หลงร้อน (Hot Oolong Tea)", price: 30, category: "tea", icon: "🍵" },
-            { id: 101, name: "ชามินต์ป่า", price: 40, category: "tea", icon: "🌿" },
+            {
+                id: 2,
+                name: "ชาเขียว",
+                price: 35,
+                category: "tea",
+                icon: "🍵"
+            },
+            {
+                id: 43,
+                name: "ชาเขียวมัทฉะ (Matcha Green Tea)",
+                price: 45,
+                category: "tea",
+                icon: "🍵"
+            },
+            {
+                id: 45,
+                name: "ชาไทยเย็น (Thai Iced Tea)",
+                price: 40,
+                category: "tea",
+                icon: "🧋"
+            },
+            {
+                id: 7,
+                name: "ชาไทย",
+                price: 35,
+                category: "tea",
+                icon: "🧋"
+            },
+            {
+                id: 47,
+                name: "ฮันนี่เลมอนที (Honey Lemon Tea)",
+                price: 35,
+                category: "tea",
+                icon: "🍋"
+            },
+            {
+                id: 48,
+                name: "ชาอู่หลงร้อน (Hot Oolong Tea)",
+                price: 30,
+                category: "tea",
+                icon: "🍵"
+            },
+            {
+                id: 101,
+                name: "ชามินต์ป่า",
+                price: 40,
+                category: "tea",
+                icon: "🌿"
+            },
 
-            { id: 4, name: "น้ำส้มคั้น", price: 30, category: "juice", icon: "🥤" },
-            { id: 102, name: "สมูทตี้เบอร์รี่ป่า", price: 55, category: "juice", icon: "🍓" },
+            {
+                id: 4,
+                name: "น้ำส้มคั้น",
+                price: 30,
+                category: "juice",
+                icon: "🥤"
+            },
+            {
+                id: 102,
+                name: "สมูทตี้เบอร์รี่ป่า",
+                price: 55,
+                category: "juice",
+                icon: "🍓"
+            },
 
-            { id: 39, name: "โกโก้ครีมมี่ (Cocoa Creamy)", price: 45, category: "otherDrink", icon: "🍫" },
+            {
+                id: 39,
+                name: "โกโก้ครีมมี่ (Cocoa Creamy)",
+                price: 45,
+                category: "otherDrink",
+                icon: "🍫"
+            },
 
             // **เพิ่มเมนู เหล้า-เบียร์**
-            { id: 78, name: "เบียร์ช้าง", price: 90, category: "alcohol", icon: "🍺" },
-            { id: 79, name: "เบียร์ลีโอ", price: 90, category: "alcohol", icon: "🍺" },
-            { id: 80, name: "เบียร์สิงห์", price: 100, category: "alcohol", icon: "🍺" },
-            { id: 81, name: "เบียร์ไฮเนเก้น", price: 120, category: "alcohol", icon: "🍺" },
-            { id: 82, name: "วิสกี้ (แก้ว)", price: 150, category: "alcohol", icon: "🥃" },
-            { id: 83, name: "เหล้าขาว (ช็อต)", price: 60, category: "alcohol", icon: "🍶" },
-            { id: 84, name: "ค็อกเทล มะพร้าว (Coconut Cocktail)", price: 180, category: "alcohol", icon: "🍹" },
+            {
+                id: 78,
+                name: "เบียร์ช้าง",
+                price: 90,
+                category: "alcohol",
+                icon: "🍺"
+            },
+            {
+                id: 79,
+                name: "เบียร์ลีโอ",
+                price: 90,
+                category: "alcohol",
+                icon: "🍺"
+            },
+            {
+                id: 80,
+                name: "เบียร์สิงห์",
+                price: 100,
+                category: "alcohol",
+                icon: "🍺"
+            },
+            {
+                id: 81,
+                name: "เบียร์ไฮเนเก้น",
+                price: 120,
+                category: "alcohol",
+                icon: "🍺"
+            },
+            {
+                id: 82,
+                name: "วิสกี้ (แก้ว)",
+                price: 150,
+                category: "alcohol",
+                icon: "🥃"
+            },
+            {
+                id: 83,
+                name: "เหล้าขาว (ช็อต)",
+                price: 60,
+                category: "alcohol",
+                icon: "🍶"
+            },
+            {
+                id: 84,
+                name: "ค็อกเทล มะพร้าว (Coconut Cocktail)",
+                price: 180,
+                category: "alcohol",
+                icon: "🍹"
+            },
 
             // อาหาร (Food) - ใช้ category: "food"
-            { id: 5, name: "แซนวิช", price: 45, category: "food", icon: "🥪" },
-            { id: 8, name: "ครัวซองต์", price: 40, category: "food", icon: "🥐" },
-            { id: 103, name: "แซนวิชแคมป์ปิ้ง", price: 60, category: "food", icon: "🥪" },
+            {
+                id: 5,
+                name: "แซนวิช",
+                price: 45,
+                category: "food",
+                icon: "🥪"
+            },
+            {
+                id: 8,
+                name: "ครัวซองต์",
+                price: 40,
+                category: "food",
+                icon: "🥐"
+            },
+            {
+                id: 103,
+                name: "แซนวิชแคมป์ปิ้ง",
+                price: 60,
+                category: "food",
+                icon: "🥪"
+            },
 
             // ของหวาน (Desserts)
-            { id: 3, name: "เค้กช็อกโกแลต", price: 55, category: "cakesBakeries", icon: "🧁" },
-            { id: 6, name: "บราวนี่", price: 50, category: "cakesBakeries", icon: "🍫" },
-            { id: 24, name: "บ้านขนมหวาน Sweet Home Bakery", price: 65, category: "cakesBakeries", icon: "🍰" },
-            { id: 25, name: "ขนมอบรัก Love Bake", price: 70, category: "cakesBakeries", icon: "💖" },
-            { id: 26, name: "ครัวอบอุ่น Warm Oven", price: 60, category: "cakesBakeries", icon: "🍪" },
-            { id: 27, name: "หอมกลิ่นขนม Aroma Bakery", price: 75, category: "cakesBakeries", icon: "🍞" },
-            { id: 28, name: "กลิ่นอบอวล Cozy Crust", price: 68, category: "cakesBakeries", icon: "🥨" },
-            { id: 29, name: "ขนมบ้านสวน Garden Sweets", price: 55, category: "cakesBakeries", icon: "🌳" },
-            { id: 30, name: "ขนมหวานใจ Sweetheart Treats", price: 72, category: "cakesBakeries", icon: "🍬" },
-            { id: 31, name: "สวรรค์ขนม Heaven Bakery", price: 80, category: "cakesBakeries", icon: "😇" },
-            { id: 32, name: "เตาอบสุขใจ Happy Oven", price: 62, category: "cakesBakeries", icon: "😊" },
-            { id: 33, name: "ขนมมงคล Lucky Bakes", price: 78, category: "cakesBakeries", icon: "🧧" },
-            { id: 34, name: "ขนมอบสด Fresh Bake", price: 58, category: "cakesBakeries", icon: "🥖" },
-            { id: 35, name: "อบอบอุ่น Warm & Fresh", price: 60, category: "cakesBakeries", icon: "🥐" },
-            { id: 36, name: "หอมกรุ่นขนม Fragrant Sweets", price: 65, category: "cakesBakeries", icon: "🍩" },
-            { id: 37, name: "รสหวานบ้านเรา Sweet Taste Home", price: 55, category: "cakesBakeries", icon: "🏠" },
-            { id: 38, name: "ขนมบ้านใกล้ Nearby Bakery", price: 50, category: "cakesBakeries", icon: "🏡" },
+            {
+                id: 3,
+                name: "เค้กช็อกโกแลต",
+                price: 55,
+                category: "cakesBakeries",
+                icon: "🧁"
+            },
+            {
+                id: 6,
+                name: "บราวนี่",
+                price: 50,
+                category: "cakesBakeries",
+                icon: "🍫"
+            },
+            {
+                id: 24,
+                name: "บ้านขนมหวาน Sweet Home Bakery",
+                price: 65,
+                category: "cakesBakeries",
+                icon: "🍰"
+            },
+            {
+                id: 25,
+                name: "ขนมอบรัก Love Bake",
+                price: 70,
+                category: "cakesBakeries",
+                icon: "💖"
+            },
+            {
+                id: 26,
+                name: "ครัวอบอุ่น Warm Oven",
+                price: 60,
+                category: "cakesBakeries",
+                icon: "🍪"
+            },
+            {
+                id: 27,
+                name: "หอมกลิ่นขนม Aroma Bakery",
+                price: 75,
+                category: "cakesBakeries",
+                icon: "🍞"
+            },
+            {
+                id: 28,
+                name: "กลิ่นอบอวล Cozy Crust",
+                price: 68,
+                category: "cakesBakeries",
+                icon: "🥨"
+            },
+            {
+                id: 29,
+                name: "ขนมบ้านสวน Garden Sweets",
+                price: 55,
+                category: "cakesBakeries",
+                icon: "🌳"
+            },
+            {
+                id: 30,
+                name: "ขนมหวานใจ Sweetheart Treats",
+                price: 72,
+                category: "cakesBakeries",
+                icon: "🍬"
+            },
+            {
+                id: 31,
+                name: "สวรรค์ขนม Heaven Bakery",
+                price: 80,
+                category: "cakesBakeries",
+                icon: "😇"
+            },
+            {
+                id: 32,
+                name: "เตาอบสุขใจ Happy Oven",
+                price: 62,
+                category: "cakesBakeries",
+                icon: "😊"
+            },
+            {
+                id: 33,
+                name: "ขนมมงคล Lucky Bakes",
+                price: 78,
+                category: "cakesBakeries",
+                icon: "🧧"
+            },
+            {
+                id: 34,
+                name: "ขนมอบสด Fresh Bake",
+                price: 58,
+                category: "cakesBakeries",
+                icon: "🥖"
+            },
+            {
+                id: 35,
+                name: "อบอบอุ่น Warm & Fresh",
+                price: 60,
+                category: "cakesBakeries",
+                icon: "🥐"
+            },
+            {
+                id: 36,
+                name: "หอมกรุ่นขนม Fragrant Sweets",
+                price: 65,
+                category: "cakesBakeries",
+                icon: "🍩"
+            },
+            {
+                id: 37,
+                name: "รสหวานบ้านเรา Sweet Taste Home",
+                price: 55,
+                category: "cakesBakeries",
+                icon: "🏠"
+            },
+            {
+                id: 38,
+                name: "ขนมบ้านใกล้ Nearby Bakery",
+                price: 50,
+                category: "cakesBakeries",
+                icon: "🏡"
+            },
 
             // พิซซ่า (Pizza)
-            { id: 9, name: "พิซซ่ามาการิต้า (Margherita)", price: 180, category: "pizza", icon: "🍕" },
-            { id: 10, name: "พิซซ่าเปปเปอโรนี (Pepperoni)", price: 220, category: "pizza", icon: "🍕" },
-            { id: 11, name: "พิซซ่าฮาวายเอี้ยน (Hawaiian)", price: 200, category: "pizza", icon: "🍕" },
-            { id: 12, name: "พิซซ่าซุปเปอร์ดีลักซ์ (Super Deluxe)", price: 250, category: "pizza", icon: "🍕" },
-            { id: 13, name: "พิซซ่าพริกหยวกและเห็ด (Bell Pepper & Mushroom)", price: 190, category: "pizza", icon: "🍕" },
-            { id: 14, name: "พิซซ่าไส้กรอกอิตาเลียน (Italian Sausage)", price: 230, category: "pizza", icon: "🍕" },
-            { id: 15, name: "พิซซ่าแซลมอนรมควัน (Smoked Salmon)", price: 280, category: "pizza", icon: "🍕" },
-            { id: 16, name: "พิซซ่าชีสรวมมิตร (Four Cheese)", price: 210, category: "pizza", icon: "🍕" },
-            { id: 17, name: "พิซซ่าบาร์บีคิวไก่ (BBQ Chicken)", price: 200, category: "pizza", icon: "🍕" },
-            { id: 18, name: "พิซซ่าทะเลรวม (Seafood)", price: 270, category: "pizza", icon: "🍕" },
-            { id: 19, name: "พิซซ่าผักโขมและริคอตต้า (Spinach & Ricotta)", price: 195, category: "pizza", icon: "🍕" },
-            { id: 20, name: "พิซซ่าเบคอนกับไข่ (Bacon & Egg)", price: 215, category: "pizza", icon: "🍕" },
-            { id: 21, name: "พิซซ่าปาปริก้าและไก่ (Paprika & Chicken)", price: 205, category: "pizza", icon: "🍕" },
-            { id: 22, name: "พิซซ่ารสจัด (Spicy Hot)", price: 190, category: "pizza", icon: "🍕" },
-            { id: 23, name: "พิซซ่ามะกอกดำกับแฮม (Black Olive & Ham)", price: 200, category: "pizza", icon: "🍕" },
-            { id: 105, name: "พิซซ่าหนึ่งไม้", price: 220, category: "pizza", icon: "🍕" },
-
-            // สปาเก็ตตี้ (Spaghetti)
-            { id: 59, name: "สปาเก็ตตี้คาโบนาร่า (Carbonara)", price: 150, category: "spaghetti", icon: "🍝" },
-            { id: 60, name: "สปาเก็ตตี้โบโลเนส (Bolognese)", price: 140, category: "spaghetti", icon: "🍝" },
-            { id: 61, name: "สปาเก็ตตี้ผัดขี้เมาทะเล (Spicy Seafood)", price: 160, category: "spaghetti", icon: "🍝" },
-            { id: 62, name: "สปาเก็ตตี้เบคอนพริกแห้ง (Dried Chili Bacon)", price: 130, category: "spaghetti", icon: "🍝" },
-            { id: 63, name: "สปาเก็ตตี้ซอสมะเขือเทศ (Tomato Sauce)", price: 120, category: "spaghetti", icon: "🍝" },
-
-            // สเต็ก (Steak)
-            { id: 49, name: "สเต็กพริกไทยดำ (Black Pepper Steak)", price: 180, category: "steak", icon: "🥩" },
-            { id: 50, name: "สเต็กซอสเห็ดหอม (Mushroom Sauce Steak)", price: 190, category: "steak", icon: "🥩" },
-            { id: 51, name: "สเต็กหมูจิ้มแจ่ว (Spicy Thai Dipping Pork Steak)", price: 170, category: "steak", icon: "🍖" },
-            { id: 52, name: "สเต็กเนื้อย่างน้ำจิ้มแจ่ว (Thai Spicy Beef Steak)", price: 220, category: "steak", icon: "🥩" },
-            { id: 53, name: "สเต็กไก่ซอสกระเทียมพริกไทย (Garlic Pepper Chicken Steak)", price: 160, category: "steak", icon: "🍗" },
-            { id: 54, name: "สเต็กหมูซอสเทอริยากิ (Teriyaki Pork Steak)", price: 175, category: "steak", icon: "🍖" },
-            { id: 55, name: "สเต็กแซ่บ (Zapp Steak – แนวอีสานจัดจ้าน)", price: 185, category: "steak", icon: "🌶️" },
-            { id: 56, name: "สเต็กปลาแซลมอนย่างซีอิ๊ว (Grilled Salmon with Soy Glaze)", price: 250, category: "steak", icon: "🐟" },
-            { id: 57, name: "สเต็กหมูพริกเกลือ (Spicy Pork Steak Thai Style)", price: 170, category: "steak", icon: "🌶️" },
-            { id: 58, name: "สเต็กไก่ลาบ (Larb Chicken Steak)", price: 165, category: "steak", icon: "🍗" },
-            { id: 104, name: "สเต็กแคมป์ไฟร์", price: 180, category: "steak", icon: "🥩" },
-
-            // อาหารไทย (Thai Food)
-            { id: 64, name: "ผัดกะเพราไก่ไข่ดาว (Stir-fried Basil with Chicken & Fried Egg)", price: 80, category: "thaiFood", icon: "🍚" },
-            { id: 65, name: "ข้าวผัดกุ้ง (Shrimp Fried Rice)", price: 90, category: "thaiFood", icon: "🍤" },
-            { id: 66, name: "ต้มยำกุ้งน้ำข้น (Creamy Tom Yum Goong)", price: 120, category: "thaiFood", icon: "🍲" },
-            { id: 67, name: "แกงเขียวหวานไก่ (Green Curry with Chicken)", price: 100, category: "thaiFood", icon: "🍛" },
-            { id: 68, name: "พะแนงหมู (Panaeng Curry with Pork)", price: 110, category: "thaiFood", icon: "🍜" },
-            { id: 69, name: "ฉู่ฉี่ปลาทู (Chu Chee Mackerel)", price: 130, category: "thaiFood", icon: "🐟" },
-            { id: 70, name: "แกงส้มกุ้งผักรวม (Sour Curry with Shrimp & Mixed Veggies)", price: 120, category: "thaiFood", icon: "🌶️" },
-            { id: 71, name: "ส้มตำไทย (Papaya Salad Thai Style)", price: 70, category: "thaiFood", icon: "🥗" },
-            { id: 72, name: "ลาบหมู (Spicy Minced Pork Salad)", price: 90, category: "thaiFood", icon: "🌶️" },
-            { id: 73, name: "น้ำตกหมู (Spicy Grilled Pork Salad)", price: 95, category: "thaiFood", icon: "🍖" },
-            { id: 74, name: "ไก่ย่าง (Grilled Chicken)", price: 120, category: "thaiFood", icon: "🍗" },
-            { id: 75, name: "ข้าวซอยไก่ (Khao Soi with Chicken)", price: 100, category: "thaiFood", icon: "🍜" },
-            { id: 76, name: "แกงฮังเล (Hang Le Curry)", price: 110, category: "thaiFood", icon: "🍲" },
-            { id: 77, name: "ไส้อั่ว (Northern Thai Sausage)", price: 85, category: "thaiFood", icon: "🌭" },
+            {
+                id: 9,
+                name: "พิซซ่ามาการิต้า (Margherita)",
+                price: 180,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 10,
+                name: "พิซซ่าเปปเปอโรนี (Pepperoni)",
+                price: 220,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 11,
+                name: "พิซซ่าฮาวายเอี้ยน (Hawaiian)",
+                price: 200,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 12,
+                name: "พิซซ่าซุปเปอร์ดีลักซ์ (Super Deluxe)",
+                price: 250,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 13,
+                name: "พิซซ่าพริกหยวกและเห็ด (Bell Pepper & Mushroom)",
+                price: 190,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 14,
+                name: "พิซซ่าไส้กรอกอิตาเลียน (Italian Sausage)",
+                price: 230,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 15,
+                name: "พิซซ่าแซลมอนรมควัน (Smoked Salmon)",
+                price: 280,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 16,
+                name: "พิซซ่าชีสรวมมิตร (Four Cheese)",
+                price: 210,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 17,
+                name: "พิซซ่าบาร์บีคิวไก่ (BBQ Chicken)",
+                price: 200,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 18,
+                name: "พิซซ่าทะเลรวม (Seafood)",
+                price: 270,
+                category: "pizza",
+                icon: "🍕"
+            },
+            {
+                id: 19,
+                name: "พิซซ่าผักโขมและริคอตต้า (Spinach & Ricotta)",
+                price: 195,
+                category: "pizza",
+                icon: "🍕"
+            },
         ];
-
-
-        const menuListEl = document.getElementById('menuList');
-        const orderTableBody = document.querySelector('#orderTable tbody');
-        const totalAmountEl = document.getElementById('totalAmount');
-        const statusMsg = document.getElementById('statusMsg');
-        const sendOrderBtn = document.getElementById('sendOrderBtn');
-        const clearOrderBtn = document.getElementById('clearOrderBtn');
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const subCategoryDrink = document.getElementById('subCategoryDrink');
-        const subCategoryDessert = document.getElementById('subCategoryDessert');
-        const subCategoryMainDish = document.getElementById('subCategoryMainDish');
-        const allSubCategoryDivs = document.querySelectorAll('#subCategoryDrink, #subCategoryDessert, #subCategoryMainDish');
-        const currentTimeEl = document.getElementById('current-time');
-        const eatHereRadio = document.getElementById('eatHere');
-        const takeHomeRadio = document.getElementById('takeHome');
-        const tableSelectContainer = document.getElementById('tableSelectContainer');
-        const tableNumberSelect = document.getElementById('tableNumber');
-        const receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
-        const receiptContentDiv = document.getElementById('receiptContent');
-        const qrImageEl = document.getElementById('qrImage');
-        const noMenuMsgEl = document.getElementById('noMenuMsg');
-
-
-        let orders = JSON.parse(localStorage.getItem('cafeOrders')) || []; // โหลด orders จาก localStorage
-
-        // Function to get translation
-        function getTranslation(key, placeholders = {}) {
-            let text = translations[currentLang][key] || key; // Fallback to key if not found
-            for (const p in placeholders) {
-                text = text.replace(`{${p}}`, placeholders[p]);
-            }
-            return text;
-        }
-
-        // Function to show status message (Toast-like)
-        function showStatusMessage(message, type = 'success') {
-            statusMsg.textContent = message;
-            statusMsg.className = `mt-3 alert alert-${type}`; // Use Bootstrap alert classes
-            statusMsg.style.display = 'block';
-            setTimeout(() => {
-                statusMsg.style.display = 'none';
-            }, 3000); // Hide message after 3 seconds
-        }
-
-        // Function to update UI elements based on current language
-        function updateUIForLanguage() {
-            document.getElementById('appTitle').textContent = getTranslation('appTitle');
-            document.getElementById('menuHeader').textContent = getTranslation('menuHeader');
-            document.getElementById('orderListHeader').textContent = getTranslation('orderListHeader');
-
-            // Update main category buttons
-            document.querySelector('.category-btn[data-category="all"]').textContent = getTranslation('allCategory');
-            document.querySelector('.category-btn[data-category="drink"]').textContent = getTranslation('drinkCategory');
-            document.querySelector('.category-btn[data-category="food"]').textContent = getTranslation('foodCategory');
-            document.querySelector('.category-btn[data-category="dessert"]').textContent = getTranslation('dessertCategory');
-            document.querySelector('.category-btn[data-category="mainDish"]').textContent = getTranslation('mainDishCategory');
-            document.querySelector('.category-btn[data-category="game"]').textContent = getTranslation('gameCategory'); // New game category button
-
-            // Update sub-category buttons
-            document.querySelector('#subCategoryDrink .sub-category-btn[data-category="coffee"]').textContent = getTranslation('coffeeSubCategory');
-            document.querySelector('#subCategoryDrink .sub-category-btn[data-category="tea"]').textContent = getTranslation('teaSubCategory');
-            document.querySelector('#subCategoryDrink .sub-category-btn[data-category="juice"]').textContent = getTranslation('juiceSubCategory');
-            document.querySelector('#subCategoryDrink .sub-category-btn[data-category="otherDrink"]').textContent = getTranslation('otherDrinkSubCategory');
-            document.querySelector('#subCategoryDrink .sub-category-btn[data-category="alcohol"]').textContent = getTranslation('alcoholSubCategory');
-
-            document.querySelector('#subCategoryDessert .sub-category-btn[data-category="cakesBakeries"]').textContent = getTranslation('cakesBakeriesSubCategory');
-            document.querySelector('#subCategoryDessert .sub-category-btn[data-category="otherDessert"]').textContent = getTranslation('otherDessertSubCategory');
-
-            document.querySelector('#subCategoryMainDish .sub-category-btn[data-category="pizza"]').textContent = getTranslation('pizzaSubCategory');
-            document.querySelector('#subCategoryMainDish .sub-category-btn[data-category="spaghetti"]').textContent = getTranslation('spaghettiSubCategory');
-            document.querySelector('#subCategoryMainDish .sub-category-btn[data-category="steak"]').textContent = getTranslation('steakSubCategory');
-            document.querySelector('#subCategoryMainDish .sub-category-btn[data-category="thaiFood"]').textContent = getTranslation('thaiFoodSubCategory');
-
-            document.getElementById('colMenuName').textContent = getTranslation('menuNameCol');
-            document.getElementById('colPrice').textContent = getTranslation('priceCol');
-            document.getElementById('colQty').textContent = getTranslation('qtyCol');
-            document.getElementById('colTotal').textContent = getTranslation('totalCol');
-            document.getElementById('colManage').textContent = getTranslation('manageCol');
-            document.getElementById('totalAmountLabel').textContent = getTranslation('grandTotal');
-            document.getElementById('orderTypeHeader').textContent = getTranslation('orderTypeLabel');
-            document.getElementById('orderTypeLabel').textContent = getTranslation('orderTypeLabel');
-            document.getElementById('eatHereLabel').textContent = getTranslation('eatHere');
-            document.getElementById('takeHomeLabel').textContent = getTranslation('takeHome');
-            document.getElementById('tableSelectLabel').textContent = getTranslation('tableSelectLabel');
-
-            // Update table number options
-            document.getElementById('tableNumber').options[0].textContent = getTranslation('table1');
-            document.getElementById('tableNumber').options[1].textContent = getTranslation('table2');
-            document.getElementById('tableNumber').options[2].textContent = getTranslation('table3');
-            document.getElementById('tableNumber').options[3].textContent = getTranslation('table4');
-
-
-            document.getElementById('clearOrderBtnText').textContent = getTranslation('clearOrderBtn');
-            document.getElementById('sendOrderBtnText').textContent = getTranslation('sendOrderBtn');
-            document.getElementById('receiptModalTitle').textContent = getTranslation('modalReceiptTitle');
-            document.getElementById('cafeNameReceipt').textContent = getTranslation('cafeNameReceipt'); // For the receipt header
-            document.getElementById('printReceiptBtnText').textContent = getTranslation('printReceiptBtn');
-            document.getElementById('closeBtnText').textContent = getTranslation('closeBtn');
-            document.getElementById('noMenuMsg').textContent = getTranslation('noMenuInCategory');
-            document.getElementById('thankYouMessage').textContent = getTranslation('thankYou');
-
-
-            filterMenuItems(currentActiveCategory, currentActiveSubCategory); // Re-render menu items with new language
-            renderOrderList(); // Re-render order list with new language
-        }
-
-        function switchLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('cafeLanguage', lang); // Save language preference
-            updateUIForLanguage();
-        }
-
-        // Function to update current time
-        function updateCurrentTime() {
-            const now = new Date();
-            const options = {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: false
-            };
-            currentTimeEl.textContent = now.toLocaleDateString(currentLang === 'th' ? 'th-TH' : 'en-US', options);
-        }
-
-        function renderMenuItems(category, subCategory = 'all') {
-            menuListEl.innerHTML = '';
-            noMenuMsgEl.style.display = 'none';
-
-            let filteredItems = menuItems.filter(item => {
-                if (category === 'all') {
-                    return true;
-                } else if (category === 'drink') {
-                    return item.category === 'coffee' || item.category === 'tea' || item.category === 'juice' || item.category === 'otherDrink' || item.category === 'alcohol';
-                } else if (category === 'dessert') {
-                    return item.category === 'cakesBakeries' || item.category === 'otherDessert';
-                } else if (category === 'mainDish') {
-                    return item.category === 'pizza' || item.category === 'spaghetti' || item.category === 'steak' || item.category === 'thaiFood';
-                } else if (category === 'food') { // Handle 'food' category explicitly
-                    return item.category === 'food';
-                } else if (category === 'game') {
-                    return item.category === 'game';
-                }
-                return false;
-            });
-
-            // Further filter by subCategory if applicable
-            if (subCategory !== 'all' && (category === 'drink' || category === 'dessert' || category === 'mainDish')) {
-                filteredItems = filteredItems.filter(item => item.category === subCategory);
-            } else if (subCategory !== 'all' && (category === 'all' || category === 'food' || category === 'game')) {
-                // If a subcategory is selected, but the main category is 'all', 'food' or 'game', show only items matching the subcategory directly.
-                // This might be redundant if subcategories are only shown when main categories are selected, but good for robustness.
-                filteredItems = filteredItems.filter(item => item.category === subCategory);
-            }
-
-
-            if (filteredItems.length === 0) {
-                noMenuMsgEl.style.display = 'block';
-            } else {
-                filteredItems.forEach(item => {
-                    const menuItemDiv = document.createElement('div');
-                    menuItemDiv.classList.add('list-group-item', 'menu-item');
-
-                    if (item.isGame) {
-                        menuItemDiv.innerHTML = `
-                            <span class="menu-name">${item.icon} ${item.name}</span>
-                            <button class="btn btn-sm btn-info ms-2" onclick="playGame('${item.gameUrl}')">${getTranslation('game')}</button>
-                        `;
-                    } else {
-                        menuItemDiv.innerHTML = `
-                            <span class="menu-name">${item.icon} ${item.name}</span>
-                            <span class="menu-price">${item.price} ${getTranslation('บาท')}</span>
-                        `;
-                        menuItemDiv.onclick = () => addOrder(item);
-                    }
-                    menuListEl.appendChild(menuItemDiv);
-                });
-            }
-        }
-
-        function playGame(url) {
-            window.open(url, '_blank');
-        }
-
-        function addOrder(item) {
-            const existingOrder = orders.find(order => order.id === item.id);
-            if (existingOrder) {
-                existingOrder.qty++;
-            } else {
-                orders.push({ ...item, qty: 1 });
-            }
-            saveOrders(); // Save to localStorage
-            renderOrderList();
-            showStatusMessage(getTranslation('addToOrderSuccess', { itemName: item.name }), 'success');
-        }
-
-        function removeOrder(id) {
-            const index = orders.findIndex(order => order.id === id);
-            if (index !== -1) {
-                const itemName = orders[index].name;
-                orders.splice(index, 1);
-                saveOrders(); // Save to localStorage
-                renderOrderList();
-                showStatusMessage(getTranslation('removeFromOrderSuccess', { itemName: itemName }), 'warning');
-            }
-        }
-
-        function updateQuantity(id, change) {
-            const order = orders.find(order => order.id === id);
-            if (order) {
-                order.qty += change;
-                if (order.qty <= 0) {
-                    removeOrder(id);
-                } else {
-                    saveOrders(); // Save to localStorage
-                    renderOrderList();
-                }
-            }
-        }
-
-        function renderOrderList() {
-            orderTableBody.innerHTML = '';
-            let totalAmount = 0;
-
-            orders.forEach(order => {
-                const row = orderTableBody.insertRow();
-                row.insertCell().textContent = `${order.icon} ${order.name}`;
-                row.insertCell().textContent = order.price;
-                row.insertCell().innerHTML = `
-                    <div class="d-flex align-items-center">
-                        <button class="btn btn-sm btn-outline-secondary me-1" onclick="updateQuantity(${order.id}, -1)">-</button>
-                        <span>${order.qty}</span>
-                        <button class="btn btn-sm btn-outline-secondary ms-1" onclick="updateQuantity(${order.id}, 1)">+</button>
-                    </div>
-                `;
-                const itemTotal = order.price * order.qty;
-                row.insertCell().textContent = itemTotal;
-                row.insertCell().innerHTML = `
-                    <button class="btn btn-sm btn-danger" onclick="removeOrder(${order.id})"><i class="bi bi-x"></i></button>
-                `;
-                totalAmount += itemTotal;
-            });
-
-            totalAmountEl.textContent = `${totalAmount} ${getTranslation('บาท')}`;
-        }
-
-        function clearOrder() {
-            if (confirm(getTranslation('clearOrderConfirm'))) {
-                orders = [];
-                saveOrders(); // Save to localStorage
-                renderOrderList();
-                showStatusMessage(getTranslation('orderCleared'), 'info');
-            }
-        }
-
-        async function sendOrder() {
-            if (orders.length === 0) {
-                showStatusMessage(getTranslation('noItemsSelected'), 'warning');
-                return;
-            }
-
-            showStatusMessage(getTranslation('sendingOrder'), 'info');
-            sendOrderBtn.disabled = true;
-
-            const orderType = document.querySelector('input[name="orderType"]:checked').value;
-            const tableNumber = orderType === 'eatHere' ? tableNumberSelect.value : 'N/A';
-
-            const orderData = {
-                orderTime: new Date().toLocaleString(),
-                orderType: orderType,
-                tableNumber: tableNumber,
-                items: orders.map(item => ({
-                    id: item.id,
-                    name: item.name,
-                    qty: item.qty,
-                    price: item.price,
-                    total: item.qty * item.price
-                })),
-                totalAmount: orders.reduce((sum, item) => sum + (item.qty * item.price), 0)
-            };
-
-            try {
-                // Simulate sending data to Google Apps Script or a backend
-                // Replace with your actual Google Apps Script URL if used
-                // const scriptUrl = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL';
-                // const response = await fetch(scriptUrl, {
-                //     method: 'POST',
-                //     mode: 'no-cors', // Required for simple requests without preflight
-                //     headers: {
-                //         'Content-Type': 'application/json',
-                //     },
-                //     body: JSON.stringify(orderData)
-                // });
-
-                // Simulate success
-                await new Promise(resolve => setTimeout(resolve, 1500));
-                showStatusMessage(getTranslation('orderSuccess'), 'success');
-
-                displayReceipt(orderData);
-                receiptModal.show(); // Show receipt modal on success
-
-                orders = []; // Clear orders after successful send
-                saveOrders(); // Save empty orders to localStorage
-                renderOrderList();
-            } catch (error) {
-                console.error('Error sending order:', error);
-                showStatusMessage(getTranslation('orderFailed', { errorMessage: error.message }), 'danger');
-            } finally {
-                sendOrderBtn.disabled = false;
-            }
-        }
-
-        function displayReceipt(orderData) {
-            let receiptHtml = `
-                <p><strong>${getTranslation('receiptOrderType')}:</strong> ${getTranslation(orderData.orderType)}</p>
-            `;
-            if (orderData.orderType === 'eatHere') {
-                receiptHtml += `<p><strong>${getTranslation('receiptTableNumber')}:</strong> ${getTranslation(orderData.tableNumber)}</p>`;
-            }
-            receiptHtml += `
-                <p><strong>${getTranslation('receiptTime')}:</strong> ${orderData.orderTime}</p>
-                <hr>
-                <table class="table table-sm table-borderless">
-                    <thead>
-                        <tr>
-                            <th>${getTranslation('item')}</th>
-                            <th class="text-end">${getTranslation('qty')}</th>
-                            <th class="text-end">${getTranslation('total')}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-
-            orderData.items.forEach(item => {
-                receiptHtml += `
-                    <tr>
-                        <td>${item.icon || ''} ${item.name}</td>
-                        <td class="text-end">${item.qty}</td>
-                        <td class="text-end">${item.total} ${getTranslation('บาท')}</td>
-                    </tr>
-                `;
-            });
-
-            receiptHtml += `
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th colspan="2" class="text-end">${getTranslation('grandTotalReceipt')}:</th>
-                            <th class="text-end">${orderData.totalAmount} ${getTranslation('บาท')}</th>
-                        </tr>
-                    </tfoot>
-                </table>
-            `;
-            receiptDetails.innerHTML = receiptHtml;
-
-            // Generate QR Code for payment (example: PromptPay QR)
-            const paymentDetails = `Amount: ${orderData.totalAmount} ${getTranslation('บาท')}`;
-            const qrData = `https://promptpay.io/QR/YOUR_PROMPTPAY_ID/${orderData.totalAmount}`; // Replace with actual PromptPay ID or payment link
-            qrImageEl.src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(qrData)}`;
-        }
-
-
-        function printReceipt() {
-            const printContents = receiptContentDiv.innerHTML;
-            const originalContents = document.body.innerHTML;
-
-            document.body.innerHTML = printContents;
-            window.print();
-            document.body.innerHTML = originalContents;
-            location.reload(); // Reload to restore original page and scripts
-        }
-
-
-        function saveOrders() {
-            localStorage.setItem('cafeOrders', JSON.stringify(orders));
-        }
-
-        function filterMenuItems(category, subCategory = 'all') {
-            currentActiveCategory = category;
-            currentActiveSubCategory = subCategory; // Store active sub-category
-
-            localStorage.setItem('cafeActiveCategory', category);
-            localStorage.setItem('cafeActiveSubCategory', subCategory);
-
-
-            // Hide all sub-category divs first
-            allSubCategoryDivs.forEach(div => div.classList.add('d-none'));
-
-            // Show relevant sub-category div
-            if (category === 'drink') {
-                subCategoryDrink.classList.remove('d-none');
-            } else if (category === 'dessert') {
-                subCategoryDessert.classList.remove('d-none');
-            } else if (category === 'mainDish') {
-                subCategoryMainDish.classList.remove('d-none');
-            }
-
-            // Remove 'active' from all category and sub-category buttons
-            document.querySelectorAll('.category-btn, .sub-category-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Add 'active' to the clicked main category button
-            document.querySelector(`.category-btn[data-category="${category}"]`).classList.add('active');
-
-            // Add 'active' to the clicked sub-category button if applicable
-            if (subCategory !== 'all' && (category === 'drink' || category === 'dessert' || category === 'mainDish')) {
-                const activeSubBtn = document.querySelector(`#subCategory${category.charAt(0).toUpperCase() + category.slice(1)} .sub-category-btn[data-category="${subCategory}"]`);
-                if (activeSubBtn) {
-                    activeSubBtn.classList.add('active');
-                }
-            }
-
-
-            renderMenuItems(category, subCategory);
-        }
-
-        // Event Listeners
-        categoryBtns.forEach(button => {
-            button.addEventListener('click', () => {
-                const category = button.dataset.category;
-                filterMenuItems(category, 'all'); // When main category is clicked, reset sub-category to 'all'
-            });
-        });
-
-        document.querySelectorAll('.sub-category-btn').forEach(button => {
-            button.addEventListener('click', () => {
-                const subCategory = button.dataset.category;
-                // Determine the parent main category based on which sub-category div it belongs to
-                let parentCategory;
-                if (button.closest('#subCategoryDrink')) parentCategory = 'drink';
-                else if (button.closest('#subCategoryDessert')) parentCategory = 'dessert';
-                else if (button.closest('#subCategoryMainDish')) parentCategory = 'mainDish';
-
-                filterMenuItems(parentCategory, subCategory);
-            });
-        });
-
-        clearOrderBtn.addEventListener('click', clearOrder);
-        sendOrderBtn.addEventListener('click', sendOrder);
-
-        eatHereRadio.addEventListener('change', () => {
-            tableSelectContainer.style.display = eatHereRadio.checked ? 'block' : 'none';
-        });
-
-        takeHomeRadio.addEventListener('change', () => {
-            tableSelectContainer.style.display = takeHomeRadio.checked ? 'none' : 'block';
-        });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            const isDarkMode = document.body.classList.contains('dark-mode');
-            localStorage.setItem('darkMode', isDarkMode);
-            themeToggle.innerHTML = isDarkMode ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-stars-fill"></i>';
-        });
-
-        // Initial theme load
-        if (localStorage.getItem('darkMode') === 'true') {
-            document.body.classList.add('dark-mode');
-            themeToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
-        } else {
-            document.body.classList.remove('dark-mode');
-            themeToggle.innerHTML = '<i class="bi bi-moon-stars-fill"></i>';
-        }
-
-        // Initial load
-        document.addEventListener('DOMContentLoaded', () => {
-            updateCurrentTime();
-            setInterval(updateCurrentTime, 1000); // Update time every second
-
-            updateUIForLanguage(); // Apply translations on load
-            renderOrderList(); // Render orders from localStorage
-
-            // Set initial radio button state and table select visibility
-            if (eatHereRadio.checked) {
-                tableSelectContainer.style.display = 'block';
-            } else {
-                tableSelectContainer.style.display = 'none';
-            }
-            // Ensure the correct category is active on load
-            filterMenuItems(currentActiveCategory, currentActiveSubCategory);
-        });
     </script>
 </body>
+
 </html>
