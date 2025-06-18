@@ -264,6 +264,28 @@
             }
         }
         
+        /* หมวดหมู่เมนู */
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .category-btn {
+            border: 1px solid var(--green-medium);
+            color: var(--green-dark);
+            background: white;
+            border-radius: 20px;
+            padding: 5px 15px;
+            transition: all 0.3s ease;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background: var(--green-medium);
+            color: white;
+        }
+        
         /* Responsive Design */
         @media (max-width: 767.98px) {
             .main-content {
@@ -277,6 +299,15 @@
             
             .menu-item {
                 padding: 12px;
+            }
+            
+            .category-buttons {
+                gap: 5px;
+            }
+            
+            .category-btn {
+                padding: 3px 10px;
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -307,23 +338,18 @@
                             <h3 class="mb-0"><i class="bi bi-menu-up"></i> เมนูเครื่องดื่มและอาหาร</h3>
                         </div>
                         <div class="card-body">
-                            <!-- ตัวอย่างเมนู -->
-                            <div class="menu-item">
-                                <div class="menu-icon">🌿</div>
-                                <div class="menu-name">ชาเขียวสมุนไพรป่า</div>
-                                <div class="menu-price">45 บาท</div>
+                            <!-- หมวดหมู่เมนู -->
+                            <div class="category-buttons">
+                                <button class="category-btn active" data-category="all">ทั้งหมด</button>
+                                <button class="category-btn" data-category="drink">เครื่องดื่ม</button>
+                                <button class="category-btn" data-category="food">อาหาร</button>
+                                <button class="category-btn" data-category="dessert">ของหวาน</button>
                             </div>
-                            <div class="menu-item">
-                                <div class="menu-icon">☕</div>
-                                <div class="menu-name">กาแฟแค้มป์ไฟร์</div>
-                                <div class="menu-price">50 บาท</div>
+                            
+                            <!-- รายการเมนู -->
+                            <div id="menuList">
+                                <!-- เมนูจะถูกโหลดโดย JavaScript -->
                             </div>
-                            <div class="menu-item">
-                                <div class="menu-icon">🍰</div>
-                                <div class="menu-name">เค้กผลไม้ป่า</div>
-                                <div class="menu-price">65 บาท</div>
-                            </div>
-                            <!-- สามารถเพิ่มเมนูอื่นๆ ตามต้องการ -->
                         </div>
                     </div>
                 </div>
@@ -336,38 +362,58 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive order-table">
-                                <table class="table">
+                                <table class="table" id="orderTable">
                                     <thead>
                                         <tr>
                                             <th>เมนู</th>
                                             <th>ราคา</th>
                                             <th>จำนวน</th>
                                             <th>รวม</th>
+                                            <th>จัดการ</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <!-- ตัวอย่างรายการสั่งซื้อ -->
-                                        <tr>
-                                            <td>ชาเขียวสมุนไพรป่า</td>
-                                            <td>45 บาท</td>
-                                            <td>1</td>
-                                            <td>45 บาท</td>
-                                        </tr>
+                                    <tbody id="orderItems">
+                                        <!-- รายการสั่งซื้อจะแสดงที่นี่ -->
                                     </tbody>
                                     <tfoot>
                                         <tr>
                                             <th colspan="3" class="text-end">รวมทั้งหมด</th>
-                                            <th>45 บาท</th>
+                                            <th id="totalAmount">0 บาท</th>
+                                            <th></th>
                                         </tr>
                                     </tfoot>
                                 </table>
                             </div>
                             
+                            <!-- ประเภทการสั่งซื้อ -->
+                            <div class="mt-3">
+                                <label class="form-label"><strong>ประเภทการสั่งซื้อ</strong></label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="orderType" id="eatHere" value="eatHere" checked>
+                                    <label class="form-check-label" for="eatHere">
+                                        นั่งทานที่ร้าน <i class="bi bi-utensils"></i>
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="orderType" id="takeHome" value="takeHome">
+                                    <label class="form-check-label" for="takeHome">
+                                        ซื้อกลับบ้าน <i class="bi bi-bag"></i>
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <!-- ปุ่มดำเนินการ -->
                             <div class="d-grid gap-2 mt-3">
-                                <button class="btn btn-nature">
+                                <button class="btn btn-nature" id="sendOrderBtn">
                                     <i class="bi bi-send-check"></i> สั่งอาหาร
                                 </button>
+                                <button class="btn btn-outline-danger" id="clearOrderBtn">
+                                    <i class="bi bi-trash"></i> ล้างรายการ
+                                </button>
                             </div>
+                            
+                            <!-- สถานะการสั่งซื้อ -->
+                            <div id="statusMsg" class="alert mt-3" style="display: none;"></div>
                         </div>
                     </div>
                 </div>
@@ -375,8 +421,58 @@
         </div>
     </div>
 
+    <!-- Modal ใบเสร็จ -->
+    <div class="modal fade" id="receiptModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">ใบเสร็จรับเงิน</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="receiptContent">
+                    <h6 class="text-center">แค้มป์คาเฟ่กลางธรรมชาติ 🏕️</h6>
+                    <div id="receiptDetails" class="mb-3"></div>
+                    <div id="receiptTable"></div>
+                    <p class="text-center mt-4">ขอบคุณที่ใช้บริการ!</p>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="printReceipt()" class="btn btn-outline-secondary">
+                        <i class="bi bi-printer"></i> พิมพ์ใบเสร็จ
+                    </button>
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // ข้อมูลเมนู
+        const menuItems = [
+            // เครื่องดื่ม
+            { id: 1, name: "ชาเขียวสมุนไพรป่า", price: 45, category: "drink", icon: "🌿" },
+            { id: 2, name: "กาแฟแค้มป์ไฟร์", price: 50, category: "drink", icon: "☕" },
+            { id: 3, name: "น้ำผึ้งมะนาวป่า", price: 40, category: "drink", icon: "🍋" },
+            { id: 4, name: "ชาดอกไม้ป่า", price: 45, category: "drink", icon: "🌸" },
+            { id: 5, name: "สมูทตี้เบอร์รี่ป่า", price: 55, category: "drink", icon: "🍓" },
+            
+            // อาหาร
+            { id: 6, name: "แซนวิชแคมป์ปิ้ง", price: 60, category: "food", icon: "🥪" },
+            { id: 7, name: "สลัดผักป่า", price: 75, category: "food", icon: "🥗" },
+            { id: 8, name: "ข้าวผัดสมุนไพร", price: 65, category: "food", icon: "🍚" },
+            { id: 9, name: "สปาเก็ตตี้ทรัฟเฟิล", price: 120, category: "food", icon: "🍝" },
+            
+            // ของหวาน
+            { id: 10, name: "เค้กผลไม้ป่า", price: 65, category: "dessert", icon: "🍰" },
+            { id: 11, name: "แพนเค้กน้ำผึ้ง", price: 55, category: "dessert", icon: "🥞" },
+            { id: 12, name: "ไอศกรีมเบอร์รี่", price: 45, category: "dessert", icon: "🍨" },
+            { id: 13, name: "บราวนี่ช็อกโกแลต", price: 50, category: "dessert", icon: "🍫" }
+        ];
+
+        // ตัวแปรเก็บรายการสั่งซื้อ
+        let orders = [];
+        let currentCategory = 'all';
+        
         // สร้างเอฟเฟกต์ใบไม้ร่วง
         function createLeaves() {
             const container = document.getElementById('fallingLeaves');
@@ -407,23 +503,234 @@
             }
         }
         
+        // โหลดเมนูตามหมวดหมู่
+        function loadMenu(category = 'all') {
+            const menuList = document.getElementById('menuList');
+            menuList.innerHTML = '';
+            
+            let filteredItems = menuItems;
+            
+            if (category !== 'all') {
+                filteredItems = menuItems.filter(item => item.category === category);
+            }
+            
+            if (filteredItems.length === 0) {
+                menuList.innerHTML = '<div class="text-center text-muted py-3">ไม่มีเมนูในหมวดหมู่นี้</div>';
+                return;
+            }
+            
+            filteredItems.forEach(item => {
+                const menuItem = document.createElement('div');
+                menuItem.className = 'menu-item';
+                menuItem.innerHTML = `
+                    <div class="menu-icon">${item.icon}</div>
+                    <div class="menu-name">${item.name}</div>
+                    <div class="menu-price">${item.price} บาท</div>
+                `;
+                
+                menuItem.addEventListener('click', () => addToOrder(item));
+                menuList.appendChild(menuItem);
+            });
+        }
+        
+        // เพิ่มเมนูลงในรายการสั่งซื้อ
+        function addToOrder(item) {
+            const existingOrder = orders.find(order => order.id === item.id);
+            
+            if (existingOrder) {
+                existingOrder.quantity += 1;
+            } else {
+                orders.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1
+                });
+            }
+            
+            updateOrderTable();
+            showStatus(`เพิ่ม ${item.name} เรียบร้อย`, 'success');
+        }
+        
+        // อัพเดทตารางรายการสั่งซื้อ
+        function updateOrderTable() {
+            const orderItems = document.getElementById('orderItems');
+            orderItems.innerHTML = '';
+            
+            let total = 0;
+            
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                const itemTotal = order.price * order.quantity;
+                total += itemTotal;
+                
+                row.innerHTML = `
+                    <td>${order.name}</td>
+                    <td>${order.price} บาท</td>
+                    <td>${order.quantity}</td>
+                    <td>${itemTotal} บาท</td>
+                    <td>
+                        <button class="btn btn-sm btn-outline-danger remove-item" data-id="${order.id}">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </td>
+                `;
+                
+                orderItems.appendChild(row);
+            });
+            
+            document.getElementById('totalAmount').textContent = `${total} บาท`;
+            
+            // เพิ่ม Event Listener สำหรับปุ่มลบ
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const itemId = parseInt(this.getAttribute('data-id'));
+                    removeFromOrder(itemId);
+                });
+            });
+        }
+        
+        // ลบรายการออกจากออเดอร์
+        function removeFromOrder(itemId) {
+            const itemIndex = orders.findIndex(order => order.id === itemId);
+            
+            if (itemIndex !== -1) {
+                const itemName = orders[itemIndex].name;
+                orders.splice(itemIndex, 1);
+                updateOrderTable();
+                showStatus(`ลบ ${itemName} เรียบร้อย`, 'warning');
+            }
+        }
+        
+        // แสดงสถานะ
+        function showStatus(message, type = 'info') {
+            const statusMsg = document.getElementById('statusMsg');
+            statusMsg.textContent = message;
+            statusMsg.className = `alert alert-${type}`;
+            statusMsg.style.display = 'block';
+            
+            setTimeout(() => {
+                statusMsg.style.display = 'none';
+            }, 3000);
+        }
+        
+        // ส่งออเดอร์
+        function sendOrder() {
+            if (orders.length === 0) {
+                showStatus('กรุณาเลือกเมนูก่อน', 'danger');
+                return;
+            }
+            
+            const orderType = document.querySelector('input[name="orderType"]:checked').value;
+            const orderTypeText = orderType === 'eatHere' ? 'นั่งทานที่ร้าน' : 'ซื้อกลับบ้าน';
+            
+            // สร้างใบเสร็จ
+            let receiptHTML = `
+                <div class="mb-3">
+                    <p><strong>ประเภท:</strong> ${orderTypeText}</p>
+                    <p><strong>เวลา:</strong> ${new Date().toLocaleString('th-TH')}</p>
+                </div>
+            `;
+            
+            // สร้างตารางใบเสร็จ
+            let receiptTableHTML = `
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>รายการ</th>
+                            <th>จำนวน</th>
+                            <th>ราคา</th>
+                            <th>รวม</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+            
+            let grandTotal = 0;
+            
+            orders.forEach(order => {
+                const itemTotal = order.price * order.quantity;
+                grandTotal += itemTotal;
+                
+                receiptTableHTML += `
+                    <tr>
+                        <td>${order.name}</td>
+                        <td>${order.quantity}</td>
+                        <td>${order.price} บาท</td>
+                        <td>${itemTotal} บาท</td>
+                    </tr>
+                `;
+            });
+            
+            receiptTableHTML += `
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="3">รวมทั้งหมด</th>
+                            <th>${grandTotal} บาท</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            `;
+            
+            document.getElementById('receiptDetails').innerHTML = receiptHTML;
+            document.getElementById('receiptTable').innerHTML = receiptTableHTML;
+            
+            // แสดง Modal
+            const receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
+            receiptModal.show();
+            
+            // รีเซ็ตออเดอร์หลังจากส่ง
+            orders = [];
+            updateOrderTable();
+        }
+        
+        // พิมพ์ใบเสร็จ
+        function printReceipt() {
+            const printContent = document.getElementById('receiptContent').innerHTML;
+            const originalContent = document.body.innerHTML;
+            
+            document.body.innerHTML = printContent;
+            window.print();
+            document.body.innerHTML = originalContent;
+            
+            // โหลดหน้าใหม่หลังจากพิมพ์
+            window.location.reload();
+        }
+        
         // เรียกใช้เมื่อหน้าเว็บโหลดเสร็จ
         window.addEventListener('load', () => {
             createLeaves();
+            loadMenu();
             
-            // อัพเดทเวลาปัจจุบัน
-            function updateTime() {
-                const now = new Date();
-                const timeString = now.toLocaleTimeString('th-TH', {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    second: '2-digit'
+            // หมวดหมู่เมนู
+            document.querySelectorAll('.category-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    // ลบ class active จากปุ่มทั้งหมด
+                    document.querySelectorAll('.category-btn').forEach(btn => {
+                        btn.classList.remove('active');
+                    });
+                    
+                    // เพิ่ม class active ให้ปุ่มที่คลิก
+                    this.classList.add('active');
+                    
+                    // โหลดเมนูตามหมวดหมู่
+                    const category = this.getAttribute('data-category');
+                    loadMenu(category);
                 });
-                document.getElementById('current-time').textContent = timeString;
-            }
+            });
             
-            setInterval(updateTime, 1000);
-            updateTime();
+            // ปุ่มส่งออเดอร์
+            document.getElementById('sendOrderBtn').addEventListener('click', sendOrder);
+            
+            // ปุ่มล้างรายการ
+            document.getElementById('clearOrderBtn').addEventListener('click', () => {
+                if (orders.length > 0 && confirm('ต้องการล้างรายการทั้งหมดใช่หรือไม่?')) {
+                    orders = [];
+                    updateOrderTable();
+                    showStatus('ล้างรายการเรียบร้อย', 'info');
+                }
+            });
         });
     </script>
 </body>
