@@ -1,510 +1,77 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-    <base target="_top">
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>แค้มป์คาเฟ่กลางธรรมชาติ 🏕️☕</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&family=Charm:wght@400;700&display=swap" rel="stylesheet">
+    <!-- ส่วน head เดิมเหมือนด้านบน -->
     <style>
-        /* ======= ธีมธรรมชาติ ป่าเขา ====== */
-        :root {
-            --green-dark: #2c5e1a;
-            --green-medium: #4a8c2c;
-            --green-light: #8bb174;
-            --brown-dark: #5d4037;
-            --brown-light: #d7ccc8;
-            --sky-blue: #e3f2fd;
-            --mist-color: rgba(255, 255, 255, 0.3);
-        }
-        
-        body {
-            font-family: 'Sarabun', sans-serif;
-            background: linear-gradient(to bottom, var(--sky-blue), #d9edda);
-            color: var(--brown-dark);
-            position: relative;
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        
-        /* เอฟเฟกต์สายหมอก */
-        .mist {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(0deg, transparent, var(--mist-color), transparent);
-            background-size: 200% 200%;
-            animation: mistFlow 30s infinite linear;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        @keyframes mistFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        /* พื้นหลังแนวธรรมชาติ */
-        .nature-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                url('https://i.imgur.com/J5mQZ7m.png'), /* ภูเขาไกล */
-                url('https://i.imgur.com/VvJkQ3T.png'), /* ภูเขาใกล้ */
-                url('https://i.imgur.com/Xw7yDhG.png'); /* ป่าไม้ */
-            background-position: 
-                center 10%, /* ภูเขาไกล */
-                center 30%, /* ภูเขาใกล้ */
-                bottom center; /* ป่าไม้ */
-            background-size: 
-                100% auto,
-                120% auto,
-                150% auto;
-            background-repeat: no-repeat;
-            opacity: 0.15;
-            z-index: 0;
-        }
-        
-        /* เนื้อหาหลัก */
-        .main-content {
-            position: relative;
-            z-index: 2;
-            background-color: rgba(255, 255, 255, 0.85);
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(210, 180, 140, 0.3);
-            backdrop-filter: blur(5px);
-            margin: 20px;
-            padding: 25px;
-            min-height: calc(100vh - 40px);
-        }
-        
-        /* ส่วนหัว */
-        .header {
-            background: linear-gradient(90deg, var(--green-dark), var(--green-medium));
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://i.imgur.com/Q3ZqQ1a.png');
-            background-size: 40px;
-            opacity: 0.1;
-        }
-        
-        h1, h2, h3, .modal-title {
-            font-family: 'Charm', cursive;
-            font-weight: 700;
-            color: var(--green-dark);
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* การ์ดเมนู */
-        .menu-card {
-            border: none;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            background: rgba(255, 255, 255, 0.9);
-            margin-bottom: 20px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        
-        .menu-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .menu-card .card-header {
-            background: linear-gradient(90deg, var(--green-medium), var(--green-light));
-            color: white;
-            font-weight: 600;
-            border-bottom: none;
-            padding: 15px 20px;
-        }
-        
-        /* รายการเมนู */
-        .menu-item {
-            background: white;
-            border: 1px solid rgba(139, 195, 74, 0.3);
-            border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 10px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .menu-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, var(--green-medium), var(--green-dark));
-        }
-        
-        .menu-item:hover {
-            background: rgba(139, 195, 74, 0.05);
-            border-color: var(--green-medium);
-            transform: translateX(5px);
-        }
-        
-        .menu-item .menu-icon {
-            font-size: 1.5rem;
-            margin-right: 15px;
-            color: var(--green-dark);
-        }
-        
-        .menu-item .menu-name {
-            flex-grow: 1;
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-        
-        .menu-item .menu-price {
-            font-weight: 600;
-            color: var(--green-dark);
-            background: rgba(139, 195, 74, 0.1);
-            padding: 5px 10px;
-            border-radius: 20px;
-        }
-        
-        /* ปุ่ม */
-        .btn-nature {
-            background: linear-gradient(90deg, var(--green-medium), var(--green-dark));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            padding: 8px 20px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .btn-nature:hover {
-            background: linear-gradient(90deg, var(--green-dark), var(--green-medium));
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* โต๊ะสั่งอาหาร */
-        .order-table {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
-        }
-        
-        .order-table thead th {
-            background: linear-gradient(90deg, var(--brown-dark), #8d6e63);
-            color: white;
-            border: none;
-        }
-        
-        /* เอฟเฟกต์ใบไม้ร่วง */
-        .falling-leaves {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .leaf {
-            position: absolute;
-            background-image: url('https://i.imgur.com/YqQX9zP.png');
-            background-size: contain;
-            background-repeat: no-repeat;
-            width: 30px;
-            height: 30px;
-            opacity: 0.7;
-            animation: falling linear infinite;
-        }
-        
-        @keyframes falling {
-            0% {
-                transform: translate(0, -10%) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 0.7;
-            }
-            90% {
-                opacity: 0.7;
-            }
-            100% {
-                transform: translate(100px, 100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-        
-        /* หมวดหมู่เมนู */
-        .category-buttons {
+        /* เพิ่มสไตล์สำหรับหมวดหมู่ย่อย */
+        .subcategory-buttons {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-bottom: 15px;
+            margin: 10px 0 15px 15px;
+            padding-left: 10px;
+            border-left: 3px solid var(--green-light);
         }
         
-        .category-btn {
-            border: 1px solid var(--green-medium);
-            color: var(--green-dark);
+        .subcategory-btn {
+            border: 1px solid var(--brown-light);
+            color: var(--brown-dark);
             background: white;
             border-radius: 20px;
-            padding: 5px 15px;
+            padding: 3px 12px;
+            font-size: 0.85rem;
             transition: all 0.3s ease;
         }
         
-        .category-btn:hover, .category-btn.active {
-            background: var(--green-medium);
+        .subcategory-btn:hover, .subcategory-btn.active {
+            background: var(--brown-dark);
             color: white;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 767.98px) {
-            .main-content {
-                margin: 10px;
-                padding: 15px;
-            }
-            
-            .header {
-                padding: 15px;
-            }
-            
-            .menu-item {
-                padding: 12px;
-            }
-            
-            .category-buttons {
-                gap: 5px;
-            }
-            
-            .category-btn {
-                padding: 3px 10px;
-                font-size: 0.9rem;
-            }
+            border-color: var(--brown-dark);
         }
     </style>
 </head>
-
 <body>
-    <!-- พื้นหลังธรรมชาติ -->
-    <div class="nature-bg"></div>
-    <div class="mist"></div>
+    <!-- ส่วน HTML เดิมเหมือนด้านบน -->
     
-    <!-- เอฟเฟกต์ใบไม้ร่วง -->
-    <div class="falling-leaves" id="fallingLeaves"></div>
-    
-    <!-- เนื้อหาหลัก -->
-    <div class="container-fluid">
-        <div class="main-content">
-            <!-- ส่วนหัว -->
-            <div class="header text-center">
-                <h1><i class="bi bi-tree"></i> แค้มป์คาเฟ่กลางธรรมชาติ <i class="bi bi-cup-hot"></i></h1>
-                <p class="mb-0">สัมผัสความสงบสุขท่ามกลางธรรมชาติ</p>
-            </div>
-            
-            <div class="row">
-                <!-- เมนู -->
-                <div class="col-lg-5">
-                    <div class="menu-card">
-                        <div class="card-header">
-                            <h3 class="mb-0"><i class="bi bi-menu-up"></i> เมนูเครื่องดื่มและอาหาร</h3>
-                        </div>
-                        <div class="card-body">
-                            <!-- หมวดหมู่เมนู -->
-                            <div class="category-buttons">
-                                <button class="category-btn active" data-category="all">ทั้งหมด</button>
-                                <button class="category-btn" data-category="drink">เครื่องดื่ม</button>
-                                <button class="category-btn" data-category="food">อาหาร</button>
-                                <button class="category-btn" data-category="dessert">ของหวาน</button>
-                            </div>
-                            
-                            <!-- รายการเมนู -->
-                            <div id="menuList">
-                                <!-- เมนูจะถูกโหลดโดย JavaScript -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- รายการสั่งซื้อ -->
-                <div class="col-lg-7">
-                    <div class="menu-card">
-                        <div class="card-header">
-                            <h3 class="mb-0"><i class="bi bi-journal-text"></i> รายการสั่งซื้อ</h3>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive order-table">
-                                <table class="table" id="orderTable">
-                                    <thead>
-                                        <tr>
-                                            <th>เมนู</th>
-                                            <th>ราคา</th>
-                                            <th>จำนวน</th>
-                                            <th>รวม</th>
-                                            <th>จัดการ</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="orderItems">
-                                        <!-- รายการสั่งซื้อจะแสดงที่นี่ -->
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th colspan="3" class="text-end">รวมทั้งหมด</th>
-                                            <th id="totalAmount">0 บาท</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                            
-                            <!-- ประเภทการสั่งซื้อ -->
-                            <div class="mt-3">
-                                <label class="form-label"><strong>ประเภทการสั่งซื้อ</strong></label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="orderType" id="eatHere" value="eatHere" checked>
-                                    <label class="form-check-label" for="eatHere">
-                                        นั่งทานที่ร้าน <i class="bi bi-utensils"></i>
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="orderType" id="takeHome" value="takeHome">
-                                    <label class="form-check-label" for="takeHome">
-                                        ซื้อกลับบ้าน <i class="bi bi-bag"></i>
-                                    </label>
-                                </div>
-                            </div>
-                            
-                            <!-- ปุ่มดำเนินการ -->
-                            <div class="d-grid gap-2 mt-3">
-                                <button class="btn btn-nature" id="sendOrderBtn">
-                                    <i class="bi bi-send-check"></i> สั่งอาหาร
-                                </button>
-                                <button class="btn btn-outline-danger" id="clearOrderBtn">
-                                    <i class="bi bi-trash"></i> ล้างรายการ
-                                </button>
-                            </div>
-                            
-                            <!-- สถานะการสั่งซื้อ -->
-                            <div id="statusMsg" class="alert mt-3" style="display: none;"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal ใบเสร็จ -->
-    <div class="modal fade" id="receiptModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">ใบเสร็จรับเงิน</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body" id="receiptContent">
-                    <h6 class="text-center">แค้มป์คาเฟ่กลางธรรมชาติ 🏕️</h6>
-                    <div id="receiptDetails" class="mb-3"></div>
-                    <div id="receiptTable"></div>
-                    <p class="text-center mt-4">ขอบคุณที่ใช้บริการ!</p>
-                </div>
-                <div class="modal-footer">
-                    <button onclick="printReceipt()" class="btn btn-outline-secondary">
-                        <i class="bi bi-printer"></i> พิมพ์ใบเสร็จ
-                    </button>
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // ข้อมูลเมนู
+        // ข้อมูลเมนูที่อัปเดต
         const menuItems = [
             // เครื่องดื่ม
             { id: 1, name: "ชาเขียวสมุนไพรป่า", price: 45, category: "drink", icon: "🌿" },
             { id: 2, name: "กาแฟแค้มป์ไฟร์", price: 50, category: "drink", icon: "☕" },
-            { id: 3, name: "น้ำผึ้งมะนาวป่า", price: 40, category: "drink", icon: "🍋" },
-            { id: 4, name: "ชาดอกไม้ป่า", price: 45, category: "drink", icon: "🌸" },
-            { id: 5, name: "สมูทตี้เบอร์รี่ป่า", price: 55, category: "drink", icon: "🍓" },
             
-            // อาหาร
-            { id: 6, name: "แซนวิชแคมป์ปิ้ง", price: 60, category: "food", icon: "🥪" },
-            { id: 7, name: "สลัดผักป่า", price: 75, category: "food", icon: "🥗" },
-            { id: 8, name: "ข้าวผัดสมุนไพร", price: 65, category: "food", icon: "🍚" },
-            { id: 9, name: "สปาเก็ตตี้ทรัฟเฟิล", price: 120, category: "food", icon: "🍝" },
+            // อาหารไทย
+            { id: 10, name: "ต้มยำกุ้ง", price: 120, category: "thai", subcategory: "central", icon: "🍲" },
+            { id: 11, name: "ผัดไทย", price: 80, category: "thai", subcategory: "central", icon: "🍜" },
+            { id: 12, name: "ส้มตำปูม้า", price: 70, category: "thai", subcategory: "northeast", icon: "🥗" },
+            { id: 13, name: "ลาบหมู", price: 75, category: "thai", subcategory: "northeast", icon: "🥩" },
+            { id: 14, name: "ข้าวซอยไก่", price: 90, category: "thai", subcategory: "north", icon: "🍜" },
+            { id: 15, name: "แกงฮังเล", price: 95, category: "thai", subcategory: "north", icon: "🍛" },
+            { id: 16, name: "แกงไตปลา", price: 85, category: "thai", subcategory: "south", icon: "🐟" },
             
-            // ของหวาน
-            { id: 10, name: "เค้กผลไม้ป่า", price: 65, category: "dessert", icon: "🍰" },
-            { id: 11, name: "แพนเค้กน้ำผึ้ง", price: 55, category: "dessert", icon: "🥞" },
-            { id: 12, name: "ไอศกรีมเบอร์รี่", price: 45, category: "dessert", icon: "🍨" },
-            { id: 13, name: "บราวนี่ช็อกโกแลต", price: 50, category: "dessert", icon: "🍫" }
+            // อาหารอิตาเลียน
+            { id: 20, name: "สปาเก็ตตี้คาร์โบนารา", price: 150, category: "italian", icon: "🍝" },
+            { id: 21, name: "พิซซ่ามาร์เกอริต้า", price: 180, category: "italian", icon: "🍕" },
+            { id: 22, name: "ริซอตโต้เห็ด", price: 160, category: "italian", icon: "🍚" },
+            { id: 23, name: "ลาซานญ่า", price: 170, category: "italian", icon: "🥘" },
+            
+            // อาหารอีสาน
+            { id: 30, name: "ซุปหางวัว", price: 90, category: "isan", icon: "🍲" },
+            { id: 31, name: "ไก่ย่าง", price: 100, category: "isan", icon: "🍗" },
+            { id: 32, name: "ก้อยแซ่บ", price: 80, category: "isan", icon: "🥩" },
+            
+            // อาหารเหนือ
+            { id: 40, name: "แกงโฮะ", price: 85, category: "northern", icon: "🍲" },
+            { id: 41, name: "ไส้อั่ว", price: 70, category: "northern", icon: "🌭" },
+            { id: 42, name: "น้ำพริกอ่อง", price: 65, category: "northern", icon: "🥣" }
         ];
 
-        // ตัวแปรเก็บรายการสั่งซื้อ
-        let orders = [];
+        // ตัวแปรเก็บหมวดหมู่ปัจจุบัน
         let currentCategory = 'all';
-        
-        // สร้างเอฟเฟกต์ใบไม้ร่วง
-        function createLeaves() {
-            const container = document.getElementById('fallingLeaves');
-            const leafCount = 15;
-            
-            for (let i = 0; i < leafCount; i++) {
-                const leaf = document.createElement('div');
-                leaf.className = 'leaf';
-                
-                // สุ่มตำแหน่งเริ่มต้น
-                const startLeft = Math.random() * 100;
-                
-                // สุ่มขนาด
-                const size = Math.random() * 15 + 15;
-                
-                // สุ่มความเร็ว
-                const duration = Math.random() * 15 + 10;
-                const delay = Math.random() * 10;
-                
-                // กำหนดสไตล์
-                leaf.style.left = `${startLeft}%`;
-                leaf.style.width = `${size}px`;
-                leaf.style.height = `${size}px`;
-                leaf.style.animationDuration = `${duration}s`;
-                leaf.style.animationDelay = `${delay}s`;
-                
-                container.appendChild(leaf);
-            }
-        }
+        let currentSubcategory = 'all';
         
         // โหลดเมนูตามหมวดหมู่
-        function loadMenu(category = 'all') {
+        function loadMenu(category = 'all', subcategory = 'all') {
             const menuList = document.getElementById('menuList');
             menuList.innerHTML = '';
             
@@ -512,6 +79,10 @@
             
             if (category !== 'all') {
                 filteredItems = menuItems.filter(item => item.category === category);
+                
+                if (subcategory !== 'all') {
+                    filteredItems = filteredItems.filter(item => item.subcategory === subcategory);
+                }
             }
             
             if (filteredItems.length === 0) {
@@ -533,175 +104,68 @@
             });
         }
         
-        // เพิ่มเมนูลงในรายการสั่งซื้อ
-        function addToOrder(item) {
-            const existingOrder = orders.find(order => order.id === item.id);
+        // สร้างปุ่มหมวดหมู่ย่อย
+        function createSubcategoryButtons(category) {
+            const subcategories = {
+                thai: [
+                    { id: 'central', name: 'ภาคกลาง' },
+                    { id: 'northeast', name: 'อีสาน' },
+                    { id: 'north', name: 'เหนือ' },
+                    { id: 'south', name: 'ใต้' }
+                ]
+                // สามารถเพิ่มหมวดหมู่ย่อยอื่นๆ ได้ตามต้องการ
+            };
             
-            if (existingOrder) {
-                existingOrder.quantity += 1;
+            const subcategoryContainer = document.getElementById('subcategoryButtons');
+            subcategoryContainer.innerHTML = '';
+            
+            if (subcategories[category]) {
+                subcategoryContainer.style.display = 'block';
+                
+                // เพิ่มปุ่ม "ทั้งหมด" สำหรับหมวดหมู่ย่อย
+                const allButton = document.createElement('button');
+                allButton.className = 'subcategory-btn active';
+                allButton.textContent = 'ทั้งหมด';
+                allButton.setAttribute('data-subcategory', 'all');
+                allButton.addEventListener('click', function() {
+                    document.querySelectorAll('.subcategory-btn').forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    currentSubcategory = 'all';
+                    loadMenu(currentCategory, 'all');
+                });
+                subcategoryContainer.appendChild(allButton);
+                
+                // เพิ่มปุ่มหมวดหมู่ย่อย
+                subcategories[category].forEach(sub => {
+                    const button = document.createElement('button');
+                    button.className = 'subcategory-btn';
+                    button.textContent = sub.name;
+                    button.setAttribute('data-subcategory', sub.id);
+                    button.addEventListener('click', function() {
+                        document.querySelectorAll('.subcategory-btn').forEach(btn => btn.classList.remove('active'));
+                        this.classList.add('active');
+                        currentSubcategory = sub.id;
+                        loadMenu(currentCategory, sub.id);
+                    });
+                    subcategoryContainer.appendChild(button);
+                });
             } else {
-                orders.push({
-                    id: item.id,
-                    name: item.name,
-                    price: item.price,
-                    quantity: 1
-                });
-            }
-            
-            updateOrderTable();
-            showStatus(`เพิ่ม ${item.name} เรียบร้อย`, 'success');
-        }
-        
-        // อัพเดทตารางรายการสั่งซื้อ
-        function updateOrderTable() {
-            const orderItems = document.getElementById('orderItems');
-            orderItems.innerHTML = '';
-            
-            let total = 0;
-            
-            orders.forEach(order => {
-                const row = document.createElement('tr');
-                const itemTotal = order.price * order.quantity;
-                total += itemTotal;
-                
-                row.innerHTML = `
-                    <td>${order.name}</td>
-                    <td>${order.price} บาท</td>
-                    <td>${order.quantity}</td>
-                    <td>${itemTotal} บาท</td>
-                    <td>
-                        <button class="btn btn-sm btn-outline-danger remove-item" data-id="${order.id}">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </td>
-                `;
-                
-                orderItems.appendChild(row);
-            });
-            
-            document.getElementById('totalAmount').textContent = `${total} บาท`;
-            
-            // เพิ่ม Event Listener สำหรับปุ่มลบ
-            document.querySelectorAll('.remove-item').forEach(button => {
-                button.addEventListener('click', function() {
-                    const itemId = parseInt(this.getAttribute('data-id'));
-                    removeFromOrder(itemId);
-                });
-            });
-        }
-        
-        // ลบรายการออกจากออเดอร์
-        function removeFromOrder(itemId) {
-            const itemIndex = orders.findIndex(order => order.id === itemId);
-            
-            if (itemIndex !== -1) {
-                const itemName = orders[itemIndex].name;
-                orders.splice(itemIndex, 1);
-                updateOrderTable();
-                showStatus(`ลบ ${itemName} เรียบร้อย`, 'warning');
+                subcategoryContainer.style.display = 'none';
             }
         }
-        
-        // แสดงสถานะ
-        function showStatus(message, type = 'info') {
-            const statusMsg = document.getElementById('statusMsg');
-            statusMsg.textContent = message;
-            statusMsg.className = `alert alert-${type}`;
-            statusMsg.style.display = 'block';
-            
-            setTimeout(() => {
-                statusMsg.style.display = 'none';
-            }, 3000);
-        }
-        
-        // ส่งออเดอร์
-        function sendOrder() {
-            if (orders.length === 0) {
-                showStatus('กรุณาเลือกเมนูก่อน', 'danger');
-                return;
-            }
-            
-            const orderType = document.querySelector('input[name="orderType"]:checked').value;
-            const orderTypeText = orderType === 'eatHere' ? 'นั่งทานที่ร้าน' : 'ซื้อกลับบ้าน';
-            
-            // สร้างใบเสร็จ
-            let receiptHTML = `
-                <div class="mb-3">
-                    <p><strong>ประเภท:</strong> ${orderTypeText}</p>
-                    <p><strong>เวลา:</strong> ${new Date().toLocaleString('th-TH')}</p>
-                </div>
-            `;
-            
-            // สร้างตารางใบเสร็จ
-            let receiptTableHTML = `
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>รายการ</th>
-                            <th>จำนวน</th>
-                            <th>ราคา</th>
-                            <th>รวม</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-            
-            let grandTotal = 0;
-            
-            orders.forEach(order => {
-                const itemTotal = order.price * order.quantity;
-                grandTotal += itemTotal;
-                
-                receiptTableHTML += `
-                    <tr>
-                        <td>${order.name}</td>
-                        <td>${order.quantity}</td>
-                        <td>${order.price} บาท</td>
-                        <td>${itemTotal} บาท</td>
-                    </tr>
-                `;
-            });
-            
-            receiptTableHTML += `
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th colspan="3">รวมทั้งหมด</th>
-                            <th>${grandTotal} บาท</th>
-                        </tr>
-                    </tfoot>
-                </table>
-            `;
-            
-            document.getElementById('receiptDetails').innerHTML = receiptHTML;
-            document.getElementById('receiptTable').innerHTML = receiptTableHTML;
-            
-            // แสดง Modal
-            const receiptModal = new bootstrap.Modal(document.getElementById('receiptModal'));
-            receiptModal.show();
-            
-            // รีเซ็ตออเดอร์หลังจากส่ง
-            orders = [];
-            updateOrderTable();
-        }
-        
-        // พิมพ์ใบเสร็จ
-        function printReceipt() {
-            const printContent = document.getElementById('receiptContent').innerHTML;
-            const originalContent = document.body.innerHTML;
-            
-            document.body.innerHTML = printContent;
-            window.print();
-            document.body.innerHTML = originalContent;
-            
-            // โหลดหน้าใหม่หลังจากพิมพ์
-            window.location.reload();
-        }
-        
+
         // เรียกใช้เมื่อหน้าเว็บโหลดเสร็จ
         window.addEventListener('load', () => {
             createLeaves();
             loadMenu();
+            
+            // เพิ่ม div สำหรับปุ่มหมวดหมู่ย่อย
+            const categoryFilter = document.querySelector('#categoryFilter');
+            const subcategoryDiv = document.createElement('div');
+            subcategoryDiv.id = 'subcategoryButtons';
+            subcategoryDiv.className = 'subcategory-buttons';
+            subcategoryDiv.style.display = 'none';
+            categoryFilter.parentNode.insertBefore(subcategoryDiv, categoryFilter.nextSibling);
             
             // หมวดหมู่เมนู
             document.querySelectorAll('.category-btn').forEach(button => {
@@ -715,22 +179,16 @@
                     this.classList.add('active');
                     
                     // โหลดเมนูตามหมวดหมู่
-                    const category = this.getAttribute('data-category');
-                    loadMenu(category);
+                    currentCategory = this.getAttribute('data-category');
+                    currentSubcategory = 'all';
+                    loadMenu(currentCategory);
+                    
+                    // สร้างปุ่มหมวดหมู่ย่อย
+                    createSubcategoryButtons(currentCategory);
                 });
             });
             
-            // ปุ่มส่งออเดอร์
-            document.getElementById('sendOrderBtn').addEventListener('click', sendOrder);
-            
-            // ปุ่มล้างรายการ
-            document.getElementById('clearOrderBtn').addEventListener('click', () => {
-                if (orders.length > 0 && confirm('ต้องการล้างรายการทั้งหมดใช่หรือไม่?')) {
-                    orders = [];
-                    updateOrderTable();
-                    showStatus('ล้างรายการเรียบร้อย', 'info');
-                }
-            });
+            // ส่วนอื่นๆ ที่มีอยู่เดิม...
         });
     </script>
 </body>
