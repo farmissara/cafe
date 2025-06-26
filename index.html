@@ -1,342 +1,200 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>บ้านพักครูคาเฟ่</title>
-  <link rel="manifest" href="manifest.json">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;700&family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    body { font-family: 'Sarabun', sans-serif; background: #fff8f0; color: #4e342e; }
-    .menu-item { display: flex; align-items: center; cursor: pointer; padding: 12px; margin-bottom: 8px; border-radius: 12px; background: #fff; box-shadow: 0 2px 8px #0001; transition: background 0.2s; }
-    .menu-item:hover { background: #ffe0b2; }
-    .menu-icon { font-size: 1.7rem; margin-right: 18px; }
-    .menu-name { flex-grow: 1; }
-    .menu-price { min-width: 70px; text-align: right; }
-    .btn, select, input { font-size: 1.1rem; }
-    @media (max-width: 600px) { .menu-item { font-size: 0.98rem; } }
-    .fixed-bottom-btn { position: fixed; bottom: 20px; right: 20px; z-index: 2000; }
+    body {
+      font-family: 'Prompt', 'Sarabun', sans-serif;
+      background: linear-gradient(135deg, #f8f6f4 0%, #ece9e6 100%);
+      color: #413529;
+      min-height: 100vh;
+    }
+    .lux-card {
+      background: rgba(255,255,255,0.93);
+      border-radius: 2rem;
+      box-shadow: 0 8px 40px 0 rgba(160,130,50,0.07);
+      border: 1px solid #f3e9d6;
+      backdrop-filter: blur(8px);
+      padding: 2.5rem 2rem 2rem 2rem;
+      margin-bottom: 2rem;
+      transition: box-shadow 0.2s;
+    }
+    .lux-card:hover {
+      box-shadow: 0 8px 60px 0 #bfa76a33;
+    }
+    .lux-title {
+      font-family: 'Prompt', 'Sarabun', sans-serif;
+      color: #bfa76a;
+      font-weight: 700;
+      letter-spacing: 2px;
+      font-size: 2.6rem;
+      text-align: center;
+      margin-top: 2rem;
+      margin-bottom: .7rem;
+      text-shadow: 0 2px 24px #fff6e988;
+    }
+    .lux-desc {
+      color: #89734d;
+      text-align: center;
+      font-size: 1.25rem;
+      margin-bottom: 2.2rem;
+      letter-spacing: 1.2px;
+    }
+    .lux-menu-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .lux-menu-item {
+      background: rgba(255,248,232,0.7);
+      border-radius: 1.2rem;
+      box-shadow: 0 2px 16px rgba(220, 180, 120, 0.07);
+      padding: 1.5rem 1.3rem;
+      width: 220px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: box-shadow 0.15s, transform 0.15s, background 0.15s;
+      position: relative;
+    }
+    .lux-menu-item:hover {
+      background: #fff9f3;
+      box-shadow: 0 8px 32px #e7ce9350;
+      transform: translateY(-4px) scale(1.04);
+    }
+    .lux-menu-icon {
+      font-size: 2.3rem;
+      margin-bottom: 1rem;
+      color: #a99156;
+      filter: drop-shadow(0 2px 8px #e8debcaa);
+    }
+    .lux-menu-name {
+      font-weight: 700;
+      font-size: 1.14rem;
+      color: #654e30;
+      margin-bottom: .3rem;
+      text-align: center;
+    }
+    .lux-menu-price {
+      color: #bfa76a;
+      font-size: 1.1rem;
+      letter-spacing: 1.2px;
+      margin-bottom: .1rem;
+    }
+    .lux-menu-desc {
+      color: #8a7860;
+      font-size: 0.99rem;
+      text-align: center;
+      margin-bottom: 0.3rem;
+    }
+    .lux-section-title {
+      color: #bfa76a;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: 1.4rem;
+      letter-spacing: 1.3px;
+      text-align: left;
+    }
+    .lux-btn {
+      background: linear-gradient(90deg,#d7b970 0%,#bfa76a 100%);
+      color: #fffbe9;
+      border: none;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 0.7rem 2.2rem;
+      box-shadow: 0 2px 12px #bfa76a1a;
+      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+      margin-top: 1.3rem;
+    }
+    .lux-btn:hover {
+      background: linear-gradient(90deg,#bfa76a 0%,#d7b970 100%);
+      color: #fffbe9;
+      box-shadow: 0 6px 22px #bfa76a22;
+    }
+    .lux-footer {
+      text-align: center;
+      color: #a99156;
+      font-size: 1rem;
+      margin-top: 3rem;
+      letter-spacing: 1.2px;
+      opacity: .9;
+    }
+    @media (max-width: 900px) {
+      .lux-menu-list { gap: 1.2rem; }
+      .lux-menu-item { width: 170px; padding: 1.2rem .7rem; }
+    }
+    @media (max-width: 600px) {
+      .lux-title { font-size: 2rem; }
+      .lux-desc { font-size: 1.08rem; }
+      .lux-card { padding: 1.1rem .6rem; }
+      .lux-menu-item { width: 97vw; max-width: 350px; }
+    }
   </style>
 </head>
 <body>
-  <!-- ปุ่มเปลี่ยนธีม -->
-  <button id="themeToggle" class="btn btn-light fixed-bottom-btn" aria-label="เปลี่ยนธีม">
-    <i class="bi bi-moon-stars-fill"></i>
-  </button>
-  <!-- เลือกภาษา -->
-  <div class="text-end mt-2 mb-1">
-    <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('th')">🇹🇭</button>
-    <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('en')">🇬🇧</button>
-  </div>
-  <div class="container">
-    <h2 class="text-center my-3" id="appTitle">บ้านพักครูคาเฟ่</h2>
-    <!-- ค้นหาเมนู -->
-    <input type="text" id="searchMenu" class="form-control mb-3" placeholder="ค้นหาเมนู...">
-    <!-- รายการเมนู -->
-    <div class="mb-4" id="menuList"></div>
-    <!-- ออเดอร์ -->
-    <div class="card mb-4">
-      <div class="card-header bg-primary text-white"><b id="orderHeader">รายการสั่งซื้อ</b></div>
-      <div class="card-body">
-        <div id="orderList"></div>
-        <div class="d-flex justify-content-between mt-3">
-          <button class="btn btn-danger" id="clearOrderBtn"><i class="bi bi-trash"></i> ล้างรายการ</button>
-          <button class="btn btn-success" id="sendOrderBtn"><i class="bi bi-send-check"></i> ส่งออเดอร์</button>
+  <div class="container py-3">
+    <div>
+      <div class="lux-title">บ้านพักครูคาเฟ่</div>
+      <div class="lux-desc">A Luxury & Cozy Café Experience<br>สัมผัสคาเฟ่บรรยากาศพรีเมียม สำหรับวันพิเศษของคุณ</div>
+    </div>
+    <div class="lux-card">
+      <div class="lux-section-title"><i class="bi bi-cup-hot-fill"></i> เมนูแนะนำ</div>
+      <div class="lux-menu-list">
+        <div class="lux-menu-item">
+          <div class="lux-menu-icon">☕️</div>
+          <div class="lux-menu-name">ลาเต้เย็น</div>
+          <div class="lux-menu-price">60.-</div>
+          <div class="lux-menu-desc">หอมละมุนจากกาแฟอาราบิก้า</div>
         </div>
-        <div id="statusMsg" class="alert mt-3" style="display:none;"></div>
+        <div class="lux-menu-item">
+          <div class="lux-menu-icon">🍵</div>
+          <div class="lux-menu-name">มัทฉะลาเต้</div>
+          <div class="lux-menu-price">65.-</div>
+          <div class="lux-menu-desc">มัทฉะพรีเมียมจากญี่ปุ่น</div>
+        </div>
+        <div class="lux-menu-item">
+          <div class="lux-menu-icon">🥪</div>
+          <div class="lux-menu-name">แซนด์วิชอโวคาโด</div>
+          <div class="lux-menu-price">85.-</div>
+          <div class="lux-menu-desc">ขนมปังธัญพืชอโวคาโดสอดไส้</div>
+        </div>
+        <div class="lux-menu-item">
+          <div class="lux-menu-icon">🧁</div>
+          <div class="lux-menu-name">บราวนี่โฮมเมด</div>
+          <div class="lux-menu-price">50.-</div>
+          <div class="lux-menu-desc">โกโก้เข้มข้นสูตรเฉพาะ</div>
+        </div>
+        <div class="lux-menu-item">
+          <div class="lux-menu-icon">🍰</div>
+          <div class="lux-menu-name">เค้กชาไทย</div>
+          <div class="lux-menu-price">75.-</div>
+          <div class="lux-menu-desc">เค้กเนื้อนุ่มซอสชาไทย</div>
+        </div>
+      </div>
+      <div class="text-center">
+        <button class="lux-btn mt-4"><i class="bi bi-bookmark-heart"></i> จองโต๊ะล่วงหน้า</button>
       </div>
     </div>
-    <!-- Modal ใบเสร็จ -->
-    <div class="modal fade" id="receiptModal" tabindex="-1">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header"><h5 class="modal-title" id="receiptTitle">ใบเสร็จรับเงิน</h5></div>
-          <div class="modal-body" id="receiptContent"></div>
-          <div class="modal-footer">
-            <button onclick="printReceipt()" class="btn btn-outline-secondary" id="printBtn"><i class="bi bi-printer"></i> พิมพ์ใบเสร็จ</button>
-            <button class="btn btn-secondary" data-bs-dismiss="modal" id="closeModalBtn">ปิด</button>
-          </div>
-        </div>
+    <div class="lux-card">
+      <div class="lux-section-title"><i class="bi bi-geo-alt-fill"></i> ที่อยู่ & เวลาทำการ</div>
+      <div class="fs-5 mb-3" style="color:#6d583c;">
+        189/1 หมู่ 5 ต.ตัวอย่าง อ.เมือง จ.ตัวอย่าง 10210<br>
+        เปิดทุกวัน 08:00-18:00 น.<br>
+        โทร. 091-xxx-xxxx
       </div>
+      <div><i class="bi bi-instagram"></i> <a href="#" style="color:#bfa76a;text-decoration:underline;">@banpakkrucafe</a></div>
+    </div>
+    <div class="lux-footer">
+      &copy; 2025 บ้านพักครูคาเฟ่ – Designed for a premium café experience
     </div>
   </div>
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <!-- Main Script -->
-  <script>
-    // PWA Service Worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('service-worker.js');
-    }
-
-    // Translation
-    const translations = {
-      th: {
-        appTitle: "บ้านพักครูคาเฟ่",
-        searchMenu: "ค้นหาเมนู...",
-        orderHeader: "รายการสั่งซื้อ",
-        clearOrderBtn: "ล้างรายการ",
-        sendOrderBtn: "ส่งออเดอร์",
-        receiptTitle: "ใบเสร็จรับเงิน",
-        printBtn: "พิมพ์ใบเสร็จ",
-        closeModalBtn: "ปิด",
-        addToOrderSuccess: "เพิ่ม {itemName} เรียบร้อย",
-        removeFromOrderSuccess: "ลบ {itemName} เรียบร้อย",
-        orderSuccess: "ส่งออเดอร์สำเร็จ 🎉",
-        noItemsSelected: "โปรดเลือกสินค้าอย่างน้อย 1 รายการ",
-        orderCleared: "ล้างรายการเรียบร้อย",
-        qty: "จำนวน",
-        price: "ราคา",
-        total: "รวม",
-        menu: "เมนู"
-      },
-      en: {
-        appTitle: "Teacher's Home Cafe",
-        searchMenu: "Search menu...",
-        orderHeader: "Order List",
-        clearOrderBtn: "Clear Order",
-        sendOrderBtn: "Send Order",
-        receiptTitle: "Receipt",
-        printBtn: "Print Receipt",
-        closeModalBtn: "Close",
-        addToOrderSuccess: "Added {itemName} to order",
-        removeFromOrderSuccess: "Removed {itemName} from order",
-        orderSuccess: "Order sent successfully 🎉",
-        noItemsSelected: "Please select at least 1 item",
-        orderCleared: "Order cleared",
-        qty: "Qty",
-        price: "Price",
-        total: "Total",
-        menu: "Menu"
-      }
-    };
-
-    let currentLang = "th";
-    let menuItems = [];
-    let orders = [];
-
-    // Load menu from JSON
-    async function loadMenu() {
-      const res = await fetch('menu.json');
-      menuItems = await res.json();
-      renderMenu();
-    }
-
-    // Load orders from localStorage
-    function loadOrders() {
-      const saved = localStorage.getItem('orders');
-      if (saved) orders = JSON.parse(saved);
-    }
-    // Save orders to localStorage
-    function saveOrders() {
-      localStorage.setItem('orders', JSON.stringify(orders));
-    }
-
-    function getTranslation(key, placeholders = {}) {
-      let text = translations[currentLang][key] || key;
-      for (const p in placeholders) text = text.replace(`{${p}}`, placeholders[p]);
-      return text;
-    }
-
-    // Render Menu
-    function renderMenu(filterList = null) {
-      const list = filterList || menuItems;
-      let html = "";
-      if (!list.length) {
-        html = `<div class="text-muted text-center">- ไม่มีเมนู -</div>`;
-      } else {
-        html = list.map(item => `
-          <div class="menu-item" onclick="addOrder(${item.id})" tabindex="0" aria-label="${item['name_'+currentLang]}">
-            <div class="menu-icon">${item.icon}</div>
-            <div class="menu-name">${item['name_'+currentLang]}</div>
-            <div class="menu-price">${item.price}฿</div>
-          </div>
-        `).join('');
-      }
-      document.getElementById('menuList').innerHTML = html;
-    }
-
-    // Menu search
-    document.getElementById('searchMenu').addEventListener('input', function(e) {
-      const kw = e.target.value.toLowerCase();
-      const filtered = menuItems.filter(item => 
-        item['name_'+currentLang].toLowerCase().includes(kw)
-      );
-      renderMenu(filtered);
-    });
-
-    // Add Order
-    window.addOrder = function(id) {
-      const item = menuItems.find(i => i.id === id);
-      const exist = orders.find(o => o.id === id);
-      if (exist) exist.qty++;
-      else orders.push({...item, qty: 1});
-      renderOrders();
-      saveOrders();
-      showStatus(getTranslation('addToOrderSuccess', {itemName: item['name_'+currentLang]}), 'success');
-    };
-
-    // Remove Order
-    window.removeOrder = function(id) {
-      orders = orders.filter(o => o.id !== id);
-      renderOrders();
-      saveOrders();
-      showStatus(getTranslation('removeFromOrderSuccess', {itemName: ''}), 'danger');
-    };
-
-    // Render Orders
-    function renderOrders() {
-      let html = "";
-      let total = 0;
-      if (!orders.length) html = `<div class="text-muted text-center">- ไม่มีรายการ -</div>`;
-      else {
-        html = `<table class="table table-sm">
-          <thead><tr>
-            <th>${getTranslation('menu')}</th>
-            <th>${getTranslation('qty')}</th>
-            <th>${getTranslation('price')}</th>
-            <th>${getTranslation('total')}</th>
-            <th></th>
-          </tr></thead>
-          <tbody>`;
-        orders.forEach(order => {
-          const itemTotal = order.price * order.qty;
-          total += itemTotal;
-          html += `<tr>
-            <td>${order['name_'+currentLang]}</td>
-            <td>
-              <button class="btn btn-outline-secondary btn-sm" onclick="changeQty(${order.id}, -1)" aria-label="ลดจำนวน">-</button>
-              ${order.qty}
-              <button class="btn btn-outline-secondary btn-sm" onclick="changeQty(${order.id}, 1)" aria-label="เพิ่มจำนวน">+</button>
-            </td>
-            <td>${order.price}</td>
-            <td>${itemTotal}</td>
-            <td><button class="btn btn-danger btn-sm" onclick="removeOrder(${order.id})"><i class="bi bi-x-lg"></i></button></td>
-          </tr>`;
-        });
-        html += `</tbody>
-          <tfoot><tr>
-            <th colspan="3" class="text-end">${getTranslation('total')}</th>
-            <th>${total}</th>
-            <th></th>
-          </tr></tfoot>
-        </table>`;
-      }
-      document.getElementById('orderList').innerHTML = html;
-    }
-
-    // Change Qty
-    window.changeQty = function(id, delta) {
-      const order = orders.find(o => o.id === id);
-      if (!order) return;
-      order.qty += delta;
-      if (order.qty < 1) order.qty = 1;
-      renderOrders();
-      saveOrders();
-    };
-
-    // Clear Order
-    document.getElementById('clearOrderBtn').onclick = function() {
-      if (orders.length && confirm("ยืนยันล้างรายการ?")) {
-        orders = [];
-        renderOrders();
-        saveOrders();
-        showStatus(getTranslation('orderCleared'), 'info');
-      }
-    };
-
-    // Send Order (show receipt)
-    document.getElementById('sendOrderBtn').onclick = function() {
-      if (!orders.length) {
-        showStatus(getTranslation('noItemsSelected'), 'danger');
-        return;
-      }
-      showReceipt();
-      orders = [];
-      renderOrders();
-      saveOrders();
-      showStatus(getTranslation('orderSuccess'), 'success');
-    };
-
-    // Show Status
-    function showStatus(msg, type) {
-      const el = document.getElementById('statusMsg');
-      el.textContent = msg;
-      el.className = "alert alert-"+type;
-      el.style.display = "block";
-      setTimeout(()=> el.style.display = "none", 2500);
-    }
-
-    // Show Receipt Modal
-    function showReceipt() {
-      let total = 0;
-      let html = `<h5 class="text-center mb-3">${getTranslation('receiptTitle')}</h5>
-        <table class="table">
-        <thead><tr>
-          <th>${getTranslation('menu')}</th>
-          <th>${getTranslation('qty')}</th>
-          <th>${getTranslation('price')}</th>
-          <th>${getTranslation('total')}</th>
-        </tr></thead>
-        <tbody>`;
-      orders.forEach(order => {
-        const itemTotal = order.price * order.qty;
-        total += itemTotal;
-        html += `<tr>
-          <td>${order['name_'+currentLang]}</td>
-          <td>${order.qty}</td>
-          <td>${order.price}</td>
-          <td>${itemTotal}</td>
-        </tr>`;
-      });
-      html += `</tbody>
-        <tfoot><tr>
-          <th colspan="3" class="text-end">${getTranslation('total')}</th>
-          <th>${total}</th>
-        </tr></tfoot>
-        </table>
-        <div class="text-center mt-3">ขอบคุณที่ใช้บริการ!</div>`;
-      document.getElementById('receiptContent').innerHTML = html;
-      new bootstrap.Modal(document.getElementById('receiptModal')).show();
-    }
-    // Print Receipt
-    window.printReceipt = function() {
-      const printContent = document.getElementById('receiptContent').innerHTML;
-      const originalContent = document.body.innerHTML;
-      document.body.innerHTML = printContent;
-      window.print();
-      document.body.innerHTML = originalContent;
-      location.reload();
-    }
-
-    // Switch Language
-    window.switchLanguage = function(lang) {
-      currentLang = lang;
-      document.getElementById('appTitle').textContent = getTranslation('appTitle');
-      document.getElementById('searchMenu').placeholder = getTranslation('searchMenu');
-      document.getElementById('orderHeader').textContent = getTranslation('orderHeader');
-      document.getElementById('clearOrderBtn').innerHTML = `<i class="bi bi-trash"></i> ${getTranslation('clearOrderBtn')}`;
-      document.getElementById('sendOrderBtn').innerHTML = `<i class="bi bi-send-check"></i> ${getTranslation('sendOrderBtn')}`;
-      document.getElementById('printBtn').innerHTML = `<i class="bi bi-printer"></i> ${getTranslation('printBtn')}`;
-      document.getElementById('closeModalBtn').textContent = getTranslation('closeModalBtn');
-      renderMenu();
-      renderOrders();
-    };
-
-    // Theme Toggle
-    document.getElementById('themeToggle').onclick = function() {
-      document.body.classList.toggle('bg-dark');
-      document.body.classList.toggle('text-white');
-    };
-
-    // Init
-    window.onload = async function() {
-      loadOrders();
-      await loadMenu();
-      renderOrders();
-    };
-  </script>
 </body>
 </html>
