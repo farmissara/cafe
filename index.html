@@ -1,55 +1,267 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>บ้านพักครู / คาเฟ่ 🧁☕️</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-    <div class="category-groups">
-  <div class="category-group drink">
-    <div class="group-header"><span class="group-icon">☕️</span> เครื่องดื่ม</div>
-    <button class="btn btn-sm btn-outline-primary category-btn" data-category="drink">เครื่องดื่ม</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="coffee">กาแฟ</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="tea">ชา</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="juice">น้ำผลไม้</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDrink">อื่นๆ</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="alcohol">เหล้า-เบียร์</button>
-  </div>
-  <div class="category-group food">
-    <div class="group-header"><span class="group-icon">🥪</span> อาหาร</div>
-    <button class="btn btn-sm btn-outline-primary category-btn" data-category="food">อาหาร</button>
-  </div>
-  <div class="category-group dessert">
-    <div class="group-header"><span class="group-icon">🍰</span> ของหวาน</div>
-    <button class="btn btn-sm btn-outline-primary category-btn" data-category="dessert">ของหวาน</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="cakesBakeries">เค้ก & เบเกอรี่</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDessert">อื่นๆ</button>
-  </div>
-  <div class="category-group mainDish">
-    <div class="group-header"><span class="group-icon">🍽️</span> อาหารหลัก</div>
-    <button class="btn btn-sm btn-outline-primary category-btn" data-category="mainDish">อาหารหลัก</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="pizza">พิซซ่า</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="spaghetti">สปาเก็ตตี้</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="steak">สเต็ก</button>
-    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="thaiFood">อาหารไทย</button>
-  </div>
-</div>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, #fff8f0 0%, #ffe8ee 100%);
+            color: #5a4534;
+            padding: 12px;
+            position: relative;
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+            background-size: 300px 300px;
+            opacity: 0.08; z-index: 0; pointer-events: none;
+        }
+        .header-section {
+            text-align: center;
+            padding: 16px 8px 14px 8px;
+            background: linear-gradient(135deg, #f8e1e0, #e8f8eb 100%);
+            border-radius: 1.2rem;
+            box-shadow: 0 2px 8px #f7d6eb22;
+            margin-bottom: 1.1rem;
+        }
+        h2 {
+            font-weight: 700;
+            color: #b48b7d;
+            text-shadow: 1px 2px 0 #fff9;
+            letter-spacing: 1.2px;
+            font-size: 1.6rem;
+        }
+        /* --------- หมวดหมู่แบบกล่อง --------- */
+        .category-groups {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+        .category-group {
+            padding: 11px 13px 8px 13px;
+            border-radius: 1.25rem;
+            box-shadow: 0 2px 12px #e0cce033;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+            position: relative;
+        }
+        .category-group .group-header {
+            font-size: 1.13rem;
+            font-weight: 700;
+            margin-right: 13px;
+            display: flex;
+            align-items: center;
+            min-width: 110px;
+            color: #665c48;
+        }
+        .category-group .group-icon {
+            font-size: 1.35em;
+            margin-right: 7px;
+            filter: drop-shadow(0 2px 6px #f7e1b955);
+        }
+        .category-group.drink    { background: linear-gradient(90deg,#e3f4ff 85%,#f7fdff 100%); border: 1.5px solid #b6e5fa; }
+        .category-group.food     { background: linear-gradient(90deg,#e8ffe3 85%,#f6fff5 100%); border: 1.5px solid #c4f2d7; }
+        .category-group.dessert  { background: linear-gradient(90deg,#ffe3fa 85%,#fff5fa 100%); border: 1.5px solid #f5d0ed; }
+        .category-group.mainDish { background: linear-gradient(90deg,#fffbe3 85%,#fffcec 100%); border: 1.5px solid #f7e3b5; }
+        .category-group .category-btn,
+        .category-group .sub-category-btn {
+            margin-bottom: 0 !important;
+            margin-top: 0 !important;
+            margin-right: 7px !important;
+            font-size: 1rem;
+            border-radius: 999px !important;
+        }
+        .category-group .category-btn.active, .category-group .category-btn:focus, .category-group .category-btn:hover,
+        .category-group .sub-category-btn.active, .category-group .sub-category-btn:focus, .category-group .sub-category-btn:hover {
+            background: #fff8fa !important;
+            color: #ae6b8e !important;
+            border-color: #f9c1e2 !important;
+            font-weight: 600;
+        }
+        /* ปุ่มทั้งหมด */
+        .btn {
+            border-radius: 999px;
+            font-weight: 500;
+            font-family: 'Sarabun',sans-serif;
+            transition: background 0.3s, color 0.3s, border 0.3s;
+            font-size: 1rem;
+            box-shadow: 0 2px 8px #f3b0b6a8;
+            min-width: 48px;
+        }
+        .btn-outline-primary,
+        .btn-outline-secondary {
+            background: #fff;
+        }
+        /* เมนูรายการ */
+        .menu-list {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            max-height: 35vh;
+            overflow-y: auto;
+            padding: 3px;
+        }
+        .menu-item {
+            background: linear-gradient(90deg,#fff7f3 60%,#f9f6f8 100%);
+            border-radius: 1.1rem;
+            border: 1.2px solid #f7e1da;
+            margin-bottom: 5px;
+            padding: 11px 3px 11px 13px;
+            box-shadow: 0 1px 5px #ecc3d055;
+            cursor: pointer;
+            transition: box-shadow 0.15s, background 0.15s, transform 0.13s;
+            display: flex;
+            align-items: center;
+            min-height: 46px;
+        }
+        .menu-item .menu-icon { font-size: 1.45rem; margin-right: 8px; }
+        .menu-item .menu-name { flex-grow: 1; font-weight: 600; color: #876c5d; font-size: 1.01rem;}
+        .menu-item .menu-price { font-weight: 600; color: #bda9a2; font-size: 1rem; margin-left: 6px;}
+        /* Order Summary */
+        .order-summary { margin-top: 10px; }
+        #orderTable thead, #orderTable tfoot { display: none; }
+        #orderTable { width: 100%; font-size: 1rem; background: transparent; margin-bottom: 0.5rem;}
+        #orderTable tbody tr {
+            background: #fff;
+            border-radius: 0.9rem;
+            margin-bottom: 7px;
+            box-shadow: 0 1px 5px #e4d1d055;
+        }
+        #orderTable td {
+            border: none; padding: 8px 5px 8px 5px; vertical-align: middle;
+        }
+        #orderTable td:nth-child(1) { width: 40%; }
+        #orderTable td:nth-child(2), #orderTable td:nth-child(3) { width: 20px; text-align: center;}
+        #orderTable td:nth-child(4) { width: 28%; text-align: right; font-weight: 600; color: #b48b7d;}
+        #orderTable td:last-child { width: 35px; text-align: center; }
+        .qty-input-group { display: flex; align-items: center; max-width: 80px; margin: auto;}
+        .qty-input-group button { min-width: 28px; min-height: 28px; font-size: 1.1rem; }
+        .qty-input-group input { width: 30px; text-align: center; border: none; background: transparent; }
+        #totalAmount {
+            font-size: 1.47rem !important;
+            color: #e57373 !important;
+            font-weight: 700;
+            letter-spacing: 1.1px;
+            background: #fff3e0;
+            border-radius: 11px;
+            padding: 7px 20px;
+            display: inline-block;
+            margin: 7px 0 0 0;
+        }
+        #totalAmountLabel {
+            font-size: 1.13rem;
+            color: #b48b7d;
+            font-weight: 600;
+            padding: 0 8px;
+            text-align: right;
+            display: inline-block;
+            margin-right: 7px;
+        }
+        .order-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin: 9px 0 0 0;
+        }
+        .order-actions .btn {
+            flex: 1;
+            padding: 11px 0;
+            font-size: 1.09rem;
+            border-radius: 1.8rem !important;
+        }
+        /* Theme toggle & language */
+        #themeToggle {
+            position: fixed;
+            bottom: 15px;
+            right: 15px;
+            z-index: 999;
+            width: 44px; height: 44px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(135deg,#fbeee7 0%,#f9dbe4 100%) !important;
+            box-shadow: 0 2px 10px #f7d6eb44;
+            color: #ba80a7 !important;
+            border: 1.5px solid #f9dbd8 !important;
+            font-size: 1.3rem;
+        }
+        .language-toggle-buttons {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            z-index: 999;
+        }
+        .language-toggle-buttons .btn {
+            min-width: 38px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 3px 7px;
+            background: #fff5f9 !important;
+            color: #b48b7d !important;
+            border: 1.5px solid #f9dbd8 !important;
+            box-shadow: 0 1px 6px #f7d6eb44;
+            margin-right: 2px;
+        }
+        .modal-content {
+            border-radius: 1.25rem;
+            background: rgba(255,255,255,0.96);
+            box-shadow: 0 4px 24px #f7d6eb44;
+            border: none;
+        }
+        .modal-header, .modal-footer { border: none; }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .main-content { gap: 7px; }
+            .category-group .group-header { font-size: 1rem; }
+            .menu-item { font-size: 1rem; }
+            .card, .menu-card { padding: .7rem; }
+        }
+        @media (max-width: 600px) {
+            .category-groups { gap: 7px; }
+            .category-group { padding: 7px 4px; }
+            .category-group .group-header { font-size: 0.97rem; min-width: 70px; }
+            .category-group .category-btn, .category-group .sub-category-btn { font-size: 0.93rem; margin-right: 2px !important; }
+            .menu-list { max-height: 29vh; }
+            .main-content { flex-direction: column; gap: 5px; }
+        }
+        /* Dark mode */
+        body.dark-mode {
+            background: linear-gradient(120deg,#f4e3f0 0%,#e9e3ff 100%);
+            color: #835b6c;
+        }
+        body.dark-mode .card, body.dark-mode .menu-card, body.dark-mode .modal-content {
+            background: rgba(251,234,248,0.96);
+            color: #835b6c;
+            box-shadow: 0 0 18px #edb6d822;
+        }
+        body.dark-mode .category-group.drink    { background: linear-gradient(90deg,#d9ecf7 70%,#e7ebfb 100%); }
+        body.dark-mode .category-group.food     { background: linear-gradient(90deg,#d9f7df 70%,#e8fbeb 100%); }
+        body.dark-mode .category-group.dessert  { background: linear-gradient(90deg,#f7d9f0 70%,#fbe7fb 100%); }
+        body.dark-mode .category-group.mainDish { background: linear-gradient(90deg,#f7f3d9 70%,#fbfbe7 100%); }
     </style>
 </head>
-
 <body>
-    <button id="themeToggle" class="btn btn-light">
-        <i class="bi bi-moon-stars-fill"></i>
-    </button>
-
+    <button id="themeToggle" class="btn btn-light"><i class="bi bi-moon-stars-fill"></i></button>
     <div class="language-toggle-buttons">
         <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('th')">🇹🇭</button>
         <button class="btn btn-outline-secondary btn-sm" onclick="switchLanguage('en')">🇬🇧</button>
     </div>
-
     <div class="container-fluid app-container">
         <div class="header-section">
             <h2 class="text-center" id="appTitle">บ้านพักครู /คาเฟ่ 🧁☕️</h2>
             <div class="text-center text-muted" id="current-time"></div>
         </div>
-
         <div class="main-content">
             <div class="menu-section">
                 <div class="card menu-card">
@@ -57,35 +269,39 @@
                         <h4 class="mb-0" id="menuHeader">เมนู</h4>
                     </div>
                     <div class="card-body">
-                        <div class="category-container" id="categoryFilter">
-                            <button class="btn btn-sm btn-outline-primary category-btn active" data-category="all">ทั้งหมด ✨</button>
-                            <button class="btn btn-sm btn-outline-primary category-btn" data-category="drink">เครื่องดื่ม ☕️</button>
-                            <div id="subCategoryDrink" class="d-none mt-2 w-100">
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="coffee">กาแฟ ☕</button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="tea">ชา 🍵</button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="juice">น้ำผลไม้ 🥤</button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDrink">อื่นๆ 🍹</button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="alcohol">เหล้า-เบียร์ 🍻</button>
+                        <div class="category-groups">
+                            <div class="category-group drink">
+                                <div class="group-header"><span class="group-icon">☕️</span> เครื่องดื่ม</div>
+                                <button class="btn btn-sm btn-outline-primary category-btn" data-category="drink">เครื่องดื่ม</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="coffee">กาแฟ</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="tea">ชา</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="juice">น้ำผลไม้</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDrink">อื่นๆ</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="alcohol">เหล้า-เบียร์</button>
                             </div>
-                            <button class="btn btn-sm btn-outline-primary category-btn" data-category="food">อาหาร 🥪</button>
-                            <button class="btn btn-sm btn-outline-primary category-btn" data-category="dessert">ของหวาน 🍰</button>
-                            <div id="subCategoryDessert" class="d-none mt-2 w-100">
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="cakesBakeries">เค้ก & เบเกอรี่ 🧁</button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDessert">อื่นๆ 🍬</button>
+                            <div class="category-group food">
+                                <div class="group-header"><span class="group-icon">🥪</span> อาหาร</div>
+                                <button class="btn btn-sm btn-outline-primary category-btn" data-category="food">อาหาร</button>
                             </div>
-                            <button class="btn btn-sm btn-outline-primary category-btn" data-category="mainDish">อาหารหลัก 🍽️</button>
-                            <div id="subCategoryMainDish" class="d-none mt-2 w-100">
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="pizza">พิซซ่า 🍕</button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="spaghetti">สปาเก็ตตี้ 🍝</button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="steak">สเต็ก 🥩</button>
-                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="thaiFood">อาหารไทย 🍚</button>
+                            <div class="category-group dessert">
+                                <div class="group-header"><span class="group-icon">🍰</span> ของหวาน</div>
+                                <button class="btn btn-sm btn-outline-primary category-btn" data-category="dessert">ของหวาน</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="cakesBakeries">เค้ก & เบเกอรี่</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDessert">อื่นๆ</button>
+                            </div>
+                            <div class="category-group mainDish">
+                                <div class="group-header"><span class="group-icon">🍽️</span> อาหารหลัก</div>
+                                <button class="btn btn-sm btn-outline-primary category-btn" data-category="mainDish">อาหารหลัก</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="pizza">พิซซ่า</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="spaghetti">สปาเก็ตตี้</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="steak">สเต็ก</button>
+                                <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="thaiFood">อาหารไทย</button>
                             </div>
                         </div>
                         <div class="menu-list" id="menuList"></div>
                     </div>
                 </div>
             </div>
-
             <div class="order-section">
                 <div class="card">
                     <div class="card-header bg-success text-white">
@@ -115,7 +331,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="card">
                     <div class="card-header order-type-header d-flex align-items-center justify-content-center">
                         <h4 class="mb-0" id="orderTypeHeader">เลือกประเภทออเดอร์</h4>
@@ -157,7 +372,6 @@
             </div>
         </div>
     </div>
-
     <div class="modal fade" id="receiptModal" tabindex="-1">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -179,527 +393,7 @@
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // ข้อมูลภาษา
-        const translations = {
-            "th": {
-                "appTitle": "บ้านพักครู /คาเฟ่ 🧁☕️",
-                "menuHeader": "เมนู",
-                "orderListHeader": "รายการสั่งซื้อ",
-                "allCategory": "ทั้งหมด ✨",
-                "drinkCategory": "เครื่องดื่ม ☕️",
-                "foodCategory": "อาหาร 🥪",
-                "dessertCategory": "ของหวาน 🍰",
-                "mainDishCategory": "อาหารหลัก 🍽️",
-                "coffeeSubCategory": "กาแฟ ☕",
-                "teaSubCategory": "ชา 🍵",
-                "juiceSubCategory": "น้ำผลไม้ 🥤",
-                "otherDrinkSubCategory": "อื่นๆ 🍹",
-                "alcoholSubCategory": "เหล้า-เบียร์ 🍻",
-                "pizzaSubCategory": "พิซซ่า 🍕",
-                "spaghettiSubCategory": "สปาเก็ตตี้ 🍝",
-                "steakSubCategory": "สเต็ก 🥩",
-                "thaiFoodSubCategory": "อาหารไทย 🍚",
-                "cakesBakeriesSubCategory": "เค้ก & เบเกอรี่ 🧁",
-                "otherDessertSubCategory": "อื่นๆ 🍬",
-                "menuNameCol": "เมนู",
-                "priceCol": "ราคา",
-                "qtyCol": "จำนวน",
-                "totalCol": "รวม",
-                "manageCol": "จัดการ",
-                "grandTotal": "รวมทั้งหมด",
-                "orderTypeLabel": "ประเภทออเดอร์",
-                "eatHere": "นั่งทานที่ร้าน",
-                "takeHome": "ซื้อกลับบ้าน",
-                "tableSelectLabel": "เลือกโต๊ะ",
-                "clearOrderBtn": "ล้างรายการ",
-                "sendOrderBtn": "ส่งออเดอร์",
-                "modalReceiptTitle": "ใบเสร็จรับเงิน",
-                "cafeNameReceipt": "บ้านพักครู คาเฟ่ 🏠",
-                "receiptType": "ประเภท",
-                "receiptTable": "โต๊ะ",
-                "printReceiptBtn": "พิมพ์ใบเสร็จ",
-                "closeBtn": "ปิด",
-                "addToOrderSuccess": "เพิ่ม {itemName} เรียบร้อย",
-                "removeFromOrderSuccess": "ลบ {itemName} เรียบร้อย",
-                "noItemsSelected": "โปรดเลือกสินค้าอย่างน้อย 1 รายการ",
-                "sendingOrder": "กำลังส่งข้อมูล...",
-                "orderSuccess": "ส่งออเดอร์สำเร็จ 🎉",
-                "orderFailed": "เกิดข้อผิดพลาด: {errorMessage}",
-                "clearOrderConfirm": "ล้างรายการทั้งหมด?",
-                "orderCleared": "ล้างรายการเรียบร้อย",
-                "noMenuInCategory": "ไม่มีเมนูในหมวดหมู่นี้",
-                "บาท": "บาท",
-                "table1": "โต๊ะ 1",
-                "table2": "โต๊ะ 2",
-                "table3": "โต๊ะ 3",
-                "table4": "โต๊ะ 4",
-                "thankYou": "ขอบคุณที่ใช้บริการ!"
-            },
-            "en": {
-                "appTitle": "Teacher's Home / Cafe 🧁☕️",
-                "menuHeader": "Menu",
-                "orderListHeader": "Order List",
-                "allCategory": "All ✨",
-                "drinkCategory": "Drinks ☕️",
-                "foodCategory": "Food 🥪",
-                "dessertCategory": "Desserts 🍰",
-                "mainDishCategory": "Main Dishes 🍽️",
-                "coffeeSubCategory": "Coffee ☕",
-                "teaSubCategory": "Tea 🍵",
-                "juiceSubCategory": "Juices 🥤",
-                "otherDrinkSubCategory": "Others 🍹",
-                "alcoholSubCategory": "Alcohol & Beer 🍻",
-                "pizzaSubCategory": "Pizza 🍕",
-                "spaghettiSubCategory": "Spaghetti 🍝",
-                "steakSubCategory": "Steak 🥩",
-                "thaiFoodSubCategory": "Thai Food 🍚",
-                "cakesBakeriesSubCategory": "Cakes & Bakeries 🧁",
-                "otherDessertSubCategory": "Others 🍬",
-                "menuNameCol": "Menu",
-                "priceCol": "Price",
-                "qtyCol": "Quantity",
-                "totalCol": "Total",
-                "manageCol": "Manage",
-                "grandTotal": "Grand Total",
-                "orderTypeLabel": "Order Type",
-                "eatHere": "Eat Here",
-                "takeHome": "Take Home",
-                "tableSelectLabel": "Select Table",
-                "clearOrderBtn": "Clear Order",
-                "sendOrderBtn": "Send Order",
-                "modalReceiptTitle": "Receipt",
-                "cafeNameReceipt": "Teacher's Home Cafe 🏠",
-                "receiptType": "Type",
-                "receiptTable": "Table",
-                "printReceiptBtn": "Print Receipt",
-                "closeBtn": "Close",
-                "addToOrderSuccess": "Added {itemName} to order",
-                "removeFromOrderSuccess": "Removed {itemName} from order",
-                "noItemsSelected": "Please select at least 1 item",
-                "sendingOrder": "Sending order...",
-                "orderSuccess": "Order sent successfully 🎉",
-                "orderFailed": "Error: {errorMessage}",
-                "clearOrderConfirm": "Clear all items?",
-                "orderCleared": "Order cleared",
-                "noMenuInCategory": "No menu in this category",
-                "บาท": "Baht",
-                "table1": "Table 1",
-                "table2": "Table 2",
-                "table3": "Table 3",
-                "table4": "Table 4",
-                "thankYou": "Thank you for your order!"
-            }
-        };
-
-        // ข้อมูลเมนู
-        const menuItems = [
-            // เครื่องดื่ม
-            { id: 1, name: "กาแฟลาเต้", price: 40, category: "coffee", icon: "☕️" },
-            { id: 2, name: "ชาเขียว", price: 35, category: "tea", icon: "🍵" },
-            { id: 4, name: "น้ำส้มคั้น", price: 30, category: "juice", icon: "🥤" },
-            { id: 39, name: "โกโก้ครีมมี่", price: 45, category: "otherDrink", icon: "🍫" },
-            { id: 78, name: "เบียร์ช้าง", price: 90, category: "alcohol", icon: "🍺" },
-            
-            // อาหาร
-            { id: 5, name: "แซนวิช", price: 45, category: "food", icon: "🥪" },
-            { id: 8, name: "ครัวซองต์", price: 40, category: "food", icon: "🥐" },
-            
-            // ของหวาน
-            { id: 3, name: "เค้กช็อกโกแลต", price: 55, category: "cakesBakeries", icon: "🧁" },
-            { id: 6, name: "บราวนี่", price: 50, category: "cakesBakeries", icon: "🍫" },
-            
-            // อาหารหลัก
-            { id: 9, name: "พิซซ่ามาการิต้า", price: 180, category: "pizza", icon: "🍕" },
-            { id: 59, name: "สปาเก็ตตี้คาโบนาร่า", price: 150, category: "spaghetti", icon: "🍝" },
-            { id: 49, name: "สเต็กพริกไทยดำ", price: 180, category: "steak", icon: "🥩" },
-            { id: 64, name: "ผัดกะเพราไก่ไข่ดาว", price: 80, category: "thaiFood", icon: "🍚" }
-        ];
-
-        // ตัวแปรระบบ
-        let currentLang = 'th';
-        let currentActiveCategory = 'all';
-        let currentActiveSubCategory = 'all';
-        let orders = [];
-        
-        // อ้างอิงองค์ประกอบ HTML
-        const menuListEl = document.getElementById('menuList');
-        const orderTableBody = document.querySelector('#orderTable tbody');
-        const totalAmountEl = document.getElementById('totalAmount');
-        const statusMsg = document.getElementById('statusMsg');
-        const sendOrderBtn = document.getElementById('sendOrderBtn');
-        const clearOrderBtn = document.getElementById('clearOrderBtn');
-        const categoryBtns = document.querySelectorAll('.category-btn');
-        const subCategoryDrink = document.getElementById('subCategoryDrink');
-        const subCategoryDessert = document.getElementById('subCategoryDessert');
-        const subCategoryMainDish = document.getElementById('subCategoryMainDish');
-        const allSubCategoryDivs = document.querySelectorAll('#subCategoryDrink, #subCategoryDessert, #subCategoryMainDish');
-        const currentTimeEl = document.getElementById('current-time');
-        const eatHereRadio = document.getElementById('eatHere');
-        const takeHomeRadio = document.getElementById('takeHome');
-        const tableSelectContainer = document.getElementById('tableSelectContainer');
-        const tableNumberSelect = document.getElementById('tableNumber');
-
-        // ฟังก์ชันเปลี่ยนภาษา
-        function switchLanguage(lang) {
-            currentLang = lang;
-            updateUIForLanguage();
-            renderMenu();
-            renderOrders();
-            updateCurrentTime();
-        }
-
-        // ฟังก์ชันดึงข้อความแปล
-        function getTranslation(key, placeholders = {}) {
-            let text = translations[currentLang][key] || key;
-            for (const p in placeholders) {
-                text = text.replace(`{${p}}`, placeholders[p]);
-            }
-            return text;
-        }
-
-        // อัปเดต UI ตามภาษา
-        function updateUIForLanguage() {
-            // อัปเดตข้อความทั้งหมดตามภาษา
-            document.getElementById('appTitle').textContent = getTranslation('appTitle');
-            document.getElementById('menuHeader').textContent = getTranslation('menuHeader');
-            document.getElementById('orderListHeader').textContent = getTranslation('orderListHeader');
-            
-            // อัปเดตปุ่มหมวดหมู่
-            document.querySelector('.category-btn[data-category="all"]').textContent = getTranslation('allCategory');
-            document.querySelector('.category-btn[data-category="drink"]').textContent = getTranslation('drinkCategory');
-            document.querySelector('.category-btn[data-category="food"]').textContent = getTranslation('foodCategory');
-            document.querySelector('.category-btn[data-category="dessert"]').textContent = getTranslation('dessertCategory');
-            document.querySelector('.category-btn[data-category="mainDish"]').textContent = getTranslation('mainDishCategory');
-            
-            // อัปเดตตาราง
-            document.getElementById('colMenuName').textContent = getTranslation('menuNameCol');
-            document.getElementById('colPrice').textContent = getTranslation('priceCol');
-            document.getElementById('colQty').textContent = getTranslation('qtyCol');
-            document.getElementById('colTotal').textContent = getTranslation('totalCol');
-            document.getElementById('colManage').textContent = getTranslation('manageCol');
-            document.getElementById('totalAmountLabel').textContent = getTranslation('grandTotal');
-            
-            // อัปเดตส่วนสั่งซื้อ
-            document.getElementById('orderTypeHeader').textContent = getTranslation('orderTypeLabel');
-            document.getElementById('orderTypeLabel').textContent = getTranslation('orderTypeLabel');
-            document.getElementById('eatHereLabel').innerHTML = `${getTranslation('eatHere')} <span class="fs-4">🍽️</span>`;
-            document.getElementById('takeHomeLabel').innerHTML = `${getTranslation('takeHome')} <span class="fs-4">🛍️</span>`;
-            document.getElementById('tableSelectLabel').innerHTML = `${getTranslation('tableSelectLabel')} <span class="fs-4 ms-2">🪑</span>`;
-            
-            // อัปเดตปุ่ม
-            document.getElementById('clearOrderBtn').innerHTML = `<i class="bi bi-trash"></i> ${getTranslation('clearOrderBtn')}`;
-            document.getElementById('sendOrderBtn').innerHTML = `<i class="bi bi-send-check"></i> ${getTranslation('sendOrderBtn')}`;
-            
-            // อัปเดต Modal
-            document.getElementById('receiptModalTitle').textContent = getTranslation('modalReceiptTitle');
-            document.getElementById('cafeNameReceipt').textContent = getTranslation('cafeNameReceipt');
-            document.getElementById('printReceiptBtn').innerHTML = `<i class="bi bi-printer"></i> ${getTranslation('printReceiptBtn')}`;
-            document.getElementById('closeModalBtn').textContent = getTranslation('closeBtn');
-        }
-
-        // แสดงเมนู
-        function renderMenu() {
-            let filtered = [];
-            
-            if (currentActiveSubCategory === 'all') {
-                if (currentActiveCategory === 'all') {
-                    filtered = menuItems;
-                } else if (currentActiveCategory === 'drink') {
-                    filtered = menuItems.filter(item => ['coffee', 'tea', 'juice', 'otherDrink', 'alcohol'].includes(item.category));
-                } else if (currentActiveCategory === 'food') {
-                    filtered = menuItems.filter(item => item.category === 'food');
-                } else if (currentActiveCategory === 'dessert') {
-                    filtered = menuItems.filter(item => ['cakesBakeries', 'otherDessert'].includes(item.category));
-                } else if (currentActiveCategory === 'mainDish') {
-                    filtered = menuItems.filter(item => ['pizza', 'spaghetti', 'steak', 'thaiFood'].includes(item.category));
-                }
-            } else {
-                filtered = menuItems.filter(item => item.category === currentActiveSubCategory);
-            }
-            
-            menuListEl.innerHTML = filtered.length ? 
-                filtered.map(item => `
-                    <div class="menu-item" onclick="addOrder(${item.id})">
-                        <div class="menu-icon">${item.icon}</div>
-                        <div class="menu-name">${item.name}</div>
-                        <div class="menu-price">${item.price} ${getTranslation('บาท')}</div>
-                    </div>
-                `).join('') : 
-                `<div class="text-muted text-center py-3">${getTranslation('noMenuInCategory')}</div>`;
-        }
-
-        // เพิ่มรายการสั่งซื้อ
-        window.addOrder = function(id) {
-            const item = menuItems.find(i => i.id === id);
-            const existing = orders.find(o => o.id === id);
-            
-            if (existing) {
-                existing.qty++;
-            } else {
-                orders.push({...item, qty: 1});
-            }
-            
-            renderOrders();
-            showStatus(getTranslation('addToOrderSuccess', {itemName: item.name}), 'success');
-        }
-
-        // แสดงรายการสั่งซื้อ
-        function renderOrders() {
-            orderTableBody.innerHTML = '';
-            let total = 0;
-            
-            orders.forEach(order => {
-                const itemTotal = order.price * order.qty;
-                total += itemTotal;
-                
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${order.name}</td>
-                    <td>${order.price}</td>
-                    <td>
-                        <div class="input-group input-group-sm qty-input-group">
-                            <button class="btn btn-outline-secondary" type="button" onclick="changeQty(${order.id}, -1)">
-                                <i class="bi bi-dash-lg"></i>
-                            </button>
-                            <input type="text" class="form-control text-center" value="${order.qty}" readonly>
-                            <button class="btn btn-outline-secondary" type="button" onclick="changeQty(${order.id}, 1)">
-                                <i class="bi bi-plus-lg"></i>
-                            </button>
-                        </div>
-                    </td>
-                    <td>${itemTotal}</td>
-                    <td><button class="btn btn-danger btn-sm" onclick="removeOrder(${order.id})"><i class="bi bi-x-lg"></i></button></td>
-                `;
-                orderTableBody.appendChild(row);
-            });
-            
-            totalAmountEl.textContent = total;
-        }
-
-        // เปลี่ยนจำนวน
-        window.changeQty = function(id, delta) {
-            const order = orders.find(o => o.id === id);
-            if (order) {
-                order.qty += delta;
-                if (order.qty < 1) order.qty = 1;
-                renderOrders();
-            }
-        }
-
-        // ลบรายการ
-        window.removeOrder = function(id) {
-            const index = orders.findIndex(o => o.id === id);
-            if (index > -1) {
-                const itemName = orders[index].name;
-                orders.splice(index, 1);
-                renderOrders();
-                showStatus(getTranslation('removeFromOrderSuccess', {itemName}), 'success');
-            }
-        }
-
-        // แสดงสถานะ
-        function showStatus(msg, type) {
-            statusMsg.textContent = msg;
-            statusMsg.className = `alert alert-${type}`;
-            statusMsg.style.display = 'block';
-            setTimeout(() => statusMsg.style.display = 'none', 3000);
-        }
-
-        // ส่งออเดอร์
-        function sendOrder() {
-            if (!orders.length) {
-                showStatus(getTranslation('noItemsSelected'), 'danger');
-                return;
-            }
-            
-            showStatus(getTranslation('sendingOrder'), 'info');
-            
-            // สร้างใบเสร็จ
-            generateReceipt();
-            
-            // ล้างรายการ
-            orders = [];
-            renderOrders();
-            showStatus(getTranslation('orderSuccess'), 'success');
-        }
-
-        // สร้างใบเสร็จ
-        function generateReceipt() {
-            const orderType = document.querySelector('input[name="orderType"]:checked').value;
-            const tableNumber = tableNumberSelect.value;
-            
-            // แปลงสำหรับแสดงผล
-            const displayOrderType = orderType === 'นั่งทานที่ร้าน' ? getTranslation('eatHere') : getTranslation('takeHome');
-            const displayTableNumber = tableNumber === 'โต๊ะ 1' ? getTranslation('table1') :
-                                     tableNumber === 'โต๊ะ 2' ? getTranslation('table2') :
-                                     tableNumber === 'โต๊ะ 3' ? getTranslation('table3') :
-                                     tableNumber === 'โต๊ะ 4' ? getTranslation('table4') : tableNumber;
-            
-            // รายละเอียดใบเสร็จ
-            let receiptDetailsHtml = `
-                <p><strong>${getTranslation('receiptType')}:</strong> ${displayOrderType} ${orderType === 'นั่งทานที่ร้าน' ? '🍽️' : '🛍️'}</p>
-            `;
-            
-            if (orderType === 'นั่งทานที่ร้าน') {
-                receiptDetailsHtml += `<p><strong>${getTranslation('receiptTable')}:</strong> ${displayTableNumber} 🪑</p>`;
-            }
-            
-            document.getElementById('receiptDetails').innerHTML = receiptDetailsHtml;
-            
-            // ตารางใบเสร็จ
-            let html = `
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>${getTranslation('menuNameCol')}</th>
-                            <th>${getTranslation('qtyCol')}</th>
-                            <th>${getTranslation('priceCol')}</th>
-                            <th>${getTranslation('totalCol')}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-            `;
-            
-            let total = 0;
-            orders.forEach(order => {
-                const itemTotal = order.price * order.qty;
-                total += itemTotal;
-                html += `
-                    <tr>
-                        <td>${order.name}</td>
-                        <td>${order.qty}</td>
-                        <td>${order.price}</td>
-                        <td>${itemTotal}</td>
-                    </tr>
-                `;
-            });
-            
-            html += `
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th colspan="3">${getTranslation('grandTotal')}</th>
-                            <th>${total} ${getTranslation('บาท')}</th>
-                        </tr>
-                    </tfoot>
-                </table>
-            `;
-            
-            document.getElementById('receiptTable').innerHTML = html;
-            document.getElementById('qrImage').src = `https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${getTranslation('cafeNameReceipt')}: ${total} ${getTranslation('บาท')}`;
-            
-            // แสดงข้อความขอบคุณ
-            document.querySelector('#receiptContent p.text-center').textContent = getTranslation('thankYou');
-            
-            // แสดง Modal
-            new bootstrap.Modal(document.getElementById('receiptModal')).show();
-        }
-
-        // พิมพ์ใบเสร็จ
-        function printReceipt() {
-            const printContent = document.getElementById('receiptContent').innerHTML;
-            const originalContent = document.body.innerHTML;
-            
-            document.body.innerHTML = printContent;
-            window.print();
-            document.body.innerHTML = originalContent;
-        }
-
-        // ล้างรายการ
-        function clearOrder() {
-            if (orders.length && confirm(getTranslation('clearOrderConfirm'))) {
-                orders = [];
-                renderOrders();
-                showStatus(getTranslation('orderCleared'), 'success');
-            }
-        }
-
-        // อัปเดตเวลาปัจจุบัน
-        function updateCurrentTime() {
-            const now = new Date();
-            currentTimeEl.textContent = now.toLocaleString(
-                currentLang === 'th' ? 'th-TH' : 'en-US',
-                { 
-                    weekday: 'long', 
-                    year: 'numeric', 
-                    month: 'long', 
-                    day: 'numeric', 
-                    hour: '2-digit', 
-                    minute: '2-digit', 
-                    second: '2-digit' 
-                }
-            );
-        }
-
-        // เปลี่ยนธีมสี
-        document.getElementById('themeToggle').addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-        });
-
-        // ตั้งค่า Dark Mode อัตโนมัติตามเวลา
-        (function() {
-            const hour = new Date().getHours();
-            if (hour >= 18 || hour < 6) {
-                document.body.classList.add('dark-mode');
-            }
-        })();
-
-        // ตั้งค่าปุ่มหมวดหมู่
-        categoryBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                categoryBtns.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                allSubCategoryDivs.forEach(div => div.classList.add('d-none'));
-                
-                currentActiveCategory = this.dataset.category;
-                currentActiveSubCategory = 'all';
-                
-                if (currentActiveCategory === 'drink') {
-                    subCategoryDrink.classList.remove('d-none');
-                } else if (currentActiveCategory === 'dessert') {
-                    subCategoryDessert.classList.remove('d-none');
-                } else if (currentActiveCategory === 'mainDish') {
-                    subCategoryMainDish.classList.remove('d-none');
-                }
-                
-                renderMenu();
-            });
-        });
-
-        // ตั้งค่าปุ่มหมวดหมู่ย่อย
-        allSubCategoryDivs.forEach(div => {
-            div.querySelectorAll('.sub-category-btn').forEach(subBtn => {
-                subBtn.addEventListener('click', function() {
-                    document.querySelectorAll('.sub-category-btn').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    currentActiveSubCategory = this.dataset.category;
-                    renderMenu();
-                });
-            });
-        });
-
-        // ตั้งค่าปุ่มเลือกโต๊ะ
-        eatHereRadio.addEventListener('change', () => {
-            tableSelectContainer.style.display = eatHereRadio.checked ? 'block' : 'none';
-        });
-
-        takeHomeRadio.addEventListener('change', () => {
-            tableSelectContainer.style.display = takeHomeRadio.checked ? 'none' : 'block';
-        });
-
-        // ตั้งค่าปุ่มดำเนินการ
-        sendOrderBtn.addEventListener('click', sendOrder);
-        clearOrderBtn.addEventListener('click', clearOrder);
-
-        // เริ่มต้นระบบ
-        updateUIForLanguage();
-        renderMenu();
-        updateCurrentTime();
-        setInterval(updateCurrentTime, 1000);
-    </script>
+    <!-- *** วาง JS ระบบร้านกาแฟของคุณในส่วนนี้ *** -->
 </body>
 </html>
