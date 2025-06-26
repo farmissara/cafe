@@ -1,0 +1,15 @@
+[
+  {"id": 1, "name_th": "กาแฟลาเต้", "name_en": "Latte", "price": 40, "category": "coffee", "icon": "☕️"},
+  {"id": 2, "name_th": "ชาเขียว", "name_en": "Green Tea", "price": 35, "category": "tea", "icon": "🍵"},
+  {"id": 4, "name_th": "น้ำส้มคั้น", "name_en": "Orange Juice", "price": 30, "category": "juice", "icon": "🥤"},
+  {"id": 39, "name_th": "โกโก้ครีมมี่", "name_en": "Creamy Cocoa", "price": 45, "category": "otherDrink", "icon": "🍫"},
+  {"id": 78, "name_th": "เบียร์ช้าง", "name_en": "Chang Beer", "price": 90, "category": "alcohol", "icon": "🍺"},
+  {"id": 5, "name_th": "แซนวิช", "name_en": "Sandwich", "price": 45, "category": "food", "icon": "🥪"},
+  {"id": 8, "name_th": "ครัวซองต์", "name_en": "Croissant", "price": 40, "category": "food", "icon": "🥐"},
+  {"id": 3, "name_th": "เค้กช็อกโกแลต", "name_en": "Chocolate Cake", "price": 55, "category": "cakesBakeries", "icon": "🧁"},
+  {"id": 6, "name_th": "บราวนี่", "name_en": "Brownie", "price": 50, "category": "cakesBakeries", "icon": "🍫"},
+  {"id": 9, "name_th": "พิซซ่ามาการิต้า", "name_en": "Margherita Pizza", "price": 180, "category": "pizza", "icon": "🍕"},
+  {"id": 59, "name_th": "สปาเก็ตตี้คาโบนาร่า", "name_en": "Carbonara Spaghetti", "price": 150, "category": "spaghetti", "icon": "🍝"},
+  {"id": 49, "name_th": "สเต็กพริกไทยดำ", "name_en": "Black Pepper Steak", "price": 180, "category": "steak", "icon": "🥩"},
+  {"id": 64, "name_th": "ผัดกะเพราไก่ไข่ดาว", "name_en": "Pad Krapow Chicken", "price": 80, "category": "thaiFood", "icon": "🍚"}
+]
