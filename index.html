@@ -2,54 +2,35 @@
 <html lang="th">
 <head>
     <style>
-    /* กล่องหมวดหมู่ (เครื่องดื่ม/อาหาร/ของหวาน/อาหารหลัก) */
-.category-group {
-  border-radius: 1.2rem;
-  box-shadow: 0 2px 16px #f7d6eb22;
-  margin-bottom: 12px;
-  padding: 14px 11px 11px 11px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  position: relative;
-  overflow: visible;
-}
-
-.category-group.drink {
-  background: linear-gradient(90deg,#e3f4ff 70%,#f7fdff 100%);
-  border: 1.5px solid #7fd5f5;
-}
-.category-group.food {
-  background: linear-gradient(90deg,#e8ffe3 70%,#f6fff5 100%);
-  border: 1.5px solid #7feab4;
-}
-.category-group.dessert {
-  background: linear-gradient(90deg,#ffe3fa 70%,#fff5fa 100%);
-  border: 1.5px solid #f58bd2;
-}
-.category-group.mainDish {
-  background: linear-gradient(90deg,#fffbe3 70%,#fffcec 100%);
-  border: 1.5px solid #f4c96b;
-}
-
-.category-group .group-icon {
-  font-size: 2.1rem;
-  margin-right: 6px;
-  flex-shrink: 0;
-  filter: drop-shadow(0 2px 6px #fff8);
-}
-.category-group .group-label {
-  font-size: 1.17rem;
-  font-weight: bold;
-  color: #665c48;
-  letter-spacing: 1px;
-}
-
-/* ปุ่มในแต่ละกล่อง */
-.category-group .category-btn,
-.category-group .sub-category-btn {
-  margin: 0 5px 0 0 !important;
-}
+    <div class="category-groups">
+  <div class="category-group drink">
+    <div class="group-header"><span class="group-icon">☕️</span> เครื่องดื่ม</div>
+    <button class="btn btn-sm btn-outline-primary category-btn" data-category="drink">เครื่องดื่ม</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="coffee">กาแฟ</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="tea">ชา</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="juice">น้ำผลไม้</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDrink">อื่นๆ</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="alcohol">เหล้า-เบียร์</button>
+  </div>
+  <div class="category-group food">
+    <div class="group-header"><span class="group-icon">🥪</span> อาหาร</div>
+    <button class="btn btn-sm btn-outline-primary category-btn" data-category="food">อาหาร</button>
+  </div>
+  <div class="category-group dessert">
+    <div class="group-header"><span class="group-icon">🍰</span> ของหวาน</div>
+    <button class="btn btn-sm btn-outline-primary category-btn" data-category="dessert">ของหวาน</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="cakesBakeries">เค้ก & เบเกอรี่</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="otherDessert">อื่นๆ</button>
+  </div>
+  <div class="category-group mainDish">
+    <div class="group-header"><span class="group-icon">🍽️</span> อาหารหลัก</div>
+    <button class="btn btn-sm btn-outline-primary category-btn" data-category="mainDish">อาหารหลัก</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="pizza">พิซซ่า</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="spaghetti">สปาเก็ตตี้</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="steak">สเต็ก</button>
+    <button class="btn btn-sm btn-outline-secondary sub-category-btn" data-category="thaiFood">อาหารไทย</button>
+  </div>
+</div>
     </style>
 </head>
 
